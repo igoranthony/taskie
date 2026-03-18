@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data:Z
+      - .:/app:Z
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=tradex-secret-key-dev-only
+      - DJANGO_SETTINGS_MODULE=config.settings.development
+    command: >
+      sh -c "python /app/manage.py migrate &&
+             python /app/create_superuser.py &&
+             python /app/manage.py runserver 0.0.0.0:8000"
+    stdin_open: true
+    tty: true
+
+volumes:
+  db_data:
