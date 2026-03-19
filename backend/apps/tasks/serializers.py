@@ -75,7 +75,11 @@ class TaskHistorySerializer(serializers.ModelSerializer):
             'field_name', 'old_value', 'new_value',
             'changed_by', 'changed_by_username', 'changed_at'
         )
-        read_only_fields = '__all__'
+        read_only_fields = (
+            'id', 'task', 'task_id', 'task_titulo',
+            'field_name', 'old_value', 'new_value',
+            'changed_by', 'changed_by_username', 'changed_at'
+        )
 
 
 class TaskCreateSerializer(serializers.ModelSerializer):
