@@ -52,6 +52,15 @@ def user_profile(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def users_list(request):
+    """List all active users for task assignment"""
+    users = User.objects.filter(is_active=True).order_by('username')
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def logout_view(request):
