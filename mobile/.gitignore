@@ -89,9 +89,6 @@ app.*.map.json
 # Web specific
 /web/build/
 
-# Generated files - Code Generation
-*.g.dart
-*.freezed.dart
 *.mocks.dart
 
 # Environment files
