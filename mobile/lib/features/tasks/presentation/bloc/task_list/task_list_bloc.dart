@@ -37,12 +37,32 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     TaskListRefreshed event,
     Emitter<TaskListState> emit,
   ) async {
-    final currentFilter =
-        state is TaskListSuccess ? (state as TaskListSuccess).filterStatus : null;
+    final current = state is TaskListSuccess ? state as TaskListSuccess : null;
     emit(const TaskListState.loading());
     try {
-      final tasks = await _getTasks(status: currentFilter);
-      emit(TaskListState.success(tasks: tasks, filterStatus: currentFilter));
+      final tasks = await _getTasks(
+        status: current?.filterStatus,
+        prioridade: current?.filterPrioridade,
+        search: current?.filterSearch,
+        criadoPor: current?.filterCriadoPor,
+        atribuidoPara: current?.filterAtribuidoPara,
+        criadoEmInicio: current?.filterCriadoEmInicio,
+        criadoEmFim: current?.filterCriadoEmFim,
+        dataLimiteInicio: current?.filterDataLimiteInicio,
+        dataLimiteFim: current?.filterDataLimiteFim,
+      );
+      emit(TaskListState.success(
+        tasks: tasks,
+        filterStatus: current?.filterStatus,
+        filterPrioridade: current?.filterPrioridade,
+        filterSearch: current?.filterSearch,
+        filterCriadoPor: current?.filterCriadoPor,
+        filterAtribuidoPara: current?.filterAtribuidoPara,
+        filterCriadoEmInicio: current?.filterCriadoEmInicio,
+        filterCriadoEmFim: current?.filterCriadoEmFim,
+        filterDataLimiteInicio: current?.filterDataLimiteInicio,
+        filterDataLimiteFim: current?.filterDataLimiteFim,
+      ));
     } catch (e) {
       emit(TaskListState.failure(e.toString()));
     }
@@ -54,8 +74,29 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
   ) async {
     emit(const TaskListState.loading());
     try {
-      final tasks = await _getTasks(status: event.status);
-      emit(TaskListState.success(tasks: tasks, filterStatus: event.status));
+      final tasks = await _getTasks(
+        status: event.status,
+        prioridade: event.prioridade,
+        search: event.search,
+        criadoPor: event.criadoPor,
+        atribuidoPara: event.atribuidoPara,
+        criadoEmInicio: event.criadoEmInicio,
+        criadoEmFim: event.criadoEmFim,
+        dataLimiteInicio: event.dataLimiteInicio,
+        dataLimiteFim: event.dataLimiteFim,
+      );
+      emit(TaskListState.success(
+        tasks: tasks,
+        filterStatus: event.status,
+        filterPrioridade: event.prioridade,
+        filterSearch: event.search,
+        filterCriadoPor: event.criadoPor,
+        filterAtribuidoPara: event.atribuidoPara,
+        filterCriadoEmInicio: event.criadoEmInicio,
+        filterCriadoEmFim: event.criadoEmFim,
+        filterDataLimiteInicio: event.dataLimiteInicio,
+        filterDataLimiteFim: event.dataLimiteFim,
+      ));
     } catch (e) {
       emit(TaskListState.failure(e.toString()));
     }

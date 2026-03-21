@@ -7,6 +7,16 @@ part 'task_list_event.freezed.dart';
 class TaskListEvent with _$TaskListEvent {
   const factory TaskListEvent.loaded() = TaskListLoaded;
   const factory TaskListEvent.refreshed() = TaskListRefreshed;
-  const factory TaskListEvent.filtered({TaskStatus? status}) = TaskListFiltered;
+  const factory TaskListEvent.filtered({
+    TaskStatus? status,
+    TaskPriority? prioridade,
+    String? search,
+    int? criadoPor,
+    int? atribuidoPara,
+    DateTime? criadoEmInicio,
+    DateTime? criadoEmFim,
+    DateTime? dataLimiteInicio,
+    DateTime? dataLimiteFim,
+  }) = TaskListFiltered;
   const factory TaskListEvent.taskDeleted(String id) = TaskListTaskDeleted;
 }

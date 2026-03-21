@@ -21,21 +21,54 @@ mixin _$TaskListEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() refreshed,
-    required TResult Function(TaskStatus? status) filtered,
+    required TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )
+    filtered,
     required TResult Function(String id) taskDeleted,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? refreshed,
-    TResult? Function(TaskStatus? status)? filtered,
+    TResult? Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult? Function(String id)? taskDeleted,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? refreshed,
-    TResult Function(TaskStatus? status)? filtered,
+    TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -130,7 +163,18 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() refreshed,
-    required TResult Function(TaskStatus? status) filtered,
+    required TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )
+    filtered,
     required TResult Function(String id) taskDeleted,
   }) {
     return loaded();
@@ -141,7 +185,18 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? refreshed,
-    TResult? Function(TaskStatus? status)? filtered,
+    TResult? Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult? Function(String id)? taskDeleted,
   }) {
     return loaded?.call();
@@ -152,7 +207,18 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? refreshed,
-    TResult Function(TaskStatus? status)? filtered,
+    TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -249,7 +315,18 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() refreshed,
-    required TResult Function(TaskStatus? status) filtered,
+    required TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )
+    filtered,
     required TResult Function(String id) taskDeleted,
   }) {
     return refreshed();
@@ -260,7 +337,18 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? refreshed,
-    TResult? Function(TaskStatus? status)? filtered,
+    TResult? Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult? Function(String id)? taskDeleted,
   }) {
     return refreshed?.call();
@@ -271,7 +359,18 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? refreshed,
-    TResult Function(TaskStatus? status)? filtered,
+    TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -330,7 +429,17 @@ abstract class _$$TaskListFilteredImplCopyWith<$Res> {
     $Res Function(_$TaskListFilteredImpl) then,
   ) = __$$TaskListFilteredImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TaskStatus? status});
+  $Res call({
+    TaskStatus? status,
+    TaskPriority? prioridade,
+    String? search,
+    int? criadoPor,
+    int? atribuidoPara,
+    DateTime? criadoEmInicio,
+    DateTime? criadoEmFim,
+    DateTime? dataLimiteInicio,
+    DateTime? dataLimiteFim,
+  });
 }
 
 /// @nodoc
@@ -346,13 +455,55 @@ class __$$TaskListFilteredImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = freezed}) {
+  $Res call({
+    Object? status = freezed,
+    Object? prioridade = freezed,
+    Object? search = freezed,
+    Object? criadoPor = freezed,
+    Object? atribuidoPara = freezed,
+    Object? criadoEmInicio = freezed,
+    Object? criadoEmFim = freezed,
+    Object? dataLimiteInicio = freezed,
+    Object? dataLimiteFim = freezed,
+  }) {
     return _then(
       _$TaskListFilteredImpl(
         status: freezed == status
             ? _value.status
             : status // ignore: cast_nullable_to_non_nullable
                   as TaskStatus?,
+        prioridade: freezed == prioridade
+            ? _value.prioridade
+            : prioridade // ignore: cast_nullable_to_non_nullable
+                  as TaskPriority?,
+        search: freezed == search
+            ? _value.search
+            : search // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        criadoPor: freezed == criadoPor
+            ? _value.criadoPor
+            : criadoPor // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        atribuidoPara: freezed == atribuidoPara
+            ? _value.atribuidoPara
+            : atribuidoPara // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        criadoEmInicio: freezed == criadoEmInicio
+            ? _value.criadoEmInicio
+            : criadoEmInicio // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        criadoEmFim: freezed == criadoEmFim
+            ? _value.criadoEmFim
+            : criadoEmFim // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        dataLimiteInicio: freezed == dataLimiteInicio
+            ? _value.dataLimiteInicio
+            : dataLimiteInicio // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        dataLimiteFim: freezed == dataLimiteFim
+            ? _value.dataLimiteFim
+            : dataLimiteFim // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
       ),
     );
   }
@@ -361,14 +512,40 @@ class __$$TaskListFilteredImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TaskListFilteredImpl implements TaskListFiltered {
-  const _$TaskListFilteredImpl({this.status});
+  const _$TaskListFilteredImpl({
+    this.status,
+    this.prioridade,
+    this.search,
+    this.criadoPor,
+    this.atribuidoPara,
+    this.criadoEmInicio,
+    this.criadoEmFim,
+    this.dataLimiteInicio,
+    this.dataLimiteFim,
+  });
 
   @override
   final TaskStatus? status;
+  @override
+  final TaskPriority? prioridade;
+  @override
+  final String? search;
+  @override
+  final int? criadoPor;
+  @override
+  final int? atribuidoPara;
+  @override
+  final DateTime? criadoEmInicio;
+  @override
+  final DateTime? criadoEmFim;
+  @override
+  final DateTime? dataLimiteInicio;
+  @override
+  final DateTime? dataLimiteFim;
 
   @override
   String toString() {
-    return 'TaskListEvent.filtered(status: $status)';
+    return 'TaskListEvent.filtered(status: $status, prioridade: $prioridade, search: $search, criadoPor: $criadoPor, atribuidoPara: $atribuidoPara, criadoEmInicio: $criadoEmInicio, criadoEmFim: $criadoEmFim, dataLimiteInicio: $dataLimiteInicio, dataLimiteFim: $dataLimiteFim)';
   }
 
   @override
@@ -376,11 +553,37 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskListFilteredImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.prioridade, prioridade) ||
+                other.prioridade == prioridade) &&
+            (identical(other.search, search) || other.search == search) &&
+            (identical(other.criadoPor, criadoPor) ||
+                other.criadoPor == criadoPor) &&
+            (identical(other.atribuidoPara, atribuidoPara) ||
+                other.atribuidoPara == atribuidoPara) &&
+            (identical(other.criadoEmInicio, criadoEmInicio) ||
+                other.criadoEmInicio == criadoEmInicio) &&
+            (identical(other.criadoEmFim, criadoEmFim) ||
+                other.criadoEmFim == criadoEmFim) &&
+            (identical(other.dataLimiteInicio, dataLimiteInicio) ||
+                other.dataLimiteInicio == dataLimiteInicio) &&
+            (identical(other.dataLimiteFim, dataLimiteFim) ||
+                other.dataLimiteFim == dataLimiteFim));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    prioridade,
+    search,
+    criadoPor,
+    atribuidoPara,
+    criadoEmInicio,
+    criadoEmFim,
+    dataLimiteInicio,
+    dataLimiteFim,
+  );
 
   /// Create a copy of TaskListEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -398,10 +601,31 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() refreshed,
-    required TResult Function(TaskStatus? status) filtered,
+    required TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )
+    filtered,
     required TResult Function(String id) taskDeleted,
   }) {
-    return filtered(status);
+    return filtered(
+      status,
+      prioridade,
+      search,
+      criadoPor,
+      atribuidoPara,
+      criadoEmInicio,
+      criadoEmFim,
+      dataLimiteInicio,
+      dataLimiteFim,
+    );
   }
 
   @override
@@ -409,10 +633,31 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? refreshed,
-    TResult? Function(TaskStatus? status)? filtered,
+    TResult? Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult? Function(String id)? taskDeleted,
   }) {
-    return filtered?.call(status);
+    return filtered?.call(
+      status,
+      prioridade,
+      search,
+      criadoPor,
+      atribuidoPara,
+      criadoEmInicio,
+      criadoEmFim,
+      dataLimiteInicio,
+      dataLimiteFim,
+    );
   }
 
   @override
@@ -420,12 +665,33 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? refreshed,
-    TResult Function(TaskStatus? status)? filtered,
+    TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {
     if (filtered != null) {
-      return filtered(status);
+      return filtered(
+        status,
+        prioridade,
+        search,
+        criadoPor,
+        atribuidoPara,
+        criadoEmInicio,
+        criadoEmFim,
+        dataLimiteInicio,
+        dataLimiteFim,
+      );
     }
     return orElse();
   }
@@ -469,10 +735,27 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
 }
 
 abstract class TaskListFiltered implements TaskListEvent {
-  const factory TaskListFiltered({final TaskStatus? status}) =
-      _$TaskListFilteredImpl;
+  const factory TaskListFiltered({
+    final TaskStatus? status,
+    final TaskPriority? prioridade,
+    final String? search,
+    final int? criadoPor,
+    final int? atribuidoPara,
+    final DateTime? criadoEmInicio,
+    final DateTime? criadoEmFim,
+    final DateTime? dataLimiteInicio,
+    final DateTime? dataLimiteFim,
+  }) = _$TaskListFilteredImpl;
 
   TaskStatus? get status;
+  TaskPriority? get prioridade;
+  String? get search;
+  int? get criadoPor;
+  int? get atribuidoPara;
+  DateTime? get criadoEmInicio;
+  DateTime? get criadoEmFim;
+  DateTime? get dataLimiteInicio;
+  DateTime? get dataLimiteFim;
 
   /// Create a copy of TaskListEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -556,7 +839,18 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() refreshed,
-    required TResult Function(TaskStatus? status) filtered,
+    required TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )
+    filtered,
     required TResult Function(String id) taskDeleted,
   }) {
     return taskDeleted(id);
@@ -567,7 +861,18 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? refreshed,
-    TResult? Function(TaskStatus? status)? filtered,
+    TResult? Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult? Function(String id)? taskDeleted,
   }) {
     return taskDeleted?.call(id);
@@ -578,7 +883,18 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? refreshed,
-    TResult Function(TaskStatus? status)? filtered,
+    TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {

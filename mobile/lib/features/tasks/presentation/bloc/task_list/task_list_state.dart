@@ -10,6 +10,14 @@ class TaskListState with _$TaskListState {
   const factory TaskListState.success({
     required List<Task> tasks,
     TaskStatus? filterStatus,
+    TaskPriority? filterPrioridade,
+    String? filterSearch,
+    int? filterCriadoPor,
+    int? filterAtribuidoPara,
+    DateTime? filterCriadoEmInicio,
+    DateTime? filterCriadoEmFim,
+    DateTime? filterDataLimiteInicio,
+    DateTime? filterDataLimiteFim,
   }) = TaskListSuccess;
   const factory TaskListState.failure(String message) = TaskListFailure;
 }

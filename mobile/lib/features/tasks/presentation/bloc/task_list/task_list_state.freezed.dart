@@ -21,7 +21,18 @@ mixin _$TaskListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks, TaskStatus? filterStatus)
+    required TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )
     success,
     required TResult Function(String message) failure,
   }) => throw _privateConstructorUsedError;
@@ -29,14 +40,38 @@ mixin _$TaskListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult? Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult? Function(String message)? failure,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -131,7 +166,18 @@ class _$TaskListInitialImpl implements TaskListInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks, TaskStatus? filterStatus)
+    required TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )
     success,
     required TResult Function(String message) failure,
   }) {
@@ -143,7 +189,19 @@ class _$TaskListInitialImpl implements TaskListInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult? Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -154,7 +212,19 @@ class _$TaskListInitialImpl implements TaskListInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -251,7 +321,18 @@ class _$TaskListLoadingImpl implements TaskListLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks, TaskStatus? filterStatus)
+    required TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )
     success,
     required TResult Function(String message) failure,
   }) {
@@ -263,7 +344,19 @@ class _$TaskListLoadingImpl implements TaskListLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult? Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -274,7 +367,19 @@ class _$TaskListLoadingImpl implements TaskListLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -333,7 +438,18 @@ abstract class _$$TaskListSuccessImplCopyWith<$Res> {
     $Res Function(_$TaskListSuccessImpl) then,
   ) = __$$TaskListSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Task> tasks, TaskStatus? filterStatus});
+  $Res call({
+    List<Task> tasks,
+    TaskStatus? filterStatus,
+    TaskPriority? filterPrioridade,
+    String? filterSearch,
+    int? filterCriadoPor,
+    int? filterAtribuidoPara,
+    DateTime? filterCriadoEmInicio,
+    DateTime? filterCriadoEmFim,
+    DateTime? filterDataLimiteInicio,
+    DateTime? filterDataLimiteFim,
+  });
 }
 
 /// @nodoc
@@ -349,7 +465,18 @@ class __$$TaskListSuccessImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? tasks = null, Object? filterStatus = freezed}) {
+  $Res call({
+    Object? tasks = null,
+    Object? filterStatus = freezed,
+    Object? filterPrioridade = freezed,
+    Object? filterSearch = freezed,
+    Object? filterCriadoPor = freezed,
+    Object? filterAtribuidoPara = freezed,
+    Object? filterCriadoEmInicio = freezed,
+    Object? filterCriadoEmFim = freezed,
+    Object? filterDataLimiteInicio = freezed,
+    Object? filterDataLimiteFim = freezed,
+  }) {
     return _then(
       _$TaskListSuccessImpl(
         tasks: null == tasks
@@ -360,6 +487,38 @@ class __$$TaskListSuccessImplCopyWithImpl<$Res>
             ? _value.filterStatus
             : filterStatus // ignore: cast_nullable_to_non_nullable
                   as TaskStatus?,
+        filterPrioridade: freezed == filterPrioridade
+            ? _value.filterPrioridade
+            : filterPrioridade // ignore: cast_nullable_to_non_nullable
+                  as TaskPriority?,
+        filterSearch: freezed == filterSearch
+            ? _value.filterSearch
+            : filterSearch // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        filterCriadoPor: freezed == filterCriadoPor
+            ? _value.filterCriadoPor
+            : filterCriadoPor // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        filterAtribuidoPara: freezed == filterAtribuidoPara
+            ? _value.filterAtribuidoPara
+            : filterAtribuidoPara // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        filterCriadoEmInicio: freezed == filterCriadoEmInicio
+            ? _value.filterCriadoEmInicio
+            : filterCriadoEmInicio // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        filterCriadoEmFim: freezed == filterCriadoEmFim
+            ? _value.filterCriadoEmFim
+            : filterCriadoEmFim // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        filterDataLimiteInicio: freezed == filterDataLimiteInicio
+            ? _value.filterDataLimiteInicio
+            : filterDataLimiteInicio // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        filterDataLimiteFim: freezed == filterDataLimiteFim
+            ? _value.filterDataLimiteFim
+            : filterDataLimiteFim // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
       ),
     );
   }
@@ -371,6 +530,14 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
   const _$TaskListSuccessImpl({
     required final List<Task> tasks,
     this.filterStatus,
+    this.filterPrioridade,
+    this.filterSearch,
+    this.filterCriadoPor,
+    this.filterAtribuidoPara,
+    this.filterCriadoEmInicio,
+    this.filterCriadoEmFim,
+    this.filterDataLimiteInicio,
+    this.filterDataLimiteFim,
   }) : _tasks = tasks;
 
   final List<Task> _tasks;
@@ -383,10 +550,26 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
 
   @override
   final TaskStatus? filterStatus;
+  @override
+  final TaskPriority? filterPrioridade;
+  @override
+  final String? filterSearch;
+  @override
+  final int? filterCriadoPor;
+  @override
+  final int? filterAtribuidoPara;
+  @override
+  final DateTime? filterCriadoEmInicio;
+  @override
+  final DateTime? filterCriadoEmFim;
+  @override
+  final DateTime? filterDataLimiteInicio;
+  @override
+  final DateTime? filterDataLimiteFim;
 
   @override
   String toString() {
-    return 'TaskListState.success(tasks: $tasks, filterStatus: $filterStatus)';
+    return 'TaskListState.success(tasks: $tasks, filterStatus: $filterStatus, filterPrioridade: $filterPrioridade, filterSearch: $filterSearch, filterCriadoPor: $filterCriadoPor, filterAtribuidoPara: $filterAtribuidoPara, filterCriadoEmInicio: $filterCriadoEmInicio, filterCriadoEmFim: $filterCriadoEmFim, filterDataLimiteInicio: $filterDataLimiteInicio, filterDataLimiteFim: $filterDataLimiteFim)';
   }
 
   @override
@@ -396,7 +579,23 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
             other is _$TaskListSuccessImpl &&
             const DeepCollectionEquality().equals(other._tasks, _tasks) &&
             (identical(other.filterStatus, filterStatus) ||
-                other.filterStatus == filterStatus));
+                other.filterStatus == filterStatus) &&
+            (identical(other.filterPrioridade, filterPrioridade) ||
+                other.filterPrioridade == filterPrioridade) &&
+            (identical(other.filterSearch, filterSearch) ||
+                other.filterSearch == filterSearch) &&
+            (identical(other.filterCriadoPor, filterCriadoPor) ||
+                other.filterCriadoPor == filterCriadoPor) &&
+            (identical(other.filterAtribuidoPara, filterAtribuidoPara) ||
+                other.filterAtribuidoPara == filterAtribuidoPara) &&
+            (identical(other.filterCriadoEmInicio, filterCriadoEmInicio) ||
+                other.filterCriadoEmInicio == filterCriadoEmInicio) &&
+            (identical(other.filterCriadoEmFim, filterCriadoEmFim) ||
+                other.filterCriadoEmFim == filterCriadoEmFim) &&
+            (identical(other.filterDataLimiteInicio, filterDataLimiteInicio) ||
+                other.filterDataLimiteInicio == filterDataLimiteInicio) &&
+            (identical(other.filterDataLimiteFim, filterDataLimiteFim) ||
+                other.filterDataLimiteFim == filterDataLimiteFim));
   }
 
   @override
@@ -404,6 +603,14 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
     runtimeType,
     const DeepCollectionEquality().hash(_tasks),
     filterStatus,
+    filterPrioridade,
+    filterSearch,
+    filterCriadoPor,
+    filterAtribuidoPara,
+    filterCriadoEmInicio,
+    filterCriadoEmFim,
+    filterDataLimiteInicio,
+    filterDataLimiteFim,
   );
 
   /// Create a copy of TaskListState
@@ -422,11 +629,33 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks, TaskStatus? filterStatus)
+    required TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )
     success,
     required TResult Function(String message) failure,
   }) {
-    return success(tasks, filterStatus);
+    return success(
+      tasks,
+      filterStatus,
+      filterPrioridade,
+      filterSearch,
+      filterCriadoPor,
+      filterAtribuidoPara,
+      filterCriadoEmInicio,
+      filterCriadoEmFim,
+      filterDataLimiteInicio,
+      filterDataLimiteFim,
+    );
   }
 
   @override
@@ -434,10 +663,33 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult? Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult? Function(String message)? failure,
   }) {
-    return success?.call(tasks, filterStatus);
+    return success?.call(
+      tasks,
+      filterStatus,
+      filterPrioridade,
+      filterSearch,
+      filterCriadoPor,
+      filterAtribuidoPara,
+      filterCriadoEmInicio,
+      filterCriadoEmFim,
+      filterDataLimiteInicio,
+      filterDataLimiteFim,
+    );
   }
 
   @override
@@ -445,12 +697,35 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(tasks, filterStatus);
+      return success(
+        tasks,
+        filterStatus,
+        filterPrioridade,
+        filterSearch,
+        filterCriadoPor,
+        filterAtribuidoPara,
+        filterCriadoEmInicio,
+        filterCriadoEmFim,
+        filterDataLimiteInicio,
+        filterDataLimiteFim,
+      );
     }
     return orElse();
   }
@@ -497,10 +772,26 @@ abstract class TaskListSuccess implements TaskListState {
   const factory TaskListSuccess({
     required final List<Task> tasks,
     final TaskStatus? filterStatus,
+    final TaskPriority? filterPrioridade,
+    final String? filterSearch,
+    final int? filterCriadoPor,
+    final int? filterAtribuidoPara,
+    final DateTime? filterCriadoEmInicio,
+    final DateTime? filterCriadoEmFim,
+    final DateTime? filterDataLimiteInicio,
+    final DateTime? filterDataLimiteFim,
   }) = _$TaskListSuccessImpl;
 
   List<Task> get tasks;
   TaskStatus? get filterStatus;
+  TaskPriority? get filterPrioridade;
+  String? get filterSearch;
+  int? get filterCriadoPor;
+  int? get filterAtribuidoPara;
+  DateTime? get filterCriadoEmInicio;
+  DateTime? get filterCriadoEmFim;
+  DateTime? get filterDataLimiteInicio;
+  DateTime? get filterDataLimiteFim;
 
   /// Create a copy of TaskListState
   /// with the given fields replaced by the non-null parameter values.
@@ -584,7 +875,18 @@ class _$TaskListFailureImpl implements TaskListFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks, TaskStatus? filterStatus)
+    required TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )
     success,
     required TResult Function(String message) failure,
   }) {
@@ -596,7 +898,19 @@ class _$TaskListFailureImpl implements TaskListFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult? Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -607,7 +921,19 @@ class _$TaskListFailureImpl implements TaskListFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Task> tasks, TaskStatus? filterStatus)? success,
+    TResult Function(
+      List<Task> tasks,
+      TaskStatus? filterStatus,
+      TaskPriority? filterPrioridade,
+      String? filterSearch,
+      int? filterCriadoPor,
+      int? filterAtribuidoPara,
+      DateTime? filterCriadoEmInicio,
+      DateTime? filterCriadoEmFim,
+      DateTime? filterDataLimiteInicio,
+      DateTime? filterDataLimiteFim,
+    )?
+    success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {

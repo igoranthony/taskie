@@ -10,8 +10,28 @@ class TaskRepositoryImpl implements TaskRepository {
   TaskRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<List<Task>> getTasks({TaskStatus? filterStatus}) async {
-    final models = await remoteDataSource.getTasks(filterStatus: filterStatus);
+  Future<List<Task>> getTasks({
+    TaskStatus? filterStatus,
+    TaskPriority? filterPrioridade,
+    String? filterSearch,
+    int? filterCriadoPor,
+    int? filterAtribuidoPara,
+    DateTime? filterCriadoEmInicio,
+    DateTime? filterCriadoEmFim,
+    DateTime? filterDataLimiteInicio,
+    DateTime? filterDataLimiteFim,
+  }) async {
+    final models = await remoteDataSource.getTasks(
+      filterStatus: filterStatus,
+      filterPrioridade: filterPrioridade,
+      filterSearch: filterSearch,
+      filterCriadoPor: filterCriadoPor,
+      filterAtribuidoPara: filterAtribuidoPara,
+      filterCriadoEmInicio: filterCriadoEmInicio,
+      filterCriadoEmFim: filterCriadoEmFim,
+      filterDataLimiteInicio: filterDataLimiteInicio,
+      filterDataLimiteFim: filterDataLimiteFim,
+    );
     return models.map((m) => m.toEntity()).toList();
   }
 

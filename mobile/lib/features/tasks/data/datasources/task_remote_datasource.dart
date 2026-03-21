@@ -5,7 +5,17 @@ import '../models/task_history_model.dart';
 import '../../domain/entities/task.dart';
 
 abstract class TaskRemoteDataSource {
-  Future<List<TaskModel>> getTasks({TaskStatus? filterStatus});
+  Future<List<TaskModel>> getTasks({
+    TaskStatus? filterStatus,
+    TaskPriority? filterPrioridade,
+    String? filterSearch,
+    int? filterCriadoPor,
+    int? filterAtribuidoPara,
+    DateTime? filterCriadoEmInicio,
+    DateTime? filterCriadoEmFim,
+    DateTime? filterDataLimiteInicio,
+    DateTime? filterDataLimiteFim,
+  });
   Future<TaskModel> getTaskById(String id);
   Future<void> createTask(Map<String, dynamic> data);
   Future<void> updateTask(String id, Map<String, dynamic> data);
@@ -19,11 +29,27 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   TaskRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<List<TaskModel>> getTasks({TaskStatus? filterStatus}) async {
+  Future<List<TaskModel>> getTasks({
+    TaskStatus? filterStatus,
+    TaskPriority? filterPrioridade,
+    String? filterSearch,
+    int? filterCriadoPor,
+    int? filterAtribuidoPara,
+    DateTime? filterCriadoEmInicio,
+    DateTime? filterCriadoEmFim,
+    DateTime? filterDataLimiteInicio,
+    DateTime? filterDataLimiteFim,
+  }) async {
     final queryParams = <String, dynamic>{};
-    if (filterStatus != null) {
-      queryParams['status'] = _statusToString(filterStatus);
-    }
+    if (filterStatus != null) queryParams['status'] = _statusToString(filterStatus);
+    if (filterPrioridade != null) queryParams['prioridade'] = _priorityToString(filterPrioridade);
+    if (filterSearch != null && filterSearch.isNotEmpty) queryParams['search'] = filterSearch;
+    if (filterCriadoPor != null) queryParams['criado_por'] = filterCriadoPor;
+    if (filterAtribuidoPara != null) queryParams['atribuido_para'] = filterAtribuidoPara;
+    if (filterCriadoEmInicio != null) queryParams['criado_em_inicio'] = filterCriadoEmInicio.toIso8601String();
+    if (filterCriadoEmFim != null) queryParams['criado_em_fim'] = filterCriadoEmFim.toIso8601String();
+    if (filterDataLimiteInicio != null) queryParams['data_limite_inicio'] = filterDataLimiteInicio.toIso8601String();
+    if (filterDataLimiteFim != null) queryParams['data_limite_fim'] = filterDataLimiteFim.toIso8601String();
 
     final response = await dio.get(
       ApiEndpoints.tasks,
@@ -77,6 +103,17 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
         return 'em_andamento';
       case TaskStatus.concluido:
         return 'concluido';
+    }
+  }
+
+  String _priorityToString(TaskPriority priority) {
+    switch (priority) {
+      case TaskPriority.baixa:
+        return 'baixa';
+      case TaskPriority.media:
+        return 'media';
+      case TaskPriority.alta:
+        return 'alta';
     }
   }
 }
