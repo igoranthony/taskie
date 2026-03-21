@@ -3,6 +3,7 @@ import '../extensions/datetime_extensions.dart';
 
 class AppDatePickerField extends StatelessWidget {
   final String label;
+  final String hint;
   final DateTime? value;
   final ValueChanged<DateTime?> onChanged;
   final DateTime? firstDate;
@@ -14,6 +15,7 @@ class AppDatePickerField extends StatelessWidget {
     required this.label,
     required this.value,
     required this.onChanged,
+    this.hint = 'Selecionar',
     this.firstDate,
     this.lastDate,
     this.clearable = true,
@@ -31,15 +33,17 @@ class AppDatePickerField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: cs.onSurfaceVariant,
+          if (label.isNotEmpty) ...[
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: cs.onSurfaceVariant,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
+            const SizedBox(height: 4),
+          ],
           InkWell(
             onTap: () => _pickDate(context),
             borderRadius: radius,
@@ -73,7 +77,7 @@ class AppDatePickerField extends StatelessWidget {
                       ),
               ),
               child: Text(
-                hasValue ? value!.toDateBR() : 'Selecionar',
+                hasValue ? value!.toDateBR() : hint,
                 style: TextStyle(
                   color: hasValue ? cs.onSurface : cs.onSurfaceVariant,
                 ),
