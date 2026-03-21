@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/task.dart';
+import '../../../domain/entities/task.dart';
 
 class FilterBottomSheet extends StatelessWidget {
   final TaskStatus? currentFilter;

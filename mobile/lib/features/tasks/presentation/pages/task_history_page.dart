@@ -5,7 +5,7 @@ import '../../domain/usecases/get_task_history.dart';
 import '../bloc/task_history/task_history_bloc.dart';
 import '../bloc/task_history/task_history_event.dart';
 import '../bloc/task_history/task_history_state.dart';
-import '../widgets/history_item.dart';
+import '../widgets/detail/history_item.dart';
 import '../../../../shared/widgets/app_page.dart';
 import '../../../../shared/widgets/app_loading.dart';
 import '../../../../shared/widgets/app_error_widget.dart';

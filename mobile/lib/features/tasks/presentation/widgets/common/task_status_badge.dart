@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/task.dart';
-import '../../../../shared/widgets/app_chip.dart';
+import '../../../domain/entities/task.dart';
+import '../../../../../shared/widgets/app_chip.dart';
 
 enum TaskStatusBadgeStyle { chip, compact }
 

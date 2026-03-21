@@ -8,8 +8,8 @@ import '../../domain/usecases/update_task.dart';
 import '../bloc/task_form/task_form_bloc.dart';
 import '../bloc/task_form/task_form_event.dart';
 import '../bloc/task_form/task_form_state.dart';
-import '../widgets/task_form_widget.dart';
-import '../../../../shared/widgets/app_page.dart';
+import '../widgets/form/task_form_header.dart';
+import '../widgets/form/task_form_widget.dart';
 import '../../../../shared/widgets/app_snackbar.dart';
 
 class TaskFormPage extends StatelessWidget {
@@ -36,6 +36,7 @@ class _TaskFormView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     final isEditing = initialTask != null;
 
     return BlocListener<TaskFormBloc, TaskFormState>(
@@ -53,36 +54,43 @@ class _TaskFormView extends StatelessWidget {
           failure: (message) => AppSnackbar.error(context, 'Erro: $message'),
         );
       },
-      child: BlocBuilder<TaskFormBloc, TaskFormState>(
-        builder: (context, state) {
-          return AppPage(
-            title: isEditing ? 'Editar Tarefa' : 'Nova Tarefa',
-            body: TaskFormWidget(
-              initialTask: initialTask,
-              isLoading: state is TaskFormLoading,
-              onSubmit: ({
-                required String titulo,
-                String? descricao,
-                required TaskStatus status,
-                required TaskPriority prioridade,
-                int? atribuidoPara,
-                DateTime? dataLimite,
-              }) async {
-                context.read<TaskFormBloc>().add(
-                      TaskFormEvent.submitted(
-                        initialTask: initialTask,
-                        titulo: titulo,
-                        descricao: descricao,
-                        status: status,
-                        prioridade: prioridade,
-                        atribuidoPara: atribuidoPara,
-                        dataLimite: dataLimite,
-                      ),
-                    );
-              },
-            ),
-          );
-        },
+      child: Scaffold(
+        backgroundColor: cs.surface,
+        body: SafeArea(
+          child: Column(
+            children: [
+              TaskFormHeader(isEditing: isEditing),
+              Expanded(
+                child: BlocBuilder<TaskFormBloc, TaskFormState>(
+                  builder: (context, state) => TaskFormWidget(
+                    initialTask: initialTask,
+                    isLoading: state is TaskFormLoading,
+                    onSubmit: ({
+                      required String titulo,
+                      String? descricao,
+                      required TaskStatus status,
+                      required TaskPriority prioridade,
+                      int? atribuidoPara,
+                      DateTime? dataLimite,
+                    }) async {
+                      context.read<TaskFormBloc>().add(
+                            TaskFormEvent.submitted(
+                              initialTask: initialTask,
+                              titulo: titulo,
+                              descricao: descricao,
+                              status: status,
+                              prioridade: prioridade,
+                              atribuidoPara: atribuidoPara,
+                              dataLimite: dataLimite,
+                            ),
+                          );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

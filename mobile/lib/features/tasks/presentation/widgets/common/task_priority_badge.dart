@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/task.dart';
-import '../../../../shared/widgets/app_chip.dart';
+import '../../../domain/entities/task.dart';
+import '../../../../../shared/widgets/app_chip.dart';
 
 enum TaskPriorityBadgeStyle { chip, icon }
 
@@ -8,10 +8,13 @@ class TaskPriorityBadge extends StatelessWidget {
   final TaskPriority prioridade;
   final TaskPriorityBadgeStyle style;
 
+  final double iconSize;
+
   const TaskPriorityBadge({
     super.key,
     required this.prioridade,
     this.style = TaskPriorityBadgeStyle.icon,
+    this.iconSize = 22,
   });
 
   @override
@@ -29,7 +32,7 @@ class TaskPriorityBadge extends StatelessWidget {
 
     return Semantics(
       label: 'Prioridade ${config.label}',
-      child: Icon(config.icon, color: config.color, size: 22),
+      child: Icon(config.icon, color: config.color, size: iconSize),
     );
   }
 
@@ -37,20 +40,20 @@ class TaskPriorityBadge extends StatelessWidget {
     switch (priority) {
       case TaskPriority.baixa:
         return _PriorityConfig(
-          color: Colors.green,
-          icon: Icons.keyboard_arrow_down,
+          color: cs.tertiary,
+          icon: Icons.south_rounded,
           label: 'Baixa',
         );
       case TaskPriority.media:
         return _PriorityConfig(
-          color: Colors.orange,
-          icon: Icons.remove,
+          color: cs.secondary,
+          icon: Icons.east_rounded,
           label: 'Média',
         );
       case TaskPriority.alta:
         return _PriorityConfig(
           color: cs.error,
-          icon: Icons.keyboard_arrow_up,
+          icon: Icons.north_rounded,
           label: 'Alta',
         );
     }
