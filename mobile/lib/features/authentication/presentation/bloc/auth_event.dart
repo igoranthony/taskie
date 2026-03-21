@@ -10,4 +10,5 @@ class AuthEvent with _$AuthEvent {
     required String password,
   }) = AuthLoginRequested;
   const factory AuthEvent.logoutRequested() = AuthLogoutRequested;
+  const factory AuthEvent.sessionExpired() = AuthSessionExpired;
 }

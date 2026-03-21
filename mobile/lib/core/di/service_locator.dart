@@ -8,6 +8,8 @@ import '../../features/authentication/domain/repositories/auth_repository.dart';
 import '../../features/authentication/domain/usecases/login.dart';
 import '../../features/authentication/domain/usecases/logout.dart';
 import '../../features/authentication/domain/usecases/get_current_user.dart';
+import '../../features/authentication/presentation/bloc/auth_bloc.dart';
+import '../../features/authentication/presentation/bloc/auth_event.dart';
 import '../../features/authentication/presentation/cubit/users_cubit.dart';
 import '../../features/tasks/data/datasources/task_remote_datasource.dart';
 import '../../features/tasks/data/repositories/task_repository_impl.dart';
@@ -24,7 +26,10 @@ Future<void> setupServiceLocator() async {
   // Core
   getIt.registerLazySingleton<SecureStorage>(() => SecureStorage());
   getIt.registerLazySingleton<ApiClient>(
-    () => ApiClient(storage: getIt<SecureStorage>()),
+    () => ApiClient(
+      storage: getIt<SecureStorage>(),
+      onLogout: () => getIt<AuthBloc>().add(const AuthEvent.sessionExpired()),
+    ),
   );
   getIt.registerLazySingleton<Dio>(() => getIt<ApiClient>().dio);
 
@@ -46,6 +51,16 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton(() => Login(getIt<AuthRepository>()));
   getIt.registerLazySingleton(() => Logout(getIt<AuthRepository>()));
   getIt.registerLazySingleton(() => GetCurrentUser(getIt<AuthRepository>()));
+
+  // Auth - Bloc (singleton para o interceptor disparar sessionExpired)
+  getIt.registerLazySingleton<AuthBloc>(
+    () => AuthBloc(
+      authRepository: getIt<AuthRepository>(),
+      login: getIt<Login>(),
+      logout: getIt<Logout>(),
+      getCurrentUser: getIt<GetCurrentUser>(),
+    ),
+  );
 
   // Users Cubit (factory = nova instância por página)
   getIt.registerFactory(() => UsersCubit(getIt<Dio>()));

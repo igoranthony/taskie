@@ -3,13 +3,22 @@ import '../storage/secure_storage.dart';
 
 class AuthInterceptor extends Interceptor {
   final SecureStorage _storage;
+  final Dio _dio;
+  final String _baseUrl;
+  final void Function()? onLogout;
 
-  AuthInterceptor({required SecureStorage storage}) : _storage = storage;
+  AuthInterceptor({
+    required SecureStorage storage,
+    required Dio dio,
+    required String baseUrl,
+    this.onLogout,
+  })  : _storage = storage,
+        _dio = dio,
+        _baseUrl = baseUrl;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    // Skip auth for login and refresh endpoints
-    if (options.path.contains('/auth/login/') || 
+    if (options.path.contains('/auth/login/') ||
         options.path.contains('/auth/refresh/')) {
       return handler.next(options);
     }
@@ -25,47 +34,41 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401) {
-      // Token expired, try refresh
+    // Avoid infinite loop: don't retry if this is already a retry
+    if (err.response?.statusCode == 401 &&
+        err.requestOptions.extra['_retry'] != true) {
       final refreshToken = await _storage.getRefreshToken();
 
       if (refreshToken != null) {
         try {
-          final response = await _refreshToken(refreshToken);
+          final refreshDio = Dio(BaseOptions(baseUrl: _baseUrl));
+          final response = await refreshDio.post(
+            '/auth/refresh/',
+            data: {'refresh': refreshToken},
+          );
           final newAccessToken = response.data['access'];
 
           if (newAccessToken != null) {
             await _storage.saveAccessToken(newAccessToken);
 
-            // Retry original request
             final request = err.requestOptions;
             request.headers['Authorization'] = 'Bearer $newAccessToken';
+            request.extra['_retry'] = true;
 
-            final retryDio = Dio();
-            final retryResponse = await retryDio.fetch(request);
+            final retryResponse = await _dio.fetch(request);
             return handler.resolve(retryResponse);
           }
-        } catch (e) {
-          // Refresh failed, clear tokens
+        } catch (_) {
           await _storage.clearTokens();
+          onLogout?.call();
         }
       } else {
-        // No refresh token, clear any remaining tokens
         await _storage.clearTokens();
+        onLogout?.call();
       }
     }
 
     handler.next(err);
-  }
-
-  Future<Response> _refreshToken(String refreshToken) async {
-    final dio = Dio();
-    dio.options.baseUrl = 'http://192.168.1.3:8000/api';
-    
-    return await dio.post(
-      '/auth/refresh/',
-      data: {'refresh': refreshToken},
-    );
   }
 }
 
@@ -112,7 +115,6 @@ class ErrorInterceptor extends Interceptor {
         message = err.message ?? 'Erro desconhecido';
     }
 
-    // Create a new exception with our custom message
     final customError = DioException(
       requestOptions: err.requestOptions,
       response: err.response,

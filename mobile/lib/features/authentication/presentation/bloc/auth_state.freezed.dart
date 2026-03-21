@@ -23,6 +23,7 @@ mixin _$AuthState {
     required TResult Function() loading,
     required TResult Function(User user) authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() sessionExpired,
     required TResult Function(String message) failure,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,6 +32,7 @@ mixin _$AuthState {
     TResult? Function()? loading,
     TResult? Function(User user)? authenticated,
     TResult? Function()? unauthenticated,
+    TResult? Function()? sessionExpired,
     TResult? Function(String message)? failure,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +41,7 @@ mixin _$AuthState {
     TResult Function()? loading,
     TResult Function(User user)? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? sessionExpired,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -48,6 +51,7 @@ mixin _$AuthState {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthStateSessionExpired value) sessionExpired,
     required TResult Function(AuthFailure value) failure,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +60,7 @@ mixin _$AuthState {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthStateSessionExpired value)? sessionExpired,
     TResult? Function(AuthFailure value)? failure,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +69,7 @@ mixin _$AuthState {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthStateSessionExpired value)? sessionExpired,
     TResult Function(AuthFailure value)? failure,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -136,6 +142,7 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function() loading,
     required TResult Function(User user) authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() sessionExpired,
     required TResult Function(String message) failure,
   }) {
     return initial();
@@ -148,6 +155,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function()? loading,
     TResult? Function(User user)? authenticated,
     TResult? Function()? unauthenticated,
+    TResult? Function()? sessionExpired,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -160,6 +168,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function()? loading,
     TResult Function(User user)? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? sessionExpired,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -176,6 +185,7 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthStateSessionExpired value) sessionExpired,
     required TResult Function(AuthFailure value) failure,
   }) {
     return initial(this);
@@ -188,6 +198,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthStateSessionExpired value)? sessionExpired,
     TResult? Function(AuthFailure value)? failure,
   }) {
     return initial?.call(this);
@@ -200,6 +211,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthStateSessionExpired value)? sessionExpired,
     TResult Function(AuthFailure value)? failure,
     required TResult orElse(),
   }) {
@@ -261,6 +273,7 @@ class _$AuthLoadingImpl implements AuthLoading {
     required TResult Function() loading,
     required TResult Function(User user) authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() sessionExpired,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -273,6 +286,7 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult? Function()? loading,
     TResult? Function(User user)? authenticated,
     TResult? Function()? unauthenticated,
+    TResult? Function()? sessionExpired,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -285,6 +299,7 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult Function()? loading,
     TResult Function(User user)? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? sessionExpired,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -301,6 +316,7 @@ class _$AuthLoadingImpl implements AuthLoading {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthStateSessionExpired value) sessionExpired,
     required TResult Function(AuthFailure value) failure,
   }) {
     return loading(this);
@@ -313,6 +329,7 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthStateSessionExpired value)? sessionExpired,
     TResult? Function(AuthFailure value)? failure,
   }) {
     return loading?.call(this);
@@ -325,6 +342,7 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthStateSessionExpired value)? sessionExpired,
     TResult Function(AuthFailure value)? failure,
     required TResult orElse(),
   }) {
@@ -416,6 +434,7 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     required TResult Function() loading,
     required TResult Function(User user) authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() sessionExpired,
     required TResult Function(String message) failure,
   }) {
     return authenticated(user);
@@ -428,6 +447,7 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult? Function()? loading,
     TResult? Function(User user)? authenticated,
     TResult? Function()? unauthenticated,
+    TResult? Function()? sessionExpired,
     TResult? Function(String message)? failure,
   }) {
     return authenticated?.call(user);
@@ -440,6 +460,7 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult Function()? loading,
     TResult Function(User user)? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? sessionExpired,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -456,6 +477,7 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthStateSessionExpired value) sessionExpired,
     required TResult Function(AuthFailure value) failure,
   }) {
     return authenticated(this);
@@ -468,6 +490,7 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthStateSessionExpired value)? sessionExpired,
     TResult? Function(AuthFailure value)? failure,
   }) {
     return authenticated?.call(this);
@@ -480,6 +503,7 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthStateSessionExpired value)? sessionExpired,
     TResult Function(AuthFailure value)? failure,
     required TResult orElse(),
   }) {
@@ -550,6 +574,7 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     required TResult Function() loading,
     required TResult Function(User user) authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() sessionExpired,
     required TResult Function(String message) failure,
   }) {
     return unauthenticated();
@@ -562,6 +587,7 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult? Function()? loading,
     TResult? Function(User user)? authenticated,
     TResult? Function()? unauthenticated,
+    TResult? Function()? sessionExpired,
     TResult? Function(String message)? failure,
   }) {
     return unauthenticated?.call();
@@ -574,6 +600,7 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult Function()? loading,
     TResult Function(User user)? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? sessionExpired,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -590,6 +617,7 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthStateSessionExpired value) sessionExpired,
     required TResult Function(AuthFailure value) failure,
   }) {
     return unauthenticated(this);
@@ -602,6 +630,7 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthStateSessionExpired value)? sessionExpired,
     TResult? Function(AuthFailure value)? failure,
   }) {
     return unauthenticated?.call(this);
@@ -614,6 +643,7 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthStateSessionExpired value)? sessionExpired,
     TResult Function(AuthFailure value)? failure,
     required TResult orElse(),
   }) {
@@ -626,6 +656,138 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
 
 abstract class AuthUnauthenticated implements AuthState {
   const factory AuthUnauthenticated() = _$AuthUnauthenticatedImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthStateSessionExpiredImplCopyWith<$Res> {
+  factory _$$AuthStateSessionExpiredImplCopyWith(
+    _$AuthStateSessionExpiredImpl value,
+    $Res Function(_$AuthStateSessionExpiredImpl) then,
+  ) = __$$AuthStateSessionExpiredImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthStateSessionExpiredImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateSessionExpiredImpl>
+    implements _$$AuthStateSessionExpiredImplCopyWith<$Res> {
+  __$$AuthStateSessionExpiredImplCopyWithImpl(
+    _$AuthStateSessionExpiredImpl _value,
+    $Res Function(_$AuthStateSessionExpiredImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AuthStateSessionExpiredImpl implements AuthStateSessionExpired {
+  const _$AuthStateSessionExpiredImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.sessionExpired()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthStateSessionExpiredImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User user) authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function() sessionExpired,
+    required TResult Function(String message) failure,
+  }) {
+    return sessionExpired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(User user)? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? sessionExpired,
+    TResult? Function(String message)? failure,
+  }) {
+    return sessionExpired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function()? sessionExpired,
+    TResult Function(String message)? failure,
+    required TResult orElse(),
+  }) {
+    if (sessionExpired != null) {
+      return sessionExpired();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthStateSessionExpired value) sessionExpired,
+    required TResult Function(AuthFailure value) failure,
+  }) {
+    return sessionExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthStateSessionExpired value)? sessionExpired,
+    TResult? Function(AuthFailure value)? failure,
+  }) {
+    return sessionExpired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthStateSessionExpired value)? sessionExpired,
+    TResult Function(AuthFailure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (sessionExpired != null) {
+      return sessionExpired(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthStateSessionExpired implements AuthState {
+  const factory AuthStateSessionExpired() = _$AuthStateSessionExpiredImpl;
 }
 
 /// @nodoc
@@ -702,6 +864,7 @@ class _$AuthFailureImpl implements AuthFailure {
     required TResult Function() loading,
     required TResult Function(User user) authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() sessionExpired,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -714,6 +877,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult? Function()? loading,
     TResult? Function(User user)? authenticated,
     TResult? Function()? unauthenticated,
+    TResult? Function()? sessionExpired,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -726,6 +890,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult Function()? loading,
     TResult Function(User user)? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? sessionExpired,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -742,6 +907,7 @@ class _$AuthFailureImpl implements AuthFailure {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthStateSessionExpired value) sessionExpired,
     required TResult Function(AuthFailure value) failure,
   }) {
     return failure(this);
@@ -754,6 +920,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthStateSessionExpired value)? sessionExpired,
     TResult? Function(AuthFailure value)? failure,
   }) {
     return failure?.call(this);
@@ -766,6 +933,7 @@ class _$AuthFailureImpl implements AuthFailure {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthStateSessionExpired value)? sessionExpired,
     TResult Function(AuthFailure value)? failure,
     required TResult orElse(),
   }) {

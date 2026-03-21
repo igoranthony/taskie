@@ -22,18 +22,21 @@ mixin _$AuthEvent {
     required TResult Function() checkRequested,
     required TResult Function(String username, String password) loginRequested,
     required TResult Function() logoutRequested,
+    required TResult Function() sessionExpired,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkRequested,
     TResult? Function(String username, String password)? loginRequested,
     TResult? Function()? logoutRequested,
+    TResult? Function()? sessionExpired,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkRequested,
     TResult Function(String username, String password)? loginRequested,
     TResult Function()? logoutRequested,
+    TResult Function()? sessionExpired,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,18 +44,21 @@ mixin _$AuthEvent {
     required TResult Function(AuthCheckRequested value) checkRequested,
     required TResult Function(AuthLoginRequested value) loginRequested,
     required TResult Function(AuthLogoutRequested value) logoutRequested,
+    required TResult Function(AuthSessionExpired value) sessionExpired,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthCheckRequested value)? checkRequested,
     TResult? Function(AuthLoginRequested value)? loginRequested,
     TResult? Function(AuthLogoutRequested value)? logoutRequested,
+    TResult? Function(AuthSessionExpired value)? sessionExpired,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCheckRequested value)? checkRequested,
     TResult Function(AuthLoginRequested value)? loginRequested,
     TResult Function(AuthLogoutRequested value)? logoutRequested,
+    TResult Function(AuthSessionExpired value)? sessionExpired,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -123,6 +129,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
     required TResult Function() checkRequested,
     required TResult Function(String username, String password) loginRequested,
     required TResult Function() logoutRequested,
+    required TResult Function() sessionExpired,
   }) {
     return checkRequested();
   }
@@ -133,6 +140,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
     TResult? Function()? checkRequested,
     TResult? Function(String username, String password)? loginRequested,
     TResult? Function()? logoutRequested,
+    TResult? Function()? sessionExpired,
   }) {
     return checkRequested?.call();
   }
@@ -143,6 +151,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
     TResult Function()? checkRequested,
     TResult Function(String username, String password)? loginRequested,
     TResult Function()? logoutRequested,
+    TResult Function()? sessionExpired,
     required TResult orElse(),
   }) {
     if (checkRequested != null) {
@@ -157,6 +166,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
     required TResult Function(AuthCheckRequested value) checkRequested,
     required TResult Function(AuthLoginRequested value) loginRequested,
     required TResult Function(AuthLogoutRequested value) logoutRequested,
+    required TResult Function(AuthSessionExpired value) sessionExpired,
   }) {
     return checkRequested(this);
   }
@@ -167,6 +177,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
     TResult? Function(AuthCheckRequested value)? checkRequested,
     TResult? Function(AuthLoginRequested value)? loginRequested,
     TResult? Function(AuthLogoutRequested value)? logoutRequested,
+    TResult? Function(AuthSessionExpired value)? sessionExpired,
   }) {
     return checkRequested?.call(this);
   }
@@ -177,6 +188,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
     TResult Function(AuthCheckRequested value)? checkRequested,
     TResult Function(AuthLoginRequested value)? loginRequested,
     TResult Function(AuthLogoutRequested value)? logoutRequested,
+    TResult Function(AuthSessionExpired value)? sessionExpired,
     required TResult orElse(),
   }) {
     if (checkRequested != null) {
@@ -278,6 +290,7 @@ class _$AuthLoginRequestedImpl implements AuthLoginRequested {
     required TResult Function() checkRequested,
     required TResult Function(String username, String password) loginRequested,
     required TResult Function() logoutRequested,
+    required TResult Function() sessionExpired,
   }) {
     return loginRequested(username, password);
   }
@@ -288,6 +301,7 @@ class _$AuthLoginRequestedImpl implements AuthLoginRequested {
     TResult? Function()? checkRequested,
     TResult? Function(String username, String password)? loginRequested,
     TResult? Function()? logoutRequested,
+    TResult? Function()? sessionExpired,
   }) {
     return loginRequested?.call(username, password);
   }
@@ -298,6 +312,7 @@ class _$AuthLoginRequestedImpl implements AuthLoginRequested {
     TResult Function()? checkRequested,
     TResult Function(String username, String password)? loginRequested,
     TResult Function()? logoutRequested,
+    TResult Function()? sessionExpired,
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -312,6 +327,7 @@ class _$AuthLoginRequestedImpl implements AuthLoginRequested {
     required TResult Function(AuthCheckRequested value) checkRequested,
     required TResult Function(AuthLoginRequested value) loginRequested,
     required TResult Function(AuthLogoutRequested value) logoutRequested,
+    required TResult Function(AuthSessionExpired value) sessionExpired,
   }) {
     return loginRequested(this);
   }
@@ -322,6 +338,7 @@ class _$AuthLoginRequestedImpl implements AuthLoginRequested {
     TResult? Function(AuthCheckRequested value)? checkRequested,
     TResult? Function(AuthLoginRequested value)? loginRequested,
     TResult? Function(AuthLogoutRequested value)? logoutRequested,
+    TResult? Function(AuthSessionExpired value)? sessionExpired,
   }) {
     return loginRequested?.call(this);
   }
@@ -332,6 +349,7 @@ class _$AuthLoginRequestedImpl implements AuthLoginRequested {
     TResult Function(AuthCheckRequested value)? checkRequested,
     TResult Function(AuthLoginRequested value)? loginRequested,
     TResult Function(AuthLogoutRequested value)? logoutRequested,
+    TResult Function(AuthSessionExpired value)? sessionExpired,
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -404,6 +422,7 @@ class _$AuthLogoutRequestedImpl implements AuthLogoutRequested {
     required TResult Function() checkRequested,
     required TResult Function(String username, String password) loginRequested,
     required TResult Function() logoutRequested,
+    required TResult Function() sessionExpired,
   }) {
     return logoutRequested();
   }
@@ -414,6 +433,7 @@ class _$AuthLogoutRequestedImpl implements AuthLogoutRequested {
     TResult? Function()? checkRequested,
     TResult? Function(String username, String password)? loginRequested,
     TResult? Function()? logoutRequested,
+    TResult? Function()? sessionExpired,
   }) {
     return logoutRequested?.call();
   }
@@ -424,6 +444,7 @@ class _$AuthLogoutRequestedImpl implements AuthLogoutRequested {
     TResult Function()? checkRequested,
     TResult Function(String username, String password)? loginRequested,
     TResult Function()? logoutRequested,
+    TResult Function()? sessionExpired,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -438,6 +459,7 @@ class _$AuthLogoutRequestedImpl implements AuthLogoutRequested {
     required TResult Function(AuthCheckRequested value) checkRequested,
     required TResult Function(AuthLoginRequested value) loginRequested,
     required TResult Function(AuthLogoutRequested value) logoutRequested,
+    required TResult Function(AuthSessionExpired value) sessionExpired,
   }) {
     return logoutRequested(this);
   }
@@ -448,6 +470,7 @@ class _$AuthLogoutRequestedImpl implements AuthLogoutRequested {
     TResult? Function(AuthCheckRequested value)? checkRequested,
     TResult? Function(AuthLoginRequested value)? loginRequested,
     TResult? Function(AuthLogoutRequested value)? logoutRequested,
+    TResult? Function(AuthSessionExpired value)? sessionExpired,
   }) {
     return logoutRequested?.call(this);
   }
@@ -458,6 +481,7 @@ class _$AuthLogoutRequestedImpl implements AuthLogoutRequested {
     TResult Function(AuthCheckRequested value)? checkRequested,
     TResult Function(AuthLoginRequested value)? loginRequested,
     TResult Function(AuthLogoutRequested value)? logoutRequested,
+    TResult Function(AuthSessionExpired value)? sessionExpired,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -469,4 +493,123 @@ class _$AuthLogoutRequestedImpl implements AuthLogoutRequested {
 
 abstract class AuthLogoutRequested implements AuthEvent {
   const factory AuthLogoutRequested() = _$AuthLogoutRequestedImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthSessionExpiredImplCopyWith<$Res> {
+  factory _$$AuthSessionExpiredImplCopyWith(
+    _$AuthSessionExpiredImpl value,
+    $Res Function(_$AuthSessionExpiredImpl) then,
+  ) = __$$AuthSessionExpiredImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthSessionExpiredImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$AuthSessionExpiredImpl>
+    implements _$$AuthSessionExpiredImplCopyWith<$Res> {
+  __$$AuthSessionExpiredImplCopyWithImpl(
+    _$AuthSessionExpiredImpl _value,
+    $Res Function(_$AuthSessionExpiredImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AuthSessionExpiredImpl implements AuthSessionExpired {
+  const _$AuthSessionExpiredImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.sessionExpired()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AuthSessionExpiredImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkRequested,
+    required TResult Function(String username, String password) loginRequested,
+    required TResult Function() logoutRequested,
+    required TResult Function() sessionExpired,
+  }) {
+    return sessionExpired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkRequested,
+    TResult? Function(String username, String password)? loginRequested,
+    TResult? Function()? logoutRequested,
+    TResult? Function()? sessionExpired,
+  }) {
+    return sessionExpired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkRequested,
+    TResult Function(String username, String password)? loginRequested,
+    TResult Function()? logoutRequested,
+    TResult Function()? sessionExpired,
+    required TResult orElse(),
+  }) {
+    if (sessionExpired != null) {
+      return sessionExpired();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthCheckRequested value) checkRequested,
+    required TResult Function(AuthLoginRequested value) loginRequested,
+    required TResult Function(AuthLogoutRequested value) logoutRequested,
+    required TResult Function(AuthSessionExpired value) sessionExpired,
+  }) {
+    return sessionExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthCheckRequested value)? checkRequested,
+    TResult? Function(AuthLoginRequested value)? loginRequested,
+    TResult? Function(AuthLogoutRequested value)? logoutRequested,
+    TResult? Function(AuthSessionExpired value)? sessionExpired,
+  }) {
+    return sessionExpired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthCheckRequested value)? checkRequested,
+    TResult Function(AuthLoginRequested value)? loginRequested,
+    TResult Function(AuthLogoutRequested value)? logoutRequested,
+    TResult Function(AuthSessionExpired value)? sessionExpired,
+    required TResult orElse(),
+  }) {
+    if (sessionExpired != null) {
+      return sessionExpired(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthSessionExpired implements AuthEvent {
+  const factory AuthSessionExpired() = _$AuthSessionExpiredImpl;
 }

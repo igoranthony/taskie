@@ -1,15 +1,18 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import '../config/app_env.dart';
 import '../storage/secure_storage.dart';
 import 'interceptors.dart';
 
 class ApiClient {
-  static const String baseUrl = 'http://192.168.1.3:8000/api';
+  static String get baseUrl => AppEnv.baseUrl;
 
   late final Dio _dio;
   final SecureStorage _storage;
+  final void Function()? onLogout;
 
-  ApiClient({required SecureStorage storage}) : _storage = storage {
+  ApiClient({required SecureStorage storage, this.onLogout})
+      : _storage = storage {
     _dio = Dio(
       BaseOptions(
         baseUrl: baseUrl,
@@ -23,16 +26,22 @@ class ApiClient {
     );
 
     _dio.interceptors.addAll([
-      AuthInterceptor(storage: _storage),
-      ErrorInterceptor(),
-      LogInterceptor(
-        requestBody: true,
-        responseBody: true,
-        requestHeader: true,
-        responseHeader: true,
-        error: true,
-        logPrint: (o) => debugPrint('[DIO] $o'),
+      AuthInterceptor(
+        storage: _storage,
+        dio: _dio,
+        baseUrl: baseUrl,
+        onLogout: onLogout,
       ),
+      ErrorInterceptor(),
+      if (kDebugMode)
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+          requestHeader: true,
+          responseHeader: true,
+          error: true,
+          logPrint: (o) => debugPrint('[DIO] $o'),
+        ),
     ]);
   }
 
