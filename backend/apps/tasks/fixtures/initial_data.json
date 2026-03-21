@@ -1,0 +1,122 @@
+[
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111101",
+    "fields": {
+      "titulo": "Configurar ambiente de desenvolvimento",
+      "descricao": "Instalar dependências, configurar banco de dados e variáveis de ambiente.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 1,
+      "atribuido_para": 2,
+      "data_limite": "2026-01-10T18:00:00Z",
+      "criado_em": "2026-01-01T09:00:00Z",
+      "atualizado_em": "2026-01-08T14:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111102",
+    "fields": {
+      "titulo": "Implementar autenticação JWT",
+      "descricao": "Criar endpoints de login, refresh token e logout com blacklist.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-01-15T18:00:00Z",
+      "criado_em": "2026-01-05T10:00:00Z",
+      "atualizado_em": "2026-01-14T16:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111103",
+    "fields": {
+      "titulo": "Criar CRUD de tarefas",
+      "descricao": "Desenvolver endpoints REST para criação, listagem, edição e exclusão de tarefas.",
+      "status": "em_andamento",
+      "prioridade": "alta",
+      "criado_por": 1,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-01T18:00:00Z",
+      "criado_em": "2026-01-10T09:00:00Z",
+      "atualizado_em": "2026-01-20T11:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111104",
+    "fields": {
+      "titulo": "Implementar filtros na listagem",
+      "descricao": "Adicionar filtros por status, prioridade e usuário na API de tarefas.",
+      "status": "em_andamento",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-10T18:00:00Z",
+      "criado_em": "2026-01-15T14:00:00Z",
+      "atualizado_em": "2026-01-22T09:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111105",
+    "fields": {
+      "titulo": "Escrever testes unitários",
+      "descricao": "Cobrir models, serializers e views com testes automatizados.",
+      "status": "backlog",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": 3,
+      "data_limite": "2026-03-01T18:00:00Z",
+      "criado_em": "2026-01-20T10:00:00Z",
+      "atualizado_em": "2026-01-20T10:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111106",
+    "fields": {
+      "titulo": "Documentar API com Swagger",
+      "descricao": "Integrar drf-spectacular para geração automática da documentação OpenAPI.",
+      "status": "backlog",
+      "prioridade": "baixa",
+      "criado_por": 2,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-01-22T11:00:00Z",
+      "atualizado_em": "2026-01-22T11:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111107",
+    "fields": {
+      "titulo": "Migrar banco de dados para PostgreSQL",
+      "descricao": "Substituir SQLite por PostgreSQL e atualizar docker-compose com serviço de banco.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-01-25T18:00:00Z",
+      "criado_em": "2026-01-18T09:00:00Z",
+      "atualizado_em": "2026-01-24T15:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111108",
+    "fields": {
+      "titulo": "Configurar CI/CD",
+      "descricao": "Criar pipeline de integração e deploy contínuo via GitHub Actions.",
+      "status": "backlog",
+      "prioridade": "baixa",
+      "criado_por": 3,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-02-01T10:00:00Z",
+      "atualizado_em": "2026-02-01T10:00:00Z"
+    }
+  }
+]

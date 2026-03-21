@@ -6,6 +6,7 @@ from django.db import models
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
 
+from apps.core.mixins import ActionSerializerMixin
 from .models import Task, TaskHistory
 from .serializers import (
     TaskSerializer,
@@ -17,10 +18,15 @@ from .permissions import IsOwnerOrReadOnly
 from .filters import TaskFilter
 
 
-class TaskViewSet(viewsets.ModelViewSet):
+class TaskViewSet(ActionSerializerMixin, viewsets.ModelViewSet):
     """ViewSet completo para Tasks com CRUD e histórico"""
 
     serializer_class = TaskSerializer
+    serializer_classes = {
+        'create': TaskCreateSerializer,
+        'update': TaskUpdateSerializer,
+        'partial_update': TaskUpdateSerializer,
+    }
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = TaskFilter
@@ -33,14 +39,6 @@ class TaskViewSet(viewsets.ModelViewSet):
             'criado_por',
             'atribuido_para'
         ).all()
-
-    def get_serializer_class(self):
-        """Usa serializers específicos por ação"""
-        if self.action == 'create':
-            return TaskCreateSerializer
-        elif self.action in ['update', 'partial_update']:
-            return TaskUpdateSerializer
-        return TaskSerializer
 
     def perform_create(self, serializer):
         """Cria task com usuário automático"""

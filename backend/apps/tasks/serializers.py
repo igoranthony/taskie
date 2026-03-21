@@ -8,14 +8,20 @@ class TaskSerializer(serializers.ModelSerializer):
 
     criado_por_username = serializers.CharField(source='criado_por.username', read_only=True)
     atribuido_para_username = serializers.CharField(source='atribuido_para.username', read_only=True)
+    can_edit = serializers.SerializerMethodField()
 
     class Meta:
         model = Task
         fields = (
             'id', 'titulo', 'descricao', 'status', 'prioridade',
             'atribuido_para', 'atribuido_para_username', 'data_limite',
-            'criado_por', 'criado_por_username', 'criado_em', 'atualizado_em'
+            'criado_por', 'criado_por_username', 'criado_em', 'atualizado_em',
+            'can_edit',
         )
+
+    def get_can_edit(self, obj):
+        request = self.context.get('request')
+        return request is not None and obj.criado_por == request.user
         read_only_fields = ('criado_por', 'criado_em', 'atualizado_em')
 
     def validate_titulo(self, value):

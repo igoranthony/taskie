@@ -1,7 +1,15 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 from apps.core.models import BaseModel
+
+
+def _normalize_for_comparison(value):
+    """Normaliza datetimes para UTC antes de comparar, evitando falsos positivos por timezone."""
+    if hasattr(value, 'astimezone'):
+        return value.astimezone(timezone.utc)
+    return value
 
 
 class Task(BaseModel):
@@ -78,7 +86,7 @@ class Task(BaseModel):
                     old_value = getattr(old_task, field)
                     new_value = getattr(self, field)
 
-                    if old_value != new_value:
+                    if _normalize_for_comparison(old_value) != _normalize_for_comparison(new_value):
                         TaskHistory.objects.create(
                             task=self,
                             field_name=field,
