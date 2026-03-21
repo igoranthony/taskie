@@ -29,6 +29,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(Map<String, dynamic> json) =>
           dataLimite: $checkedConvert('data_limite', (v) => v as String?),
           criadoEm: $checkedConvert('criado_em', (v) => v as String),
           atualizadoEm: $checkedConvert('atualizado_em', (v) => v as String),
+          canEdit: $checkedConvert('can_edit', (v) => v as bool? ?? false),
         );
         return val;
       },
@@ -39,6 +40,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(Map<String, dynamic> json) =>
         'dataLimite': 'data_limite',
         'criadoEm': 'criado_em',
         'atualizadoEm': 'atualizado_em',
+        'canEdit': 'can_edit',
       },
     );
 
@@ -55,4 +57,5 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'data_limite': instance.dataLimite,
       'criado_em': instance.criadoEm,
       'atualizado_em': instance.atualizadoEm,
+      'can_edit': instance.canEdit,
     };

@@ -52,7 +52,7 @@ class TaskRepositoryImpl implements TaskRepository {
       'prioridade': TaskModel.priorityToString(task.prioridade),
       if (task.atribuidoParaId != null) 'atribuido_para': task.atribuidoParaId,
       if (task.dataLimite != null)
-        'data_limite': task.dataLimite!.toIso8601String().split('T').first,
+        'data_limite': task.dataLimite!.toIso8601String(),
     };
   }
 }

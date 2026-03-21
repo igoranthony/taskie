@@ -24,6 +24,7 @@ class TaskModel with _$TaskModel {
     @JsonKey(name: 'data_limite') String? dataLimite,
     @JsonKey(name: 'criado_em') required String criadoEm,
     @JsonKey(name: 'atualizado_em') required String atualizadoEm,
+    @JsonKey(name: 'can_edit') @Default(false) bool canEdit,
   }) = _TaskModel;
 
   factory TaskModel.fromJson(Map<String, dynamic> json) =>
@@ -38,9 +39,10 @@ class TaskModel with _$TaskModel {
         criadoPor: criadoPor,
         atribuidoPara: atribuidoPara,
         atribuidoParaId: atribuidoParaId,
-        dataLimite: dataLimite != null ? DateTime.parse(dataLimite!) : null,
-        criadoEm: DateTime.parse(criadoEm),
-        atualizadoEm: DateTime.parse(atualizadoEm),
+        dataLimite: dataLimite != null ? DateTime.parse(dataLimite!).toLocal() : null,
+        criadoEm: DateTime.parse(criadoEm).toLocal(),
+        atualizadoEm: DateTime.parse(atualizadoEm).toLocal(),
+        canEdit: canEdit,
       );
 
   factory TaskModel.fromEntity(Task task) => TaskModel(

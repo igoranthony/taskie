@@ -17,6 +17,7 @@ class Task extends Equatable {
   final DateTime? dataLimite;
   final DateTime criadoEm;
   final DateTime atualizadoEm;
+  final bool canEdit;
 
   const Task({
     required this.id,
@@ -30,6 +31,7 @@ class Task extends Equatable {
     this.dataLimite,
     required this.criadoEm,
     required this.atualizadoEm,
+    this.canEdit = false,
   });
 
   @override
@@ -45,6 +47,7 @@ class Task extends Equatable {
         dataLimite,
         criadoEm,
         atualizadoEm,
+        canEdit,
       ];
 
   Task copyWith({
@@ -59,6 +62,7 @@ class Task extends Equatable {
     DateTime? dataLimite,
     DateTime? criadoEm,
     DateTime? atualizadoEm,
+    bool? canEdit,
   }) {
     return Task(
       id: id ?? this.id,
@@ -72,6 +76,7 @@ class Task extends Equatable {
       dataLimite: dataLimite ?? this.dataLimite,
       criadoEm: criadoEm ?? this.criadoEm,
       atualizadoEm: atualizadoEm ?? this.atualizadoEm,
+      canEdit: canEdit ?? this.canEdit,
     );
   }
 }

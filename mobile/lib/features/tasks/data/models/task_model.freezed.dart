@@ -40,6 +40,8 @@ mixin _$TaskModel {
   String get criadoEm => throw _privateConstructorUsedError;
   @JsonKey(name: 'atualizado_em')
   String get atualizadoEm => throw _privateConstructorUsedError;
+  @JsonKey(name: 'can_edit')
+  bool get canEdit => throw _privateConstructorUsedError;
 
   /// Serializes this TaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -68,6 +70,7 @@ abstract class $TaskModelCopyWith<$Res> {
     @JsonKey(name: 'data_limite') String? dataLimite,
     @JsonKey(name: 'criado_em') String criadoEm,
     @JsonKey(name: 'atualizado_em') String atualizadoEm,
+    @JsonKey(name: 'can_edit') bool canEdit,
   });
 }
 
@@ -97,6 +100,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? dataLimite = freezed,
     Object? criadoEm = null,
     Object? atualizadoEm = null,
+    Object? canEdit = null,
   }) {
     return _then(
       _value.copyWith(
@@ -144,6 +148,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 ? _value.atualizadoEm
                 : atualizadoEm // ignore: cast_nullable_to_non_nullable
                       as String,
+            canEdit: null == canEdit
+                ? _value.canEdit
+                : canEdit // ignore: cast_nullable_to_non_nullable
+                      as bool,
           )
           as $Val,
     );
@@ -171,6 +179,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     @JsonKey(name: 'data_limite') String? dataLimite,
     @JsonKey(name: 'criado_em') String criadoEm,
     @JsonKey(name: 'atualizado_em') String atualizadoEm,
+    @JsonKey(name: 'can_edit') bool canEdit,
   });
 }
 
@@ -199,6 +208,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? dataLimite = freezed,
     Object? criadoEm = null,
     Object? atualizadoEm = null,
+    Object? canEdit = null,
   }) {
     return _then(
       _$TaskModelImpl(
@@ -246,6 +256,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             ? _value.atualizadoEm
             : atualizadoEm // ignore: cast_nullable_to_non_nullable
                   as String,
+        canEdit: null == canEdit
+            ? _value.canEdit
+            : canEdit // ignore: cast_nullable_to_non_nullable
+                  as bool,
       ),
     );
   }
@@ -266,6 +280,7 @@ class _$TaskModelImpl extends _TaskModel {
     @JsonKey(name: 'data_limite') this.dataLimite,
     @JsonKey(name: 'criado_em') required this.criadoEm,
     @JsonKey(name: 'atualizado_em') required this.atualizadoEm,
+    @JsonKey(name: 'can_edit') this.canEdit = false,
   }) : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -303,10 +318,13 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   @JsonKey(name: 'atualizado_em')
   final String atualizadoEm;
+  @override
+  @JsonKey(name: 'can_edit')
+  final bool canEdit;
 
   @override
   String toString() {
-    return 'TaskModel(id: $id, titulo: $titulo, descricao: $descricao, status: $status, prioridade: $prioridade, criadoPor: $criadoPor, atribuidoParaId: $atribuidoParaId, atribuidoPara: $atribuidoPara, dataLimite: $dataLimite, criadoEm: $criadoEm, atualizadoEm: $atualizadoEm)';
+    return 'TaskModel(id: $id, titulo: $titulo, descricao: $descricao, status: $status, prioridade: $prioridade, criadoPor: $criadoPor, atribuidoParaId: $atribuidoParaId, atribuidoPara: $atribuidoPara, dataLimite: $dataLimite, criadoEm: $criadoEm, atualizadoEm: $atualizadoEm, canEdit: $canEdit)';
   }
 
   @override
@@ -332,7 +350,8 @@ class _$TaskModelImpl extends _TaskModel {
             (identical(other.criadoEm, criadoEm) ||
                 other.criadoEm == criadoEm) &&
             (identical(other.atualizadoEm, atualizadoEm) ||
-                other.atualizadoEm == atualizadoEm));
+                other.atualizadoEm == atualizadoEm) &&
+            (identical(other.canEdit, canEdit) || other.canEdit == canEdit));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -350,6 +369,7 @@ class _$TaskModelImpl extends _TaskModel {
     dataLimite,
     criadoEm,
     atualizadoEm,
+    canEdit,
   );
 
   /// Create a copy of TaskModel
@@ -379,6 +399,7 @@ abstract class _TaskModel extends TaskModel {
     @JsonKey(name: 'data_limite') final String? dataLimite,
     @JsonKey(name: 'criado_em') required final String criadoEm,
     @JsonKey(name: 'atualizado_em') required final String atualizadoEm,
+    @JsonKey(name: 'can_edit') final bool canEdit,
   }) = _$TaskModelImpl;
   const _TaskModel._() : super._();
 
@@ -414,6 +435,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   @JsonKey(name: 'atualizado_em')
   String get atualizadoEm;
+  @override
+  @JsonKey(name: 'can_edit')
+  bool get canEdit;
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.
