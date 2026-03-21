@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'core/di/service_locator.dart';
 import 'package:go_router/go_router.dart';
 import 'core/router/app_router.dart';
@@ -44,7 +45,7 @@ class _GestaoTarefasAppState extends State<GestaoTarefasApp> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = MaterialTheme(Theme.of(context).textTheme);
+    final theme = MaterialTheme(GoogleFonts.interTextTheme(Theme.of(context).textTheme));
     return BlocProvider.value(
       value: widget.authBloc,
       child: MaterialApp.router(
