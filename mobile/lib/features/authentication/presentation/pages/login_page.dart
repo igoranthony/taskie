@@ -67,18 +67,10 @@ class _LoginPageState extends State<LoginPage> {
                           Center(
                             child: Column(
                               children: [
-                                Container(
-                                  width: 72,
-                                  height: 72,
-                                  decoration: BoxDecoration(
-                                    color: cs.primary,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Icon(
-                                    Icons.task_alt_rounded,
-                                    size: 38,
-                                    color: cs.onPrimary,
-                                  ),
+                                Image.asset(
+                                  'assets/logo.png',
+                                  width: 90,
+                                  height: 90,
                                 ),
                                 const SizedBox(height: 20),
                                 Text(
