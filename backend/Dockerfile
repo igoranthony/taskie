@@ -22,10 +22,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Set correct permissions
-RUN chmod +x manage.py create_superuser.py
-
-# Create directory for SQLite database
-RUN mkdir -p /app/data
+RUN chmod +x manage.py seed.py
 
 # Expose port
 EXPOSE 8000
