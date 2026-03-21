@@ -5,6 +5,12 @@ class AppLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
+    final cs = Theme.of(context).colorScheme;
+    return Center(
+      child: CircularProgressIndicator(
+        strokeWidth: 2.5,
+        color: cs.primary,
+      ),
+    );
   }
 }

@@ -21,6 +21,15 @@ class AppSnackbar {
         icon: Icons.error_outline);
   }
 
+  static void warning(BuildContext context, String message) {
+    final cs = Theme.of(context).colorScheme;
+    _show(context,
+        message: message,
+        backgroundColor: cs.tertiaryContainer,
+        foregroundColor: cs.onTertiaryContainer,
+        icon: Icons.warning_amber_rounded);
+  }
+
   static void info(BuildContext context, String message) {
     final cs = Theme.of(context).colorScheme;
     _show(context,

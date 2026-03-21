@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import '../extensions/datetime_extensions.dart';
 
-class AppDatePickerField extends StatelessWidget {
+class AppTimePickerField extends StatelessWidget {
   final String label;
-  final DateTime? value;
-  final ValueChanged<DateTime?> onChanged;
-  final DateTime? firstDate;
-  final DateTime? lastDate;
+  final TimeOfDay? value;
+  final ValueChanged<TimeOfDay?> onChanged;
   final bool clearable;
 
-  const AppDatePickerField({
+  const AppTimePickerField({
     super.key,
     required this.label,
     required this.value,
     required this.onChanged,
-    this.firstDate,
-    this.lastDate,
     this.clearable = true,
   });
 
@@ -24,9 +19,10 @@ class AppDatePickerField extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final radius = BorderRadius.circular(12);
     final hasValue = value != null;
+    final display = hasValue ? _format(value!) : 'Selecionar';
 
     return Semantics(
-      label: '$label — ${hasValue ? value!.toDateBR() : 'não definida'}',
+      label: '$label — $display',
       button: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +37,7 @@ class AppDatePickerField extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           InkWell(
-            onTap: () => _pickDate(context),
+            onTap: () => _pickTime(context),
             borderRadius: radius,
             child: InputDecorator(
               decoration: InputDecoration(
@@ -58,22 +54,16 @@ class AppDatePickerField extends StatelessWidget {
                 ),
                 suffixIcon: hasValue && clearable
                     ? IconButton(
-                        icon: Icon(
-                          Icons.close_rounded,
-                          size: 18,
-                          color: cs.onSurfaceVariant,
-                        ),
+                        icon: Icon(Icons.close_rounded,
+                            size: 18, color: cs.onSurfaceVariant),
                         onPressed: () => onChanged(null),
-                        tooltip: 'Remover data',
+                        tooltip: 'Remover horário',
                       )
-                    : Icon(
-                        Icons.calendar_today_rounded,
-                        size: 18,
-                        color: cs.onSurfaceVariant,
-                      ),
+                    : Icon(Icons.access_time_rounded,
+                        size: 18, color: cs.onSurfaceVariant),
               ),
               child: Text(
-                hasValue ? value!.toDateBR() : 'Selecionar',
+                display,
                 style: TextStyle(
                   color: hasValue ? cs.onSurface : cs.onSurfaceVariant,
                 ),
@@ -85,14 +75,21 @@ class AppDatePickerField extends StatelessWidget {
     );
   }
 
-  Future<void> _pickDate(BuildContext context) async {
-    final now = DateTime.now();
-    final picked = await showDatePicker(
+  Future<void> _pickTime(BuildContext context) async {
+    final picked = await showTimePicker(
       context: context,
-      initialDate: value ?? now.add(const Duration(days: 7)),
-      firstDate: firstDate ?? now,
-      lastDate: lastDate ?? now.add(const Duration(days: 365)),
+      initialTime: value ?? TimeOfDay.now(),
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+        child: child!,
+      ),
     );
     if (picked != null) onChanged(picked);
+  }
+
+  static String _format(TimeOfDay t) {
+    final h = t.hour.toString().padLeft(2, '0');
+    final m = t.minute.toString().padLeft(2, '0');
+    return '$h:$m';
   }
 }

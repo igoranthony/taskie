@@ -44,9 +44,10 @@ GoRouter createRouter(AuthBloc authBloc) {
       if (authState is AuthInitial || authState is AuthLoading) return null;
 
       final isAuthenticated = authState is AuthAuthenticated;
+      final isSessionExpired = authState is AuthStateSessionExpired;
       final isOnLogin = state.matchedLocation == AppRoutes.login;
 
-      if (!isAuthenticated && !isOnLogin) return AppRoutes.login;
+      if ((!isAuthenticated || isSessionExpired) && !isOnLogin) return AppRoutes.login;
       if (isAuthenticated && isOnLogin) return AppRoutes.tasks;
       return null;
     },
