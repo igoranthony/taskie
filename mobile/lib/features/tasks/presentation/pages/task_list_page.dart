@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/service_locator.dart';
+import '../../../authentication/presentation/cubit/users_cubit.dart';
 import '../bloc/task_list/task_list_bloc.dart';
 import '../bloc/task_list/task_list_event.dart';
 import '../bloc/task_list/task_list_state.dart';
@@ -15,11 +16,18 @@ class TaskListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => TaskListBloc(
-        getTasks: getIt<GetTasks>(),
-        deleteTask: getIt<DeleteTask>(),
-      )..add(const TaskListEvent.loaded()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => TaskListBloc(
+            getTasks: getIt<GetTasks>(),
+            deleteTask: getIt<DeleteTask>(),
+          )..add(const TaskListEvent.loaded()),
+        ),
+        BlocProvider(
+          create: (_) => getIt<UsersCubit>()..loadUsers(),
+        ),
+      ],
       child: const _TaskListView(),
     );
   }

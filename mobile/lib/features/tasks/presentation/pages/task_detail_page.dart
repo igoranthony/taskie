@@ -30,26 +30,34 @@ class TaskDetailPage extends StatefulWidget {
 
 class _TaskDetailPageState extends State<TaskDetailPage> {
   int _activeTab = 0;
+  bool _modified = false;
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => TaskDetailBloc(
-            taskRepository: getIt<TaskRepository>(),
-          )..add(TaskDetailEvent.loaded(widget.taskId)),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) context.pop(_modified);
+      },
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => TaskDetailBloc(
+              taskRepository: getIt<TaskRepository>(),
+            )..add(TaskDetailEvent.loaded(widget.taskId)),
+          ),
+          BlocProvider(
+            create: (_) => TaskHistoryBloc(
+              getTaskHistory: getIt<GetTaskHistory>(),
+            )..add(TaskHistoryEvent.loaded(widget.taskId)),
+          ),
+        ],
+        child: _TaskDetailView(
+          taskId: widget.taskId,
+          activeTab: _activeTab,
+          onTabChanged: (i) => setState(() => _activeTab = i),
+          onModified: () => _modified = true,
         ),
-        BlocProvider(
-          create: (_) => TaskHistoryBloc(
-            getTaskHistory: getIt<GetTaskHistory>(),
-          )..add(TaskHistoryEvent.loaded(widget.taskId)),
-        ),
-      ],
-      child: _TaskDetailView(
-        taskId: widget.taskId,
-        activeTab: _activeTab,
-        onTabChanged: (i) => setState(() => _activeTab = i),
       ),
     );
   }
@@ -59,11 +67,13 @@ class _TaskDetailView extends StatelessWidget {
   final String taskId;
   final int activeTab;
   final ValueChanged<int> onTabChanged;
+  final VoidCallback onModified;
 
   const _TaskDetailView({
     required this.taskId,
     required this.activeTab,
     required this.onTabChanged,
+    required this.onModified,
   });
 
   @override
@@ -92,6 +102,7 @@ class _TaskDetailView extends StatelessWidget {
                               extra: task,
                             );
                             if (updated != null && context.mounted) {
+                              onModified();
                               context
                                   .read<TaskDetailBloc>()
                                   .add(const TaskDetailEvent.refreshed());
@@ -102,7 +113,7 @@ class _TaskDetailView extends StatelessWidget {
                           },
                     onDelete: (task == null || !task.canEdit)
                         ? null
-                        : () => _confirmDelete(context),
+                        : () => _confirmDelete(context, onModified),
                   );
                 },
               ),
@@ -135,7 +146,7 @@ class _TaskDetailView extends StatelessWidget {
     );
   }
 
-  Future<void> _confirmDelete(BuildContext context) async {
+  Future<void> _confirmDelete(BuildContext context, VoidCallback onModified) async {
     final confirmed = await ConfirmDialog.show(
       context,
       title: 'Excluir tarefa',
@@ -146,7 +157,10 @@ class _TaskDetailView extends StatelessWidget {
     if (!confirmed || !context.mounted) return;
     try {
       await getIt<DeleteTask>().call(taskId);
-      if (context.mounted) context.pop(true);
+      if (context.mounted) {
+        onModified();
+        context.pop();
+      }
     } catch (_) {
       if (context.mounted) {
         AppSnackbar.error(context, 'Erro ao excluir a tarefa.');

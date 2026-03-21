@@ -11,6 +11,7 @@ class TaskCard extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onDelete;
   final ValueChanged<TaskStatus>? onStatusChange;
+  final VoidCallback? onStatusChangeDenied;
 
   const TaskCard({
     super.key,
@@ -18,6 +19,7 @@ class TaskCard extends StatelessWidget {
     this.onTap,
     this.onDelete,
     this.onStatusChange,
+    this.onStatusChangeDenied,
   });
 
   @override
@@ -37,7 +39,12 @@ class TaskCard extends StatelessWidget {
                   HapticFeedback.mediumImpact();
                   _showStatusPicker(context);
                 }
-              : null,
+              : onStatusChangeDenied != null
+                  ? () {
+                      HapticFeedback.lightImpact();
+                      onStatusChangeDenied!();
+                    }
+                  : null,
           borderRadius: BorderRadius.circular(16),
           child: Stack(
             children: [

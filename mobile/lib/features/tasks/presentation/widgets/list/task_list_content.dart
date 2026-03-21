@@ -24,7 +24,7 @@ class TaskListContent extends StatelessWidget {
       builder: (context, state) => state.when(
         initial: () => const TaskListSkeleton(),
         loading: () => const TaskListSkeleton(),
-        success: (tasks, _) => RefreshIndicator(
+        success: (tasks, status, prioridade, search, criadoPor, atribuidoPara, criadoEmInicio, criadoEmFim, dataLimiteInicio, dataLimiteFim) => RefreshIndicator(
           onRefresh: () async =>
               context.read<TaskListBloc>().add(const TaskListEvent.refreshed()),
           child: tasks.isEmpty
@@ -41,8 +41,8 @@ class TaskListContent extends StatelessWidget {
                     return TaskCard(
                       task: task,
                       onTap: () async {
-                        await context.push(AppRoutes.taskDetail(task.id));
-                        if (context.mounted) {
+                        final changed = await context.push(AppRoutes.taskDetail(task.id));
+                        if (changed == true && context.mounted) {
                           context
                               .read<TaskListBloc>()
                               .add(const TaskListEvent.refreshed());
@@ -55,6 +55,12 @@ class TaskListContent extends StatelessWidget {
                           ? (newStatus) =>
                               _changeStatus(context, task, newStatus)
                           : null,
+                      onStatusChangeDenied: task.canEdit
+                          ? null
+                          : () => AppSnackbar.info(
+                                context,
+                                'Somente o criador pode alterar o status desta tarefa.',
+                              ),
                     );
                   },
                 ),
