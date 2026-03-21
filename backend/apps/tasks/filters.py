@@ -1,4 +1,5 @@
 import django_filters
+from django.db.models import Q
 from .models import Task
 
 
@@ -19,6 +20,13 @@ class TaskFilter(django_filters.FilterSet):
 
     titulo = django_filters.CharFilter(lookup_expr='icontains')
     descricao = django_filters.CharFilter(lookup_expr='icontains')
+    search = django_filters.CharFilter(method='filter_search')
+
+    def filter_search(self, queryset, name, value):
+        """Busca por título OU descrição (case-insensitive)"""
+        return queryset.filter(
+            Q(titulo__icontains=value) | Q(descricao__icontains=value)
+        )
 
     class Meta:
         model = Task
