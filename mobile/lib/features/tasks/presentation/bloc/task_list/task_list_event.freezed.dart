@@ -35,6 +35,7 @@ mixin _$TaskListEvent {
     filtered,
     required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
+    required TResult Function(Task task) taskUpdated,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -54,6 +55,7 @@ mixin _$TaskListEvent {
     filtered,
     TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
+    TResult? Function(Task task)? taskUpdated,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -73,6 +75,7 @@ mixin _$TaskListEvent {
     filtered,
     TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
+    TResult Function(Task task)? taskUpdated,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +85,7 @@ mixin _$TaskListEvent {
     required TResult Function(TaskListFiltered value) filtered,
     required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
+    required TResult Function(TaskListTaskUpdated value) taskUpdated,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -90,6 +94,7 @@ mixin _$TaskListEvent {
     TResult? Function(TaskListFiltered value)? filtered,
     TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult? Function(TaskListTaskUpdated value)? taskUpdated,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -98,6 +103,7 @@ mixin _$TaskListEvent {
     TResult Function(TaskListFiltered value)? filtered,
     TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult Function(TaskListTaskUpdated value)? taskUpdated,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -183,6 +189,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     filtered,
     required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
+    required TResult Function(Task task) taskUpdated,
   }) {
     return loaded();
   }
@@ -206,6 +213,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     filtered,
     TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
+    TResult? Function(Task task)? taskUpdated,
   }) {
     return loaded?.call();
   }
@@ -229,6 +237,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     filtered,
     TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
+    TResult Function(Task task)? taskUpdated,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -245,6 +254,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     required TResult Function(TaskListFiltered value) filtered,
     required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
+    required TResult Function(TaskListTaskUpdated value) taskUpdated,
   }) {
     return loaded(this);
   }
@@ -257,6 +267,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     TResult? Function(TaskListFiltered value)? filtered,
     TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult? Function(TaskListTaskUpdated value)? taskUpdated,
   }) {
     return loaded?.call(this);
   }
@@ -269,6 +280,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     TResult Function(TaskListFiltered value)? filtered,
     TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult Function(TaskListTaskUpdated value)? taskUpdated,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -341,6 +353,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     filtered,
     required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
+    required TResult Function(Task task) taskUpdated,
   }) {
     return refreshed();
   }
@@ -364,6 +377,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     filtered,
     TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
+    TResult? Function(Task task)? taskUpdated,
   }) {
     return refreshed?.call();
   }
@@ -387,6 +401,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     filtered,
     TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
+    TResult Function(Task task)? taskUpdated,
     required TResult orElse(),
   }) {
     if (refreshed != null) {
@@ -403,6 +418,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     required TResult Function(TaskListFiltered value) filtered,
     required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
+    required TResult Function(TaskListTaskUpdated value) taskUpdated,
   }) {
     return refreshed(this);
   }
@@ -415,6 +431,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     TResult? Function(TaskListFiltered value)? filtered,
     TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult? Function(TaskListTaskUpdated value)? taskUpdated,
   }) {
     return refreshed?.call(this);
   }
@@ -427,6 +444,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     TResult Function(TaskListFiltered value)? filtered,
     TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult Function(TaskListTaskUpdated value)? taskUpdated,
     required TResult orElse(),
   }) {
     if (refreshed != null) {
@@ -633,6 +651,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     filtered,
     required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
+    required TResult Function(Task task) taskUpdated,
   }) {
     return filtered(
       status,
@@ -666,6 +685,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     filtered,
     TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
+    TResult? Function(Task task)? taskUpdated,
   }) {
     return filtered?.call(
       status,
@@ -699,6 +719,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     filtered,
     TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
+    TResult Function(Task task)? taskUpdated,
     required TResult orElse(),
   }) {
     if (filtered != null) {
@@ -725,6 +746,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     required TResult Function(TaskListFiltered value) filtered,
     required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
+    required TResult Function(TaskListTaskUpdated value) taskUpdated,
   }) {
     return filtered(this);
   }
@@ -737,6 +759,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     TResult? Function(TaskListFiltered value)? filtered,
     TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult? Function(TaskListTaskUpdated value)? taskUpdated,
   }) {
     return filtered?.call(this);
   }
@@ -749,6 +772,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     TResult Function(TaskListFiltered value)? filtered,
     TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult Function(TaskListTaskUpdated value)? taskUpdated,
     required TResult orElse(),
   }) {
     if (filtered != null) {
@@ -847,6 +871,7 @@ class _$TaskListLoadedMoreImpl implements TaskListLoadedMore {
     filtered,
     required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
+    required TResult Function(Task task) taskUpdated,
   }) {
     return loadedMore();
   }
@@ -870,6 +895,7 @@ class _$TaskListLoadedMoreImpl implements TaskListLoadedMore {
     filtered,
     TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
+    TResult? Function(Task task)? taskUpdated,
   }) {
     return loadedMore?.call();
   }
@@ -893,6 +919,7 @@ class _$TaskListLoadedMoreImpl implements TaskListLoadedMore {
     filtered,
     TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
+    TResult Function(Task task)? taskUpdated,
     required TResult orElse(),
   }) {
     if (loadedMore != null) {
@@ -909,6 +936,7 @@ class _$TaskListLoadedMoreImpl implements TaskListLoadedMore {
     required TResult Function(TaskListFiltered value) filtered,
     required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
+    required TResult Function(TaskListTaskUpdated value) taskUpdated,
   }) {
     return loadedMore(this);
   }
@@ -921,6 +949,7 @@ class _$TaskListLoadedMoreImpl implements TaskListLoadedMore {
     TResult? Function(TaskListFiltered value)? filtered,
     TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult? Function(TaskListTaskUpdated value)? taskUpdated,
   }) {
     return loadedMore?.call(this);
   }
@@ -933,6 +962,7 @@ class _$TaskListLoadedMoreImpl implements TaskListLoadedMore {
     TResult Function(TaskListFiltered value)? filtered,
     TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult Function(TaskListTaskUpdated value)? taskUpdated,
     required TResult orElse(),
   }) {
     if (loadedMore != null) {
@@ -1035,6 +1065,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     filtered,
     required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
+    required TResult Function(Task task) taskUpdated,
   }) {
     return taskDeleted(id);
   }
@@ -1058,6 +1089,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     filtered,
     TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
+    TResult? Function(Task task)? taskUpdated,
   }) {
     return taskDeleted?.call(id);
   }
@@ -1081,6 +1113,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     filtered,
     TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
+    TResult Function(Task task)? taskUpdated,
     required TResult orElse(),
   }) {
     if (taskDeleted != null) {
@@ -1097,6 +1130,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     required TResult Function(TaskListFiltered value) filtered,
     required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
+    required TResult Function(TaskListTaskUpdated value) taskUpdated,
   }) {
     return taskDeleted(this);
   }
@@ -1109,6 +1143,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     TResult? Function(TaskListFiltered value)? filtered,
     TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult? Function(TaskListTaskUpdated value)? taskUpdated,
   }) {
     return taskDeleted?.call(this);
   }
@@ -1121,6 +1156,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     TResult Function(TaskListFiltered value)? filtered,
     TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult Function(TaskListTaskUpdated value)? taskUpdated,
     required TResult orElse(),
   }) {
     if (taskDeleted != null) {
@@ -1140,5 +1176,208 @@ abstract class TaskListTaskDeleted implements TaskListEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TaskListTaskDeletedImplCopyWith<_$TaskListTaskDeletedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TaskListTaskUpdatedImplCopyWith<$Res> {
+  factory _$$TaskListTaskUpdatedImplCopyWith(
+    _$TaskListTaskUpdatedImpl value,
+    $Res Function(_$TaskListTaskUpdatedImpl) then,
+  ) = __$$TaskListTaskUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Task task});
+}
+
+/// @nodoc
+class __$$TaskListTaskUpdatedImplCopyWithImpl<$Res>
+    extends _$TaskListEventCopyWithImpl<$Res, _$TaskListTaskUpdatedImpl>
+    implements _$$TaskListTaskUpdatedImplCopyWith<$Res> {
+  __$$TaskListTaskUpdatedImplCopyWithImpl(
+    _$TaskListTaskUpdatedImpl _value,
+    $Res Function(_$TaskListTaskUpdatedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of TaskListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? task = null}) {
+    return _then(
+      _$TaskListTaskUpdatedImpl(
+        null == task
+            ? _value.task
+            : task // ignore: cast_nullable_to_non_nullable
+                  as Task,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$TaskListTaskUpdatedImpl implements TaskListTaskUpdated {
+  const _$TaskListTaskUpdatedImpl(this.task);
+
+  @override
+  final Task task;
+
+  @override
+  String toString() {
+    return 'TaskListEvent.taskUpdated(task: $task)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TaskListTaskUpdatedImpl &&
+            (identical(other.task, task) || other.task == task));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, task);
+
+  /// Create a copy of TaskListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TaskListTaskUpdatedImplCopyWith<_$TaskListTaskUpdatedImpl> get copyWith =>
+      __$$TaskListTaskUpdatedImplCopyWithImpl<_$TaskListTaskUpdatedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loaded,
+    required TResult Function() refreshed,
+    required TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )
+    filtered,
+    required TResult Function() loadedMore,
+    required TResult Function(String id) taskDeleted,
+    required TResult Function(Task task) taskUpdated,
+  }) {
+    return taskUpdated(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loaded,
+    TResult? Function()? refreshed,
+    TResult? Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
+    TResult? Function()? loadedMore,
+    TResult? Function(String id)? taskDeleted,
+    TResult? Function(Task task)? taskUpdated,
+  }) {
+    return taskUpdated?.call(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loaded,
+    TResult Function()? refreshed,
+    TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
+    TResult Function()? loadedMore,
+    TResult Function(String id)? taskDeleted,
+    TResult Function(Task task)? taskUpdated,
+    required TResult orElse(),
+  }) {
+    if (taskUpdated != null) {
+      return taskUpdated(task);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TaskListLoaded value) loaded,
+    required TResult Function(TaskListRefreshed value) refreshed,
+    required TResult Function(TaskListFiltered value) filtered,
+    required TResult Function(TaskListLoadedMore value) loadedMore,
+    required TResult Function(TaskListTaskDeleted value) taskDeleted,
+    required TResult Function(TaskListTaskUpdated value) taskUpdated,
+  }) {
+    return taskUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TaskListLoaded value)? loaded,
+    TResult? Function(TaskListRefreshed value)? refreshed,
+    TResult? Function(TaskListFiltered value)? filtered,
+    TResult? Function(TaskListLoadedMore value)? loadedMore,
+    TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult? Function(TaskListTaskUpdated value)? taskUpdated,
+  }) {
+    return taskUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TaskListLoaded value)? loaded,
+    TResult Function(TaskListRefreshed value)? refreshed,
+    TResult Function(TaskListFiltered value)? filtered,
+    TResult Function(TaskListLoadedMore value)? loadedMore,
+    TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    TResult Function(TaskListTaskUpdated value)? taskUpdated,
+    required TResult orElse(),
+  }) {
+    if (taskUpdated != null) {
+      return taskUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TaskListTaskUpdated implements TaskListEvent {
+  const factory TaskListTaskUpdated(final Task task) =
+      _$TaskListTaskUpdatedImpl;
+
+  Task get task;
+
+  /// Create a copy of TaskListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TaskListTaskUpdatedImplCopyWith<_$TaskListTaskUpdatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

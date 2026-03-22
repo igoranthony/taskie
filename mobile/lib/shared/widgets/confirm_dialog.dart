@@ -10,27 +10,31 @@ class ConfirmDialog {
     String confirmLabel = 'Confirmar',
     String cancelLabel = 'Cancelar',
     bool destructive = false,
+    Future<void> Function()? onConfirm,
   }) async {
     final result = await showDialog<bool>(
       context: context,
+      barrierDismissible: onConfirm == null,
       builder: (ctx) => _ConfirmDialogWidget(
         title: title,
         message: message,
         confirmLabel: confirmLabel,
         cancelLabel: cancelLabel,
         destructive: destructive,
+        onConfirm: onConfirm,
       ),
     );
     return result ?? false;
   }
 }
 
-class _ConfirmDialogWidget extends StatelessWidget {
+class _ConfirmDialogWidget extends StatefulWidget {
   final String title;
   final String message;
   final String confirmLabel;
   final String cancelLabel;
   final bool destructive;
+  final Future<void> Function()? onConfirm;
 
   const _ConfirmDialogWidget({
     required this.title,
@@ -38,7 +42,25 @@ class _ConfirmDialogWidget extends StatelessWidget {
     required this.confirmLabel,
     required this.cancelLabel,
     required this.destructive,
+    this.onConfirm,
   });
+
+  @override
+  State<_ConfirmDialogWidget> createState() => _ConfirmDialogWidgetState();
+}
+
+class _ConfirmDialogWidgetState extends State<_ConfirmDialogWidget> {
+  bool _loading = false;
+
+  Future<void> _handleConfirm() async {
+    if (widget.onConfirm != null) {
+      setState(() => _loading = true);
+      await widget.onConfirm!();
+      if (mounted) Navigator.pop(context, true);
+    } else {
+      Navigator.pop(context, true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,25 +76,24 @@ class _ConfirmDialogWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Icon
             Container(
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: destructive ? cs.errorContainer : cs.primaryContainer,
+                color: widget.destructive ? cs.errorContainer : cs.primaryContainer,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
-                destructive
+                widget.destructive
                     ? Icons.delete_outline_rounded
                     : Icons.help_outline_rounded,
                 size: 22,
-                color: destructive ? cs.onErrorContainer : cs.onPrimaryContainer,
+                color: widget.destructive ? cs.onErrorContainer : cs.onPrimaryContainer,
               ),
             ),
             const SizedBox(height: 16),
             Text(
-              title,
+              widget.title,
               style: tt.titleMedium?.copyWith(
                 color: cs.onSurface,
                 fontWeight: FontWeight.w700,
@@ -80,7 +101,7 @@ class _ConfirmDialogWidget extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              message,
+              widget.message,
               style: tt.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
             ),
             const SizedBox(height: 24),
@@ -88,7 +109,7 @@ class _ConfirmDialogWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () => Navigator.pop(context, false),
+                    onPressed: _loading ? null : () => Navigator.pop(context, false),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: cs.onSurfaceVariant,
                       side: BorderSide(color: cs.outlineVariant),
@@ -97,26 +118,37 @@ class _ConfirmDialogWidget extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(cancelLabel),
+                    child: Text(widget.cancelLabel),
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Semantics(
-                    label: '$confirmLabel - confirmar ação',
+                    label: '${widget.confirmLabel} - confirmar ação',
                     child: FilledButton(
-                      onPressed: () => Navigator.pop(context, true),
+                      onPressed: _loading ? null : _handleConfirm,
                       style: FilledButton.styleFrom(
                         backgroundColor:
-                            destructive ? cs.error : cs.primary,
+                            widget.destructive ? cs.error : cs.primary,
                         foregroundColor:
-                            destructive ? cs.onError : cs.onPrimary,
+                            widget.destructive ? cs.onError : cs.onPrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 12),
                       ),
-                      child: Text(confirmLabel),
+                      child: _loading
+                          ? SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: widget.destructive
+                                    ? cs.onError
+                                    : cs.onPrimary,
+                              ),
+                            )
+                          : Text(widget.confirmLabel),
                     ),
                   ),
                 ),

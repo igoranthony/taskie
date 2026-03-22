@@ -20,4 +20,5 @@ class TaskListEvent with _$TaskListEvent {
   }) = TaskListFiltered;
   const factory TaskListEvent.loadedMore() = TaskListLoadedMore;
   const factory TaskListEvent.taskDeleted(String id) = TaskListTaskDeleted;
+  const factory TaskListEvent.taskUpdated(Task task) = TaskListTaskUpdated;
 }

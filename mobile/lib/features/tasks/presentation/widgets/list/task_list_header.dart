@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,7 @@ import '../../bloc/task_list/task_list_bloc.dart';
 import '../../bloc/task_list/task_list_event.dart';
 import '../../bloc/task_list/task_list_state.dart';
 import 'filter_bottom_sheet.dart';
+import '../../../../../shared/widgets/confirm_dialog.dart';
 
 class TaskListHeader extends StatelessWidget {
   const TaskListHeader({super.key});
@@ -113,9 +115,27 @@ class TaskListHeader extends StatelessWidget {
           const SizedBox(width: 8),
           _HeaderAction(
             icon: Icons.logout,
-            onPressed: () => context
-                .read<AuthBloc>()
-                .add(const AuthEvent.logoutRequested()),
+            onPressed: () => ConfirmDialog.show(
+              context,
+              title: 'Sair',
+              message: 'Tem certeza que deseja sair da sua conta?',
+              confirmLabel: 'Sair',
+              onConfirm: () async {
+                final authBloc = context.read<AuthBloc>();
+                final completer = Completer<void>();
+                late StreamSubscription sub;
+                sub = authBloc.stream.listen((state) {
+                  state.whenOrNull(
+                    unauthenticated: () {
+                      if (!completer.isCompleted) completer.complete();
+                      sub.cancel();
+                    },
+                  );
+                });
+                authBloc.add(const AuthEvent.logoutRequested());
+                await completer.future;
+              },
+            ),
           ),
         ],
       ),

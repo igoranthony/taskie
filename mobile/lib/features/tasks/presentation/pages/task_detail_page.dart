@@ -158,6 +158,7 @@ class _TaskDetailView extends StatelessWidget {
     try {
       await getIt<DeleteTask>().call(taskId);
       if (context.mounted) {
+        AppSnackbar.success(context, 'Tarefa excluída com sucesso.');
         onModified();
         context.pop();
       }

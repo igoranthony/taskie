@@ -120,9 +120,11 @@ class _TaskListContentState extends State<TaskListContent> {
   Future<void> _changeStatus(
       BuildContext context, Task task, TaskStatus newStatus) async {
     try {
-      await getIt<UpdateTask>().call(task.copyWith(status: newStatus));
+      final updated = task.copyWith(status: newStatus);
+      await getIt<UpdateTask>().call(updated);
       if (context.mounted) {
-        context.read<TaskListBloc>().add(const TaskListEvent.refreshed());
+        context.read<TaskListBloc>().add(TaskListEvent.taskUpdated(updated));
+        AppSnackbar.success(context, 'Status atualizado com sucesso.');
       }
     } catch (_) {
       if (context.mounted) {
@@ -141,6 +143,7 @@ class _TaskListContentState extends State<TaskListContent> {
     );
     if (confirmed && context.mounted) {
       context.read<TaskListBloc>().add(TaskListEvent.taskDeleted(taskId));
+      AppSnackbar.success(context, 'Tarefa excluída com sucesso.');
     }
   }
 }
