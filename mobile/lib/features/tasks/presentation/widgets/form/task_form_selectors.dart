@@ -7,11 +7,13 @@ import '../../../../../core/theme/material_theme.dart';
 class TaskStatusSelector extends StatelessWidget {
   final TaskStatus value;
   final ValueChanged<TaskStatus> onChanged;
+  final bool isLocked;
 
   const TaskStatusSelector({
     super.key,
     required this.value,
     required this.onChanged,
+    this.isLocked = false,
   });
 
   @override
@@ -19,26 +21,32 @@ class TaskStatusSelector extends StatelessWidget {
     return Row(
       children: TaskStatus.values.map((status) {
         final isSelected = status == value;
+        final isDisabled = isLocked && status != value;
         final s = Theme.of(context).colorScheme.statusColor(status);
+        final cs = Theme.of(context).colorScheme;
         return Expanded(
           child: Padding(
             padding: EdgeInsets.only(
               right: status != TaskStatus.values.last ? 8 : 0,
             ),
             child: GestureDetector(
-              onTap: () => onChanged(status),
+              onTap: isDisabled ? null : () => onChanged(status),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                  color: isSelected
-                      ? s.bg
-                      : Theme.of(context).colorScheme.surfaceContainer,
+                  color: isDisabled
+                      ? cs.surfaceContainer.withAlpha(120)
+                      : isSelected
+                          ? s.bg
+                          : cs.surfaceContainer,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: isSelected
-                        ? s.fg.withAlpha(100)
-                        : Theme.of(context).colorScheme.outlineVariant,
+                    color: isDisabled
+                        ? cs.outlineVariant.withAlpha(80)
+                        : isSelected
+                            ? s.fg.withAlpha(100)
+                            : cs.outlineVariant,
                     width: 1,
                   ),
                 ),
@@ -49,9 +57,11 @@ class TaskStatusSelector extends StatelessWidget {
                       fontSize: 12,
                       fontWeight:
                           isSelected ? FontWeight.w700 : FontWeight.w400,
-                      color: isSelected
-                          ? s.fg
-                          : Theme.of(context).colorScheme.onSurfaceVariant,
+                      color: isDisabled
+                          ? cs.onSurfaceVariant.withAlpha(80)
+                          : isSelected
+                              ? s.fg
+                              : cs.onSurfaceVariant,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),

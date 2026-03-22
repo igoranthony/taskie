@@ -172,6 +172,7 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
               TaskStatusSelector(
                 value: _status,
                 onChanged: (s) => setState(() => _status = s),
+                isLocked: widget.initialTask?.status == TaskStatus.concluido,
               ),
               const SizedBox(height: 16),
 

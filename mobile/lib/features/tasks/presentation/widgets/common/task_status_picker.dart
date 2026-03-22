@@ -100,6 +100,7 @@ class _TaskStatusPickerSheet extends StatelessWidget {
             _StatusOption(
               status: status,
               isCurrent: status == task.status,
+              isDisabled: task.status == TaskStatus.concluido && status != TaskStatus.concluido,
               onTap: () {
                 Navigator.pop(context);
                 if (status != task.status) onStatusChange(status);
@@ -115,12 +116,14 @@ class _TaskStatusPickerSheet extends StatelessWidget {
 class _StatusOption extends StatelessWidget {
   final TaskStatus status;
   final bool isCurrent;
+  final bool isDisabled;
   final VoidCallback onTap;
 
   const _StatusOption({
     required this.status,
     required this.isCurrent,
     required this.onTap,
+    this.isDisabled = false,
   });
 
   @override
@@ -130,7 +133,7 @@ class _StatusOption extends StatelessWidget {
     final (label, color) = (s.label, s.fg);
 
     return InkWell(
-      onTap: onTap,
+      onTap: isDisabled ? null : onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         child: Row(
@@ -138,7 +141,10 @@ class _StatusOption extends StatelessWidget {
             Container(
               width: 8,
               height: 8,
-              decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+              decoration: BoxDecoration(
+                color: isDisabled ? cs.onSurfaceVariant.withAlpha(60) : color,
+                shape: BoxShape.circle,
+              ),
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -147,7 +153,11 @@ class _StatusOption extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: isCurrent ? FontWeight.w700 : FontWeight.w400,
-                  color: isCurrent ? cs.onSurface : cs.onSurfaceVariant,
+                  color: isDisabled
+                      ? cs.onSurfaceVariant.withAlpha(80)
+                      : isCurrent
+                          ? cs.onSurface
+                          : cs.onSurfaceVariant,
                 ),
               ),
             ),
