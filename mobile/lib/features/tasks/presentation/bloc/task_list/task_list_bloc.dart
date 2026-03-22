@@ -1,3 +1,4 @@
+import 'package:gestao_tarefas_tradex/core/errors/app_error_parser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/usecases/get_tasks.dart';
 import '../../../domain/usecases/delete_task.dart';
@@ -19,6 +20,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     on<TaskListFiltered>(_onFiltered);
     on<TaskListLoadedMore>(_onLoadedMore);
     on<TaskListTaskDeleted>(_onTaskDeleted);
+    on<TaskListTaskUpdated>(_onTaskUpdated);
   }
 
   Future<void> _onLoaded(
@@ -33,7 +35,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         hasReachedMax: !result.hasNext,
       ));
     } catch (e) {
-      emit(TaskListState.failure(e.toString()));
+      emit(TaskListState.failure(AppErrorParser.parse(e)));
     }
   }
 
@@ -69,7 +71,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         filterDataLimiteFim: current?.filterDataLimiteFim,
       ));
     } catch (e) {
-      emit(TaskListState.failure(e.toString()));
+      emit(TaskListState.failure(AppErrorParser.parse(e)));
     }
   }
 
@@ -104,7 +106,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         filterDataLimiteFim: event.dataLimiteFim,
       ));
     } catch (e) {
-      emit(TaskListState.failure(e.toString()));
+      emit(TaskListState.failure(AppErrorParser.parse(e)));
     }
   }
 
@@ -149,7 +151,20 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
       await _deleteTask(event.id);
       add(const TaskListEvent.refreshed());
     } catch (e) {
-      emit(TaskListState.failure(e.toString()));
+      emit(TaskListState.failure(AppErrorParser.parse(e)));
     }
+  }
+
+  void _onTaskUpdated(
+    TaskListTaskUpdated event,
+    Emitter<TaskListState> emit,
+  ) {
+    final current = state is TaskListSuccess ? state as TaskListSuccess : null;
+    if (current == null) return;
+    emit(current.copyWith(
+      tasks: current.tasks
+          .map((t) => t.id == event.task.id ? event.task : t)
+          .toList(),
+    ));
   }
 }

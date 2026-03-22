@@ -87,6 +87,7 @@ class AppSelectField<T> extends StatelessWidget {
           DropdownButtonFormField<T>(
             initialValue: value,
             decoration: decoration,
+            isExpanded: true,
             dropdownColor: cs.surfaceContainerHigh,
             borderRadius: BorderRadius.circular(12),
             items: options

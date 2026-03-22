@@ -1,3 +1,4 @@
+import 'package:gestao_tarefas_tradex/core/errors/app_error_parser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/entities/task.dart';
 import '../../../domain/usecases/create_task.dart';
@@ -52,7 +53,7 @@ class TaskFormBloc extends Bloc<TaskFormEvent, TaskFormState> {
       }
       emit(TaskFormState.success(result));
     } catch (e) {
-      emit(TaskFormState.failure(e.toString()));
+      emit(TaskFormState.failure(AppErrorParser.parse(e)));
     }
   }
 }

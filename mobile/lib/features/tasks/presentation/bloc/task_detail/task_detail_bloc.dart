@@ -1,3 +1,4 @@
+import 'package:gestao_tarefas_tradex/core/errors/app_error_parser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/repositories/task_repository.dart';
 import 'task_detail_event.dart';
@@ -24,7 +25,7 @@ class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
       final task = await _taskRepository.getTaskById(event.taskId);
       emit(TaskDetailState.success(task));
     } catch (e) {
-      emit(TaskDetailState.failure(e.toString()));
+      emit(TaskDetailState.failure(AppErrorParser.parse(e)));
     }
   }
 
@@ -38,7 +39,7 @@ class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
       final task = await _taskRepository.getTaskById(_taskId!);
       emit(TaskDetailState.success(task));
     } catch (e) {
-      emit(TaskDetailState.failure(e.toString()));
+      emit(TaskDetailState.failure(AppErrorParser.parse(e)));
     }
   }
 }

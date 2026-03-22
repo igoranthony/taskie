@@ -1,3 +1,4 @@
+import 'package:gestao_tarefas_tradex/core/errors/app_error_parser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../domain/usecases/get_current_user.dart';
@@ -64,7 +65,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(const AuthState.failure('Não foi possível obter os dados do usuário'));
       }
     } catch (e) {
-      emit(AuthState.failure(e.toString()));
+      emit(AuthState.failure(AppErrorParser.parse(e)));
     }
   }
 
@@ -72,6 +73,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLogoutRequested event,
     Emitter<AuthState> emit,
   ) async {
+    emit(const AuthState.loading());
     await _logout();
     emit(const AuthState.unauthenticated());
   }

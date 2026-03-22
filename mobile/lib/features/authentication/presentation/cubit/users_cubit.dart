@@ -1,3 +1,4 @@
+import 'package:gestao_tarefas_tradex/core/errors/app_error_parser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/network/api_endpoints.dart';
@@ -18,7 +19,7 @@ class UsersCubit extends Cubit<UsersState> {
       final users = data.map((json) => UserSummary.fromJson(json)).toList();
       emit(UsersState.loaded(users));
     } catch (e) {
-      emit(UsersState.failure(e.toString()));
+      emit(UsersState.failure(AppErrorParser.parse(e)));
     }
   }
 }
