@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from apps.core.models import BaseModel
+from apps.core.models import SoftDeleteModel
 
 
 def _normalize_for_comparison(value):
@@ -12,7 +12,7 @@ def _normalize_for_comparison(value):
     return value
 
 
-class Task(BaseModel):
+class Task(SoftDeleteModel):
     """Modelo principal de tarefas com sistema de auditoria"""
 
     STATUS_CHOICES = [
@@ -61,6 +61,7 @@ class Task(BaseModel):
             models.Index(fields=['status', '-criado_em']),
             models.Index(fields=['criado_por', '-criado_em']),
             models.Index(fields=['atribuido_para', '-criado_em']),
+            models.Index(fields=['deletado_em']),
         ]
 
     def __str__(self):

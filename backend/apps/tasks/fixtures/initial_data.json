@@ -4,14 +4,15 @@
     "pk": "11111111-1111-1111-1111-111111111101",
     "fields": {
       "titulo": "Configurar ambiente de desenvolvimento",
-      "descricao": "Instalar dependências, configurar banco de dados e variáveis de ambiente.",
+      "descricao": "Instalar dependências, configurar banco de dados e variáveis de ambiente para rodar o projeto localmente.",
       "status": "concluido",
       "prioridade": "alta",
       "criado_por": 1,
-      "atribuido_para": 2,
+      "atribuido_para": 1,
       "data_limite": "2026-01-10T18:00:00Z",
       "criado_em": "2026-01-01T09:00:00Z",
-      "atualizado_em": "2026-01-08T14:00:00Z"
+      "atualizado_em": "2026-01-08T14:00:00Z",
+      "deletado_em": null
     }
   },
   {
@@ -19,104 +20,783 @@
     "pk": "11111111-1111-1111-1111-111111111102",
     "fields": {
       "titulo": "Implementar autenticação JWT",
-      "descricao": "Criar endpoints de login, refresh token e logout com blacklist.",
+      "descricao": "Criar endpoints de login, refresh token e logout com blacklist usando djangorestframework-simplejwt.",
       "status": "concluido",
       "prioridade": "alta",
       "criado_por": 1,
       "atribuido_para": 1,
       "data_limite": "2026-01-15T18:00:00Z",
       "criado_em": "2026-01-05T10:00:00Z",
-      "atualizado_em": "2026-01-14T16:00:00Z"
+      "atualizado_em": "2026-01-14T16:00:00Z",
+      "deletado_em": null
     }
   },
   {
     "model": "tasks.task",
     "pk": "11111111-1111-1111-1111-111111111103",
     "fields": {
-      "titulo": "Criar CRUD de tarefas",
-      "descricao": "Desenvolver endpoints REST para criação, listagem, edição e exclusão de tarefas.",
-      "status": "em_andamento",
+      "titulo": "Migrar banco de dados para PostgreSQL",
+      "descricao": "Substituir SQLite por PostgreSQL e atualizar docker-compose com serviço de banco de dados dedicado.",
+      "status": "concluido",
       "prioridade": "alta",
       "criado_por": 1,
-      "atribuido_para": 2,
-      "data_limite": "2026-02-01T18:00:00Z",
-      "criado_em": "2026-01-10T09:00:00Z",
-      "atualizado_em": "2026-01-20T11:00:00Z"
+      "atribuido_para": 1,
+      "data_limite": "2026-01-20T18:00:00Z",
+      "criado_em": "2026-01-08T09:00:00Z",
+      "atualizado_em": "2026-01-18T15:00:00Z",
+      "deletado_em": null
     }
   },
   {
     "model": "tasks.task",
     "pk": "11111111-1111-1111-1111-111111111104",
     "fields": {
-      "titulo": "Implementar filtros na listagem",
-      "descricao": "Adicionar filtros por status, prioridade e usuário na API de tarefas.",
-      "status": "em_andamento",
-      "prioridade": "media",
-      "criado_por": 2,
+      "titulo": "Criar model de Task com BaseModel",
+      "descricao": "Definir modelo Task com campos titulo, descricao, status, prioridade, criado_por, atribuido_para e data_limite herdando de BaseModel.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 1,
       "atribuido_para": 2,
-      "data_limite": "2026-02-10T18:00:00Z",
-      "criado_em": "2026-01-15T14:00:00Z",
-      "atualizado_em": "2026-01-22T09:00:00Z"
+      "data_limite": "2026-01-18T18:00:00Z",
+      "criado_em": "2026-01-10T09:00:00Z",
+      "atualizado_em": "2026-01-17T11:00:00Z",
+      "deletado_em": null
     }
   },
   {
     "model": "tasks.task",
     "pk": "11111111-1111-1111-1111-111111111105",
     "fields": {
-      "titulo": "Escrever testes unitários",
-      "descricao": "Cobrir models, serializers e views com testes automatizados.",
-      "status": "backlog",
-      "prioridade": "media",
+      "titulo": "Criar sistema de histórico de alterações",
+      "descricao": "Implementar TaskHistory para registrar cada campo alterado, valor anterior e novo valor com o usuário responsável.",
+      "status": "concluido",
+      "prioridade": "alta",
       "criado_por": 1,
-      "atribuido_para": 3,
-      "data_limite": "2026-03-01T18:00:00Z",
-      "criado_em": "2026-01-20T10:00:00Z",
-      "atualizado_em": "2026-01-20T10:00:00Z"
+      "atribuido_para": 1,
+      "data_limite": "2026-01-25T18:00:00Z",
+      "criado_em": "2026-01-12T10:00:00Z",
+      "atualizado_em": "2026-01-23T14:00:00Z",
+      "deletado_em": null
     }
   },
   {
     "model": "tasks.task",
     "pk": "11111111-1111-1111-1111-111111111106",
     "fields": {
-      "titulo": "Documentar API com Swagger",
-      "descricao": "Integrar drf-spectacular para geração automática da documentação OpenAPI.",
-      "status": "backlog",
-      "prioridade": "baixa",
-      "criado_por": 2,
-      "atribuido_para": null,
-      "data_limite": null,
-      "criado_em": "2026-01-22T11:00:00Z",
-      "atualizado_em": "2026-01-22T11:00:00Z"
+      "titulo": "Implementar permissões por dono da tarefa",
+      "descricao": "Criar IsOwnerOrReadOnly para que apenas o criador da tarefa possa editá-la ou deletá-la.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": 2,
+      "data_limite": "2026-01-28T18:00:00Z",
+      "criado_em": "2026-01-14T11:00:00Z",
+      "atualizado_em": "2026-01-27T10:00:00Z",
+      "deletado_em": null
     }
   },
   {
     "model": "tasks.task",
     "pk": "11111111-1111-1111-1111-111111111107",
     "fields": {
-      "titulo": "Migrar banco de dados para PostgreSQL",
-      "descricao": "Substituir SQLite por PostgreSQL e atualizar docker-compose com serviço de banco.",
+      "titulo": "Adicionar filtros na listagem da API",
+      "descricao": "Implementar TaskFilter com django-filter para filtrar por status, prioridade, criado_por, atribuido_para e intervalo de datas.",
       "status": "concluido",
-      "prioridade": "alta",
-      "criado_por": 1,
-      "atribuido_para": 1,
-      "data_limite": "2026-01-25T18:00:00Z",
-      "criado_em": "2026-01-18T09:00:00Z",
-      "atualizado_em": "2026-01-24T15:00:00Z"
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-05T18:00:00Z",
+      "criado_em": "2026-01-20T14:00:00Z",
+      "atualizado_em": "2026-02-03T16:00:00Z",
+      "deletado_em": null
     }
   },
   {
     "model": "tasks.task",
     "pk": "11111111-1111-1111-1111-111111111108",
     "fields": {
-      "titulo": "Configurar CI/CD",
-      "descricao": "Criar pipeline de integração e deploy contínuo via GitHub Actions.",
+      "titulo": "Configurar paginação na API",
+      "descricao": "Adicionar PageNumberPagination com PAGE_SIZE 20 e retornar count, next, previous e results na resposta.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-02-08T18:00:00Z",
+      "criado_em": "2026-01-22T09:00:00Z",
+      "atualizado_em": "2026-02-06T13:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111109",
+    "fields": {
+      "titulo": "Implementar soft delete no backend",
+      "descricao": "Criar SoftDeleteModel com campo deletado_em, SoftDeleteManager que filtra registros não deletados e all_objects para acesso completo.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-03-15T18:00:00Z",
+      "criado_em": "2026-03-10T09:00:00Z",
+      "atualizado_em": "2026-03-18T14:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111110",
+    "fields": {
+      "titulo": "Configurar CORS para o app mobile",
+      "descricao": "Instalar django-cors-headers e permitir origem do emulador e dispositivo físico nas configurações de development.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 1,
+      "data_limite": "2026-01-30T18:00:00Z",
+      "criado_em": "2026-01-18T10:00:00Z",
+      "atualizado_em": "2026-01-29T12:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111111",
+    "fields": {
+      "titulo": "Criar endpoint de estatísticas",
+      "descricao": "Adicionar action /tasks/stats/ que retorna total de tarefas por status e prioridade para o usuário atual.",
+      "status": "concluido",
+      "prioridade": "baixa",
+      "criado_por": 1,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-15T18:00:00Z",
+      "criado_em": "2026-02-01T10:00:00Z",
+      "atualizado_em": "2026-02-13T15:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111112",
+    "fields": {
+      "titulo": "Testes unitários backend — models",
+      "descricao": "Cobrir soft delete (delete não remove do banco, manager padrão exclui deletadas) e histórico de alterações de campos.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-03-22T18:00:00Z",
+      "criado_em": "2026-03-19T10:00:00Z",
+      "atualizado_em": "2026-03-21T16:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111113",
+    "fields": {
+      "titulo": "Testes unitários backend — serializers",
+      "descricao": "Validar titulo vazio, regra de não sair de concluido e atribuição para usuário inativo.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-03-22T18:00:00Z",
+      "criado_em": "2026-03-19T11:00:00Z",
+      "atualizado_em": "2026-03-21T16:30:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111114",
+    "fields": {
+      "titulo": "Testes unitários backend — API",
+      "descricao": "Testar CRUD via endpoints REST, permissões de dono, soft delete via API e autenticação obrigatória.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-03-22T18:00:00Z",
+      "criado_em": "2026-03-19T12:00:00Z",
+      "atualizado_em": "2026-03-21T17:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111115",
+    "fields": {
+      "titulo": "Configurar Clean Architecture no mobile",
+      "descricao": "Organizar projeto em camadas: data, domain e presentation. Definir separação de responsabilidades e contratos de repositório.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-01-20T18:00:00Z",
+      "criado_em": "2026-01-05T09:00:00Z",
+      "atualizado_em": "2026-01-19T14:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111116",
+    "fields": {
+      "titulo": "Configurar GetIt para injeção de dependência",
+      "descricao": "Registrar repositórios, use cases e BLoCs no service locator. Usar factory para BLoCs que precisam de nova instância.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-01-22T18:00:00Z",
+      "criado_em": "2026-01-08T10:00:00Z",
+      "atualizado_em": "2026-01-21T11:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111117",
+    "fields": {
+      "titulo": "Implementar interceptor de autenticação no Dio",
+      "descricao": "Criar AuthInterceptor que adiciona Bearer token no header, trata 401 com refresh automático e redireciona para login quando token expirado.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-01-25T18:00:00Z",
+      "criado_em": "2026-01-10T09:00:00Z",
+      "atualizado_em": "2026-01-24T15:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111118",
+    "fields": {
+      "titulo": "Criar BLoC de autenticação",
+      "descricao": "Implementar AuthBloc com eventos login, logout e checkAuth. Estados: initial, loading, authenticated, unauthenticated e failure.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-01-28T18:00:00Z",
+      "criado_em": "2026-01-12T10:00:00Z",
+      "atualizado_em": "2026-01-27T16:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111119",
+    "fields": {
+      "titulo": "Criar tela de login",
+      "descricao": "Layout com logo Tradex Tasks, campos de usuário e senha, botão de entrar e feedback de erro. Fonte Space Grotesk para o nome do app.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-01T18:00:00Z",
+      "criado_em": "2026-01-15T09:00:00Z",
+      "atualizado_em": "2026-01-30T14:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111120",
+    "fields": {
+      "titulo": "Criar BLoC de listagem de tarefas",
+      "descricao": "Implementar TaskListBloc com eventos loaded, refreshed, filtered, loadedMore e taskDeleted. Suporte a paginação e filtros.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-10T18:00:00Z",
+      "criado_em": "2026-01-20T10:00:00Z",
+      "atualizado_em": "2026-02-08T15:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111121",
+    "fields": {
+      "titulo": "Criar tela de listagem de tarefas",
+      "descricao": "Tela com AppBar, botão de filtros, busca, lista com skeleton loading e floating action button para criar nova tarefa.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-12T18:00:00Z",
+      "criado_em": "2026-01-22T09:00:00Z",
+      "atualizado_em": "2026-02-10T16:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111122",
+    "fields": {
+      "titulo": "Criar BLoC de detalhe de tarefa",
+      "descricao": "Implementar TaskDetailBloc com eventos loaded e refreshed, buscando tarefa por ID no repositório.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-15T18:00:00Z",
+      "criado_em": "2026-02-05T10:00:00Z",
+      "atualizado_em": "2026-02-14T11:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111123",
+    "fields": {
+      "titulo": "Criar tela de detalhe de tarefa",
+      "descricao": "Exibir todos os campos da tarefa, badge de status e prioridade, botões de editar/deletar (apenas para dono) e navegação para histórico.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-18T18:00:00Z",
+      "criado_em": "2026-02-07T09:00:00Z",
+      "atualizado_em": "2026-02-17T14:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111124",
+    "fields": {
+      "titulo": "Criar BLoC de formulário de tarefa",
+      "descricao": "Implementar TaskFormBloc com evento submitted que chama createTask ou updateTask dependendo se initialTask foi passado.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-20T18:00:00Z",
+      "criado_em": "2026-02-10T10:00:00Z",
+      "atualizado_em": "2026-02-19T15:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111125",
+    "fields": {
+      "titulo": "Criar tela de formulário de tarefa",
+      "descricao": "Tela unificada para criar e editar tarefas com campos titulo, descricao, status, prioridade, atribuido_para e data_limite.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-22T18:00:00Z",
+      "criado_em": "2026-02-12T09:00:00Z",
+      "atualizado_em": "2026-02-21T16:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111126",
+    "fields": {
+      "titulo": "Criar BLoC de histórico de alterações",
+      "descricao": "Implementar TaskHistoryBloc com evento loaded que busca o histórico de uma tarefa pelo ID.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-25T18:00:00Z",
+      "criado_em": "2026-02-15T10:00:00Z",
+      "atualizado_em": "2026-02-24T11:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111127",
+    "fields": {
+      "titulo": "Criar tela de histórico de alterações",
+      "descricao": "Listar todas as alterações de uma tarefa em ordem cronológica reversa com campo alterado, valor anterior e novo.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-28T18:00:00Z",
+      "criado_em": "2026-02-17T09:00:00Z",
+      "atualizado_em": "2026-02-27T14:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111128",
+    "fields": {
+      "titulo": "Implementar scroll infinito na listagem",
+      "descricao": "Detectar scroll a 200px do fim da lista e disparar evento loadedMore no BLoC. Exibir indicador de carregamento no rodapé.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-03-10T18:00:00Z",
+      "criado_em": "2026-03-05T09:00:00Z",
+      "atualizado_em": "2026-03-09T15:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111129",
+    "fields": {
+      "titulo": "Implementar filtros na listagem mobile",
+      "descricao": "Criar FilterBottomSheet com DraggableScrollableSheet para filtrar por status, prioridade, usuário e intervalo de datas.",
+      "status": "concluido",
+      "prioridade": "alta",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-03-08T18:00:00Z",
+      "criado_em": "2026-03-01T10:00:00Z",
+      "atualizado_em": "2026-03-07T16:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111130",
+    "fields": {
+      "titulo": "Criar componentes shared reutilizáveis",
+      "descricao": "Desenvolver AppTextField, AppPrimaryButton, AppSelectField, AppDatePickerField, AppSnackbar e AppEmptyState padronizados.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-02-05T18:00:00Z",
+      "criado_em": "2026-01-25T10:00:00Z",
+      "atualizado_em": "2026-02-04T14:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111131",
+    "fields": {
+      "titulo": "Aplicar fonte Inter globalmente",
+      "descricao": "Integrar google_fonts e configurar GoogleFonts.interTextTheme() no MaterialTheme para tipografia consistente.",
+      "status": "concluido",
+      "prioridade": "baixa",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-03-12T18:00:00Z",
+      "criado_em": "2026-03-08T10:00:00Z",
+      "atualizado_em": "2026-03-11T13:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111132",
+    "fields": {
+      "titulo": "Adicionar logo e renomear app para Tradex Tasks",
+      "descricao": "Inserir logo.png na tela de login, configurar ícone do app para Android e iOS, e atualizar nome do app nos arquivos nativos.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-03-14T18:00:00Z",
+      "criado_em": "2026-03-10T09:00:00Z",
+      "atualizado_em": "2026-03-13T15:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111133",
+    "fields": {
+      "titulo": "Testes unitários mobile — TaskListBloc",
+      "descricao": "Testar estados initial, loaded com sucesso, loaded com erro, loadedMore e filtered usando bloc_test e mockito.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-03-22T18:00:00Z",
+      "criado_em": "2026-03-20T10:00:00Z",
+      "atualizado_em": "2026-03-21T15:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111134",
+    "fields": {
+      "titulo": "Testes unitários mobile — TaskDetailBloc",
+      "descricao": "Testar carregamento por ID, erro ao buscar, refresh e comportamento quando refresh é chamado sem task carregada.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-03-22T18:00:00Z",
+      "criado_em": "2026-03-20T11:00:00Z",
+      "atualizado_em": "2026-03-21T15:30:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111135",
+    "fields": {
+      "titulo": "Testes unitários mobile — TaskFormBloc e TaskHistoryBloc",
+      "descricao": "Testar criação vs edição (qual use case é chamado), erro no submit, carregamento de histórico vazio e com dados.",
+      "status": "concluido",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-03-22T18:00:00Z",
+      "criado_em": "2026-03-20T12:00:00Z",
+      "atualizado_em": "2026-03-21T16:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111136",
+    "fields": {
+      "titulo": "Documentar API com Swagger/OpenAPI",
+      "descricao": "Integrar drf-spectacular para geração automática de documentação. Adicionar exemplos e descrições nos endpoints.",
+      "status": "backlog",
+      "prioridade": "baixa",
+      "criado_por": 1,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-02-01T10:00:00Z",
+      "atualizado_em": "2026-02-01T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111137",
+    "fields": {
+      "titulo": "Configurar CI/CD com GitHub Actions",
+      "descricao": "Criar pipeline que roda testes automaticamente em cada PR e faz deploy automático para produção ao mergear na main.",
+      "status": "backlog",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": 3,
+      "data_limite": null,
+      "criado_em": "2026-02-05T10:00:00Z",
+      "atualizado_em": "2026-02-05T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111138",
+    "fields": {
+      "titulo": "Implementar notificações push",
+      "descricao": "Notificar usuário quando uma tarefa for atribuída a ele ou quando uma tarefa próxima do prazo estiver sem atualização.",
+      "status": "backlog",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-02-10T10:00:00Z",
+      "atualizado_em": "2026-02-10T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111139",
+    "fields": {
+      "titulo": "Criar tela de perfil do usuário",
+      "descricao": "Exibir nome, e-mail, avatar e estatísticas do usuário. Permitir alterar senha e preferências de notificação.",
+      "status": "backlog",
+      "prioridade": "baixa",
+      "criado_por": 2,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-02-12T10:00:00Z",
+      "atualizado_em": "2026-02-12T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111140",
+    "fields": {
+      "titulo": "Adicionar modo offline com cache local",
+      "descricao": "Salvar lista de tarefas localmente com Hive ou Drift para visualização offline. Sincronizar ao reconectar.",
+      "status": "backlog",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-02-15T10:00:00Z",
+      "atualizado_em": "2026-02-15T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111141",
+    "fields": {
+      "titulo": "Implementar busca global de tarefas",
+      "descricao": "Campo de busca por título e descrição com debounce de 500ms para não sobrecarregar a API a cada tecla.",
+      "status": "em_andamento",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-04-05T18:00:00Z",
+      "criado_em": "2026-03-22T09:00:00Z",
+      "atualizado_em": "2026-03-22T09:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111142",
+    "fields": {
+      "titulo": "Criar dashboard com gráficos de produtividade",
+      "descricao": "Tela inicial com gráfico de tarefas por status, tarefas concluídas por semana e indicadores de prazo.",
+      "status": "backlog",
+      "prioridade": "baixa",
+      "criado_por": 1,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-03-01T10:00:00Z",
+      "atualizado_em": "2026-03-01T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111143",
+    "fields": {
+      "titulo": "Adicionar comentários nas tarefas",
+      "descricao": "Criar model Comment com FK para Task e User. Endpoint REST para listar, criar e deletar comentários. Exibir na tela de detalhe.",
+      "status": "backlog",
+      "prioridade": "media",
+      "criado_por": 3,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-03-05T10:00:00Z",
+      "atualizado_em": "2026-03-05T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111144",
+    "fields": {
+      "titulo": "Implementar tags e etiquetas nas tarefas",
+      "descricao": "Criar model Tag com relação M2M com Task. Permitir criar, listar e filtrar por tags na API e no app.",
       "status": "backlog",
       "prioridade": "baixa",
       "criado_por": 3,
       "atribuido_para": null,
       "data_limite": null,
-      "criado_em": "2026-02-01T10:00:00Z",
-      "atualizado_em": "2026-02-01T10:00:00Z"
+      "criado_em": "2026-03-08T10:00:00Z",
+      "atualizado_em": "2026-03-08T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111145",
+    "fields": {
+      "titulo": "Configurar deploy na AWS com ECS",
+      "descricao": "Criar Task Definition no ECS, configurar ALB, ECR para imagens Docker e RDS para PostgreSQL em produção.",
+      "status": "backlog",
+      "prioridade": "alta",
+      "criado_por": 1,
+      "atribuido_para": 3,
+      "data_limite": "2026-05-01T18:00:00Z",
+      "criado_em": "2026-03-10T10:00:00Z",
+      "atualizado_em": "2026-03-10T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111146",
+    "fields": {
+      "titulo": "Implementar testes de integração no backend",
+      "descricao": "Criar testes E2E cobrindo fluxos completos: autenticação, criação de tarefa, edição, histórico e soft delete.",
+      "status": "backlog",
+      "prioridade": "media",
+      "criado_por": 1,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-03-15T10:00:00Z",
+      "atualizado_em": "2026-03-15T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111147",
+    "fields": {
+      "titulo": "Adicionar rate limiting na API",
+      "descricao": "Configurar throttling por usuário autenticado e por IP anônimo usando DEFAULT_THROTTLE_RATES do DRF.",
+      "status": "backlog",
+      "prioridade": "baixa",
+      "criado_por": 1,
+      "atribuido_para": null,
+      "data_limite": null,
+      "criado_em": "2026-03-18T10:00:00Z",
+      "atualizado_em": "2026-03-18T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111148",
+    "fields": {
+      "titulo": "Publicar app na Play Store",
+      "descricao": "Gerar APK de release assinado, preencher ficha da loja, screenshots e política de privacidade para publicação.",
+      "status": "backlog",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": null,
+      "data_limite": "2026-06-01T18:00:00Z",
+      "criado_em": "2026-03-20T10:00:00Z",
+      "atualizado_em": "2026-03-20T10:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111149",
+    "fields": {
+      "titulo": "Implementar testes de widget no Flutter",
+      "descricao": "Testar renderização dos componentes shared (AppTextField, AppPrimaryButton) e comportamento do TaskCard com diferentes estados.",
+      "status": "em_andamento",
+      "prioridade": "media",
+      "criado_por": 2,
+      "atribuido_para": 2,
+      "data_limite": "2026-04-10T18:00:00Z",
+      "criado_em": "2026-03-21T09:00:00Z",
+      "atualizado_em": "2026-03-21T09:00:00Z",
+      "deletado_em": null
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": "11111111-1111-1111-1111-111111111150",
+    "fields": {
+      "titulo": "Escrever README completo do projeto",
+      "descricao": "Documentar arquitetura, decisões técnicas, como rodar localmente, variáveis de ambiente e fluxo de desenvolvimento.",
+      "status": "em_andamento",
+      "prioridade": "baixa",
+      "criado_por": 1,
+      "atribuido_para": 1,
+      "data_limite": "2026-04-01T18:00:00Z",
+      "criado_em": "2026-03-21T10:00:00Z",
+      "atualizado_em": "2026-03-21T10:00:00Z",
+      "deletado_em": null
     }
   }
 ]
