@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 const SizedBox(height: 20),
                                 Text(
-                                  'TRADEX',
+                                  'TRADEX TASKS',
                                   style: GoogleFonts.spaceGrotesk(
                                     fontSize: tt.headlineLarge?.fontSize,
                                     fontWeight: FontWeight.w900,

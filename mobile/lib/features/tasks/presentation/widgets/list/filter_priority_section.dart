@@ -31,9 +31,9 @@ class FilterPrioritySection extends StatelessWidget {
           spacing: 8,
           children: [
             _FilterChip(label: 'Todas', isSelected: value == null, onTap: () => onChanged(null)),
-            _FilterChip(label: 'Alta', color: cs.error, isSelected: value == TaskPriority.alta, onTap: () => onChanged(TaskPriority.alta)),
-            _FilterChip(label: 'Média', color: cs.tertiary, isSelected: value == TaskPriority.media, onTap: () => onChanged(TaskPriority.media)),
-            _FilterChip(label: 'Baixa', color: cs.primary, isSelected: value == TaskPriority.baixa, onTap: () => onChanged(TaskPriority.baixa)),
+            _FilterChip(label: 'Alta', icon: Icons.north_rounded, color: cs.error, isSelected: value == TaskPriority.alta, onTap: () => onChanged(TaskPriority.alta)),
+            _FilterChip(label: 'Média', icon: Icons.east_rounded, color: cs.secondary, isSelected: value == TaskPriority.media, onTap: () => onChanged(TaskPriority.media)),
+            _FilterChip(label: 'Baixa', icon: Icons.south_rounded, color: cs.tertiary, isSelected: value == TaskPriority.baixa, onTap: () => onChanged(TaskPriority.baixa)),
           ],
         ),
       ],
@@ -43,6 +43,7 @@ class FilterPrioritySection extends StatelessWidget {
 
 class _FilterChip extends StatelessWidget {
   final String label;
+  final IconData? icon;
   final Color? color;
   final bool isSelected;
   final VoidCallback onTap;
@@ -51,6 +52,7 @@ class _FilterChip extends StatelessWidget {
     required this.label,
     required this.isSelected,
     required this.onTap,
+    this.icon,
     this.color,
   });
 
@@ -72,12 +74,25 @@ class _FilterChip extends StatelessWidget {
             width: 1.5,
           ),
         ),
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[
+              Icon(
+                icon,
+                size: 14,
                 color: isSelected ? chipColor : cs.onSurfaceVariant,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
               ),
+              const SizedBox(width: 4),
+            ],
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: isSelected ? chipColor : cs.onSurfaceVariant,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                  ),
+            ),
+          ],
         ),
       ),
     );

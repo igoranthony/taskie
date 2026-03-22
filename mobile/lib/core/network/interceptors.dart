@@ -62,9 +62,6 @@ class AuthInterceptor extends Interceptor {
           await _storage.clearTokens();
           onLogout?.call();
         }
-      } else {
-        await _storage.clearTokens();
-        onLogout?.call();
       }
     }
 

@@ -28,7 +28,7 @@ class TaskListHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'TRADEX',
+                  'TRADEX TASKS',
                   style: GoogleFonts.spaceGrotesk(
                     fontSize: tt.headlineMedium?.fontSize,
                     fontWeight: FontWeight.w800,
