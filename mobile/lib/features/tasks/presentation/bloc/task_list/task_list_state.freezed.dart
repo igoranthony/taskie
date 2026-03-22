@@ -32,6 +32,9 @@ mixin _$TaskListState {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )
     success,
     required TResult Function(String message) failure,
@@ -51,6 +54,9 @@ mixin _$TaskListState {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult? Function(String message)? failure,
@@ -70,6 +76,9 @@ mixin _$TaskListState {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult Function(String message)? failure,
@@ -177,6 +186,9 @@ class _$TaskListInitialImpl implements TaskListInitial {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )
     success,
     required TResult Function(String message) failure,
@@ -200,6 +212,9 @@ class _$TaskListInitialImpl implements TaskListInitial {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult? Function(String message)? failure,
@@ -223,6 +238,9 @@ class _$TaskListInitialImpl implements TaskListInitial {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult Function(String message)? failure,
@@ -332,6 +350,9 @@ class _$TaskListLoadingImpl implements TaskListLoading {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )
     success,
     required TResult Function(String message) failure,
@@ -355,6 +376,9 @@ class _$TaskListLoadingImpl implements TaskListLoading {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult? Function(String message)? failure,
@@ -378,6 +402,9 @@ class _$TaskListLoadingImpl implements TaskListLoading {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult Function(String message)? failure,
@@ -449,6 +476,9 @@ abstract class _$$TaskListSuccessImplCopyWith<$Res> {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    int page,
+    bool hasReachedMax,
+    bool isLoadingMore,
   });
 }
 
@@ -476,6 +506,9 @@ class __$$TaskListSuccessImplCopyWithImpl<$Res>
     Object? filterCriadoEmFim = freezed,
     Object? filterDataLimiteInicio = freezed,
     Object? filterDataLimiteFim = freezed,
+    Object? page = null,
+    Object? hasReachedMax = null,
+    Object? isLoadingMore = null,
   }) {
     return _then(
       _$TaskListSuccessImpl(
@@ -519,6 +552,18 @@ class __$$TaskListSuccessImplCopyWithImpl<$Res>
             ? _value.filterDataLimiteFim
             : filterDataLimiteFim // ignore: cast_nullable_to_non_nullable
                   as DateTime?,
+        page: null == page
+            ? _value.page
+            : page // ignore: cast_nullable_to_non_nullable
+                  as int,
+        hasReachedMax: null == hasReachedMax
+            ? _value.hasReachedMax
+            : hasReachedMax // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isLoadingMore: null == isLoadingMore
+            ? _value.isLoadingMore
+            : isLoadingMore // ignore: cast_nullable_to_non_nullable
+                  as bool,
       ),
     );
   }
@@ -538,6 +583,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
     this.filterCriadoEmFim,
     this.filterDataLimiteInicio,
     this.filterDataLimiteFim,
+    this.page = 1,
+    this.hasReachedMax = false,
+    this.isLoadingMore = false,
   }) : _tasks = tasks;
 
   final List<Task> _tasks;
@@ -566,10 +614,19 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
   final DateTime? filterDataLimiteInicio;
   @override
   final DateTime? filterDataLimiteFim;
+  @override
+  @JsonKey()
+  final int page;
+  @override
+  @JsonKey()
+  final bool hasReachedMax;
+  @override
+  @JsonKey()
+  final bool isLoadingMore;
 
   @override
   String toString() {
-    return 'TaskListState.success(tasks: $tasks, filterStatus: $filterStatus, filterPrioridade: $filterPrioridade, filterSearch: $filterSearch, filterCriadoPor: $filterCriadoPor, filterAtribuidoPara: $filterAtribuidoPara, filterCriadoEmInicio: $filterCriadoEmInicio, filterCriadoEmFim: $filterCriadoEmFim, filterDataLimiteInicio: $filterDataLimiteInicio, filterDataLimiteFim: $filterDataLimiteFim)';
+    return 'TaskListState.success(tasks: $tasks, filterStatus: $filterStatus, filterPrioridade: $filterPrioridade, filterSearch: $filterSearch, filterCriadoPor: $filterCriadoPor, filterAtribuidoPara: $filterAtribuidoPara, filterCriadoEmInicio: $filterCriadoEmInicio, filterCriadoEmFim: $filterCriadoEmFim, filterDataLimiteInicio: $filterDataLimiteInicio, filterDataLimiteFim: $filterDataLimiteFim, page: $page, hasReachedMax: $hasReachedMax, isLoadingMore: $isLoadingMore)';
   }
 
   @override
@@ -595,7 +652,12 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
             (identical(other.filterDataLimiteInicio, filterDataLimiteInicio) ||
                 other.filterDataLimiteInicio == filterDataLimiteInicio) &&
             (identical(other.filterDataLimiteFim, filterDataLimiteFim) ||
-                other.filterDataLimiteFim == filterDataLimiteFim));
+                other.filterDataLimiteFim == filterDataLimiteFim) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax) &&
+            (identical(other.isLoadingMore, isLoadingMore) ||
+                other.isLoadingMore == isLoadingMore));
   }
 
   @override
@@ -611,6 +673,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
     filterCriadoEmFim,
     filterDataLimiteInicio,
     filterDataLimiteFim,
+    page,
+    hasReachedMax,
+    isLoadingMore,
   );
 
   /// Create a copy of TaskListState
@@ -640,6 +705,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )
     success,
     required TResult Function(String message) failure,
@@ -655,6 +723,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
       filterCriadoEmFim,
       filterDataLimiteInicio,
       filterDataLimiteFim,
+      page,
+      hasReachedMax,
+      isLoadingMore,
     );
   }
 
@@ -674,6 +745,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult? Function(String message)? failure,
@@ -689,6 +763,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
       filterCriadoEmFim,
       filterDataLimiteInicio,
       filterDataLimiteFim,
+      page,
+      hasReachedMax,
+      isLoadingMore,
     );
   }
 
@@ -708,6 +785,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult Function(String message)? failure,
@@ -725,6 +805,9 @@ class _$TaskListSuccessImpl implements TaskListSuccess {
         filterCriadoEmFim,
         filterDataLimiteInicio,
         filterDataLimiteFim,
+        page,
+        hasReachedMax,
+        isLoadingMore,
       );
     }
     return orElse();
@@ -780,6 +863,9 @@ abstract class TaskListSuccess implements TaskListState {
     final DateTime? filterCriadoEmFim,
     final DateTime? filterDataLimiteInicio,
     final DateTime? filterDataLimiteFim,
+    final int page,
+    final bool hasReachedMax,
+    final bool isLoadingMore,
   }) = _$TaskListSuccessImpl;
 
   List<Task> get tasks;
@@ -792,6 +878,9 @@ abstract class TaskListSuccess implements TaskListState {
   DateTime? get filterCriadoEmFim;
   DateTime? get filterDataLimiteInicio;
   DateTime? get filterDataLimiteFim;
+  int get page;
+  bool get hasReachedMax;
+  bool get isLoadingMore;
 
   /// Create a copy of TaskListState
   /// with the given fields replaced by the non-null parameter values.
@@ -886,6 +975,9 @@ class _$TaskListFailureImpl implements TaskListFailure {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )
     success,
     required TResult Function(String message) failure,
@@ -909,6 +1001,9 @@ class _$TaskListFailureImpl implements TaskListFailure {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult? Function(String message)? failure,
@@ -932,6 +1027,9 @@ class _$TaskListFailureImpl implements TaskListFailure {
       DateTime? filterCriadoEmFim,
       DateTime? filterDataLimiteInicio,
       DateTime? filterDataLimiteFim,
+      int page,
+      bool hasReachedMax,
+      bool isLoadingMore,
     )?
     success,
     TResult Function(String message)? failure,

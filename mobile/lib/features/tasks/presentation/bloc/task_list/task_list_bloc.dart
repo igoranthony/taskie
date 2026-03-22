@@ -17,6 +17,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     on<TaskListLoaded>(_onLoaded);
     on<TaskListRefreshed>(_onRefreshed);
     on<TaskListFiltered>(_onFiltered);
+    on<TaskListLoadedMore>(_onLoadedMore);
     on<TaskListTaskDeleted>(_onTaskDeleted);
   }
 
@@ -26,8 +27,11 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
   ) async {
     emit(const TaskListState.loading());
     try {
-      final tasks = await _getTasks();
-      emit(TaskListState.success(tasks: tasks));
+      final result = await _getTasks();
+      emit(TaskListState.success(
+        tasks: result.tasks,
+        hasReachedMax: !result.hasNext,
+      ));
     } catch (e) {
       emit(TaskListState.failure(e.toString()));
     }
@@ -40,7 +44,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     final current = state is TaskListSuccess ? state as TaskListSuccess : null;
     emit(const TaskListState.loading());
     try {
-      final tasks = await _getTasks(
+      final result = await _getTasks(
         status: current?.filterStatus,
         prioridade: current?.filterPrioridade,
         search: current?.filterSearch,
@@ -52,7 +56,8 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         dataLimiteFim: current?.filterDataLimiteFim,
       );
       emit(TaskListState.success(
-        tasks: tasks,
+        tasks: result.tasks,
+        hasReachedMax: !result.hasNext,
         filterStatus: current?.filterStatus,
         filterPrioridade: current?.filterPrioridade,
         filterSearch: current?.filterSearch,
@@ -74,7 +79,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
   ) async {
     emit(const TaskListState.loading());
     try {
-      final tasks = await _getTasks(
+      final result = await _getTasks(
         status: event.status,
         prioridade: event.prioridade,
         search: event.search,
@@ -86,7 +91,8 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         dataLimiteFim: event.dataLimiteFim,
       );
       emit(TaskListState.success(
-        tasks: tasks,
+        tasks: result.tasks,
+        hasReachedMax: !result.hasNext,
         filterStatus: event.status,
         filterPrioridade: event.prioridade,
         filterSearch: event.search,
@@ -99,6 +105,39 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
       ));
     } catch (e) {
       emit(TaskListState.failure(e.toString()));
+    }
+  }
+
+  Future<void> _onLoadedMore(
+    TaskListLoadedMore event,
+    Emitter<TaskListState> emit,
+  ) async {
+    final current = state is TaskListSuccess ? state as TaskListSuccess : null;
+    if (current == null || current.hasReachedMax || current.isLoadingMore) return;
+
+    emit(current.copyWith(isLoadingMore: true));
+    try {
+      final nextPage = current.page + 1;
+      final result = await _getTasks(
+        page: nextPage,
+        status: current.filterStatus,
+        prioridade: current.filterPrioridade,
+        search: current.filterSearch,
+        criadoPor: current.filterCriadoPor,
+        atribuidoPara: current.filterAtribuidoPara,
+        criadoEmInicio: current.filterCriadoEmInicio,
+        criadoEmFim: current.filterCriadoEmFim,
+        dataLimiteInicio: current.filterDataLimiteInicio,
+        dataLimiteFim: current.filterDataLimiteFim,
+      );
+      emit(current.copyWith(
+        tasks: [...current.tasks, ...result.tasks],
+        page: nextPage,
+        hasReachedMax: !result.hasNext,
+        isLoadingMore: false,
+      ));
+    } catch (e) {
+      emit(current.copyWith(isLoadingMore: false));
     }
   }
 

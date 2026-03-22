@@ -6,7 +6,8 @@ class GetTasks {
 
   GetTasks(this.repository);
 
-  Future<List<Task>> call({
+  Future<({List<Task> tasks, bool hasNext})> call({
+    int page = 1,
     TaskStatus? status,
     TaskPriority? prioridade,
     String? search,
@@ -18,6 +19,7 @@ class GetTasks {
     DateTime? dataLimiteFim,
   }) {
     return repository.getTasks(
+      page: page,
       filterStatus: status,
       filterPrioridade: prioridade,
       filterSearch: search,

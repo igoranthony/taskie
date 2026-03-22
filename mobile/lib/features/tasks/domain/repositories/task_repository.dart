@@ -2,7 +2,8 @@ import '../entities/task.dart';
 import '../entities/task_history.dart';
 
 abstract class TaskRepository {
-  Future<List<Task>> getTasks({
+  Future<({List<Task> tasks, bool hasNext})> getTasks({
+    int page,
     TaskStatus? filterStatus,
     TaskPriority? filterPrioridade,
     String? filterSearch,

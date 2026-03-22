@@ -18,5 +18,6 @@ class TaskListEvent with _$TaskListEvent {
     DateTime? dataLimiteInicio,
     DateTime? dataLimiteFim,
   }) = TaskListFiltered;
+  const factory TaskListEvent.loadedMore() = TaskListLoadedMore;
   const factory TaskListEvent.taskDeleted(String id) = TaskListTaskDeleted;
 }

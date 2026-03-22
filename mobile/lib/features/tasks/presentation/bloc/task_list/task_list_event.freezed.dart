@@ -33,6 +33,7 @@ mixin _$TaskListEvent {
       DateTime? dataLimiteFim,
     )
     filtered,
+    required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +52,7 @@ mixin _$TaskListEvent {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +71,7 @@ mixin _$TaskListEvent {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -77,6 +80,7 @@ mixin _$TaskListEvent {
     required TResult Function(TaskListLoaded value) loaded,
     required TResult Function(TaskListRefreshed value) refreshed,
     required TResult Function(TaskListFiltered value) filtered,
+    required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +88,7 @@ mixin _$TaskListEvent {
     TResult? Function(TaskListLoaded value)? loaded,
     TResult? Function(TaskListRefreshed value)? refreshed,
     TResult? Function(TaskListFiltered value)? filtered,
+    TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -91,6 +96,7 @@ mixin _$TaskListEvent {
     TResult Function(TaskListLoaded value)? loaded,
     TResult Function(TaskListRefreshed value)? refreshed,
     TResult Function(TaskListFiltered value)? filtered,
+    TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -175,6 +181,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
       DateTime? dataLimiteFim,
     )
     filtered,
+    required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
   }) {
     return loaded();
@@ -197,6 +204,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
   }) {
     return loaded?.call();
@@ -219,6 +227,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -234,6 +243,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     required TResult Function(TaskListLoaded value) loaded,
     required TResult Function(TaskListRefreshed value) refreshed,
     required TResult Function(TaskListFiltered value) filtered,
+    required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
   }) {
     return loaded(this);
@@ -245,6 +255,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     TResult? Function(TaskListLoaded value)? loaded,
     TResult? Function(TaskListRefreshed value)? refreshed,
     TResult? Function(TaskListFiltered value)? filtered,
+    TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
   }) {
     return loaded?.call(this);
@@ -256,6 +267,7 @@ class _$TaskListLoadedImpl implements TaskListLoaded {
     TResult Function(TaskListLoaded value)? loaded,
     TResult Function(TaskListRefreshed value)? refreshed,
     TResult Function(TaskListFiltered value)? filtered,
+    TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -327,6 +339,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
       DateTime? dataLimiteFim,
     )
     filtered,
+    required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
   }) {
     return refreshed();
@@ -349,6 +362,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
   }) {
     return refreshed?.call();
@@ -371,6 +385,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -386,6 +401,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     required TResult Function(TaskListLoaded value) loaded,
     required TResult Function(TaskListRefreshed value) refreshed,
     required TResult Function(TaskListFiltered value) filtered,
+    required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
   }) {
     return refreshed(this);
@@ -397,6 +413,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     TResult? Function(TaskListLoaded value)? loaded,
     TResult? Function(TaskListRefreshed value)? refreshed,
     TResult? Function(TaskListFiltered value)? filtered,
+    TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
   }) {
     return refreshed?.call(this);
@@ -408,6 +425,7 @@ class _$TaskListRefreshedImpl implements TaskListRefreshed {
     TResult Function(TaskListLoaded value)? loaded,
     TResult Function(TaskListRefreshed value)? refreshed,
     TResult Function(TaskListFiltered value)? filtered,
+    TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -613,6 +631,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
       DateTime? dataLimiteFim,
     )
     filtered,
+    required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
   }) {
     return filtered(
@@ -645,6 +664,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
   }) {
     return filtered?.call(
@@ -677,6 +697,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -702,6 +723,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     required TResult Function(TaskListLoaded value) loaded,
     required TResult Function(TaskListRefreshed value) refreshed,
     required TResult Function(TaskListFiltered value) filtered,
+    required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
   }) {
     return filtered(this);
@@ -713,6 +735,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     TResult? Function(TaskListLoaded value)? loaded,
     TResult? Function(TaskListRefreshed value)? refreshed,
     TResult? Function(TaskListFiltered value)? filtered,
+    TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
   }) {
     return filtered?.call(this);
@@ -724,6 +747,7 @@ class _$TaskListFilteredImpl implements TaskListFiltered {
     TResult Function(TaskListLoaded value)? loaded,
     TResult Function(TaskListRefreshed value)? refreshed,
     TResult Function(TaskListFiltered value)? filtered,
+    TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -762,6 +786,164 @@ abstract class TaskListFiltered implements TaskListEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TaskListFilteredImplCopyWith<_$TaskListFilteredImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TaskListLoadedMoreImplCopyWith<$Res> {
+  factory _$$TaskListLoadedMoreImplCopyWith(
+    _$TaskListLoadedMoreImpl value,
+    $Res Function(_$TaskListLoadedMoreImpl) then,
+  ) = __$$TaskListLoadedMoreImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TaskListLoadedMoreImplCopyWithImpl<$Res>
+    extends _$TaskListEventCopyWithImpl<$Res, _$TaskListLoadedMoreImpl>
+    implements _$$TaskListLoadedMoreImplCopyWith<$Res> {
+  __$$TaskListLoadedMoreImplCopyWithImpl(
+    _$TaskListLoadedMoreImpl _value,
+    $Res Function(_$TaskListLoadedMoreImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of TaskListEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$TaskListLoadedMoreImpl implements TaskListLoadedMore {
+  const _$TaskListLoadedMoreImpl();
+
+  @override
+  String toString() {
+    return 'TaskListEvent.loadedMore()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$TaskListLoadedMoreImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loaded,
+    required TResult Function() refreshed,
+    required TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )
+    filtered,
+    required TResult Function() loadedMore,
+    required TResult Function(String id) taskDeleted,
+  }) {
+    return loadedMore();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loaded,
+    TResult? Function()? refreshed,
+    TResult? Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
+    TResult? Function()? loadedMore,
+    TResult? Function(String id)? taskDeleted,
+  }) {
+    return loadedMore?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loaded,
+    TResult Function()? refreshed,
+    TResult Function(
+      TaskStatus? status,
+      TaskPriority? prioridade,
+      String? search,
+      int? criadoPor,
+      int? atribuidoPara,
+      DateTime? criadoEmInicio,
+      DateTime? criadoEmFim,
+      DateTime? dataLimiteInicio,
+      DateTime? dataLimiteFim,
+    )?
+    filtered,
+    TResult Function()? loadedMore,
+    TResult Function(String id)? taskDeleted,
+    required TResult orElse(),
+  }) {
+    if (loadedMore != null) {
+      return loadedMore();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TaskListLoaded value) loaded,
+    required TResult Function(TaskListRefreshed value) refreshed,
+    required TResult Function(TaskListFiltered value) filtered,
+    required TResult Function(TaskListLoadedMore value) loadedMore,
+    required TResult Function(TaskListTaskDeleted value) taskDeleted,
+  }) {
+    return loadedMore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TaskListLoaded value)? loaded,
+    TResult? Function(TaskListRefreshed value)? refreshed,
+    TResult? Function(TaskListFiltered value)? filtered,
+    TResult? Function(TaskListLoadedMore value)? loadedMore,
+    TResult? Function(TaskListTaskDeleted value)? taskDeleted,
+  }) {
+    return loadedMore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TaskListLoaded value)? loaded,
+    TResult Function(TaskListRefreshed value)? refreshed,
+    TResult Function(TaskListFiltered value)? filtered,
+    TResult Function(TaskListLoadedMore value)? loadedMore,
+    TResult Function(TaskListTaskDeleted value)? taskDeleted,
+    required TResult orElse(),
+  }) {
+    if (loadedMore != null) {
+      return loadedMore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TaskListLoadedMore implements TaskListEvent {
+  const factory TaskListLoadedMore() = _$TaskListLoadedMoreImpl;
 }
 
 /// @nodoc
@@ -851,6 +1033,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
       DateTime? dataLimiteFim,
     )
     filtered,
+    required TResult Function() loadedMore,
     required TResult Function(String id) taskDeleted,
   }) {
     return taskDeleted(id);
@@ -873,6 +1056,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult? Function()? loadedMore,
     TResult? Function(String id)? taskDeleted,
   }) {
     return taskDeleted?.call(id);
@@ -895,6 +1079,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
       DateTime? dataLimiteFim,
     )?
     filtered,
+    TResult Function()? loadedMore,
     TResult Function(String id)? taskDeleted,
     required TResult orElse(),
   }) {
@@ -910,6 +1095,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     required TResult Function(TaskListLoaded value) loaded,
     required TResult Function(TaskListRefreshed value) refreshed,
     required TResult Function(TaskListFiltered value) filtered,
+    required TResult Function(TaskListLoadedMore value) loadedMore,
     required TResult Function(TaskListTaskDeleted value) taskDeleted,
   }) {
     return taskDeleted(this);
@@ -921,6 +1107,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     TResult? Function(TaskListLoaded value)? loaded,
     TResult? Function(TaskListRefreshed value)? refreshed,
     TResult? Function(TaskListFiltered value)? filtered,
+    TResult? Function(TaskListLoadedMore value)? loadedMore,
     TResult? Function(TaskListTaskDeleted value)? taskDeleted,
   }) {
     return taskDeleted?.call(this);
@@ -932,6 +1119,7 @@ class _$TaskListTaskDeletedImpl implements TaskListTaskDeleted {
     TResult Function(TaskListLoaded value)? loaded,
     TResult Function(TaskListRefreshed value)? refreshed,
     TResult Function(TaskListFiltered value)? filtered,
+    TResult Function(TaskListLoadedMore value)? loadedMore,
     TResult Function(TaskListTaskDeleted value)? taskDeleted,
     required TResult orElse(),
   }) {

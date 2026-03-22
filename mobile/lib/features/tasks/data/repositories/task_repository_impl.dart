@@ -10,7 +10,8 @@ class TaskRepositoryImpl implements TaskRepository {
   TaskRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<List<Task>> getTasks({
+  Future<({List<Task> tasks, bool hasNext})> getTasks({
+    int page = 1,
     TaskStatus? filterStatus,
     TaskPriority? filterPrioridade,
     String? filterSearch,
@@ -21,7 +22,8 @@ class TaskRepositoryImpl implements TaskRepository {
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
   }) async {
-    final models = await remoteDataSource.getTasks(
+    final result = await remoteDataSource.getTasks(
+      page: page,
       filterStatus: filterStatus,
       filterPrioridade: filterPrioridade,
       filterSearch: filterSearch,
@@ -32,7 +34,10 @@ class TaskRepositoryImpl implements TaskRepository {
       filterDataLimiteInicio: filterDataLimiteInicio,
       filterDataLimiteFim: filterDataLimiteFim,
     );
-    return models.map((m) => m.toEntity()).toList();
+    return (
+      tasks: result.tasks.map((m) => m.toEntity()).toList(),
+      hasNext: result.hasNext,
+    );
   }
 
   @override

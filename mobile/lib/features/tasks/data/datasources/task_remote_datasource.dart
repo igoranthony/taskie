@@ -5,7 +5,8 @@ import '../models/task_history_model.dart';
 import '../../domain/entities/task.dart';
 
 abstract class TaskRemoteDataSource {
-  Future<List<TaskModel>> getTasks({
+  Future<({List<TaskModel> tasks, bool hasNext})> getTasks({
+    int page,
     TaskStatus? filterStatus,
     TaskPriority? filterPrioridade,
     String? filterSearch,
@@ -29,7 +30,8 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   TaskRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<List<TaskModel>> getTasks({
+  Future<({List<TaskModel> tasks, bool hasNext})> getTasks({
+    int page = 1,
     TaskStatus? filterStatus,
     TaskPriority? filterPrioridade,
     String? filterSearch,
@@ -40,7 +42,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
   }) async {
-    final queryParams = <String, dynamic>{};
+    final queryParams = <String, dynamic>{'page': page};
     if (filterStatus != null) queryParams['status'] = _statusToString(filterStatus);
     if (filterPrioridade != null) queryParams['prioridade'] = _priorityToString(filterPrioridade);
     if (filterSearch != null && filterSearch.isNotEmpty) queryParams['search'] = filterSearch;
@@ -51,16 +53,18 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     if (filterDataLimiteInicio != null) queryParams['data_limite_inicio'] = filterDataLimiteInicio.toIso8601String();
     if (filterDataLimiteFim != null) queryParams['data_limite_fim'] = filterDataLimiteFim.toIso8601String();
 
-    final response = await dio.get(
-      ApiEndpoints.tasks,
-      queryParameters: queryParams.isNotEmpty ? queryParams : null,
-    );
+    final response = await dio.get(ApiEndpoints.tasks, queryParameters: queryParams);
 
     final List<dynamic> data = response.data is List
         ? response.data
         : response.data['results'] ?? response.data;
 
-    return data.map((json) => TaskModel.fromJson(json)).toList();
+    final hasNext = response.data is Map && response.data['next'] != null;
+
+    return (
+      tasks: data.map((json) => TaskModel.fromJson(json)).toList(),
+      hasNext: hasNext,
+    );
   }
 
   @override

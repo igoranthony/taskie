@@ -18,6 +18,9 @@ class TaskListState with _$TaskListState {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    @Default(1) int page,
+    @Default(false) bool hasReachedMax,
+    @Default(false) bool isLoadingMore,
   }) = TaskListSuccess;
   const factory TaskListState.failure(String message) = TaskListFailure;
 }
