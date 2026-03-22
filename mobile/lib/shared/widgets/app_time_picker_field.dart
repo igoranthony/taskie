@@ -64,6 +64,8 @@ class AppTimePickerField extends StatelessWidget {
               ),
               child: Text(
                 display,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: hasValue ? cs.onSurface : cs.onSurfaceVariant,
                 ),
