@@ -1,4 +1,4 @@
-import 'package:gestao_tarefas_tradex/core/errors/app_error_parser.dart';
+import 'package:taskie/core/errors/app_error_parser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/network/api_endpoints.dart';

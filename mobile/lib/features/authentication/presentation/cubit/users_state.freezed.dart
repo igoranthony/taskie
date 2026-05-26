@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,630 +9,386 @@ part of 'users_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$UsersState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<UserSummary> users) loaded,
-    required TResult Function(String message) failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<UserSummary> users)? loaded,
-    TResult? Function(String message)? failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<UserSummary> users)? loaded,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UsersInitial value) initial,
-    required TResult Function(UsersLoading value) loading,
-    required TResult Function(UsersLoaded value) loaded,
-    required TResult Function(UsersFailure value) failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UsersInitial value)? initial,
-    TResult? Function(UsersLoading value)? loading,
-    TResult? Function(UsersLoaded value)? loaded,
-    TResult? Function(UsersFailure value)? failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsersInitial value)? initial,
-    TResult Function(UsersLoading value)? loading,
-    TResult Function(UsersLoaded value)? loaded,
-    TResult Function(UsersFailure value)? failure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsersState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'UsersState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UsersStateCopyWith<$Res> {
-  factory $UsersStateCopyWith(
-    UsersState value,
-    $Res Function(UsersState) then,
-  ) = _$UsersStateCopyWithImpl<$Res, UsersState>;
+class $UsersStateCopyWith<$Res>  {
+$UsersStateCopyWith(UsersState _, $Res Function(UsersState) __);
 }
 
-/// @nodoc
-class _$UsersStateCopyWithImpl<$Res, $Val extends UsersState>
-    implements $UsersStateCopyWith<$Res> {
-  _$UsersStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [UsersState].
+extension UsersStatePatterns on UsersState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( UsersInitial value)?  initial,TResult Function( UsersLoading value)?  loading,TResult Function( UsersLoaded value)?  loaded,TResult Function( UsersFailure value)?  failure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case UsersInitial() when initial != null:
+return initial(_that);case UsersLoading() when loading != null:
+return loading(_that);case UsersLoaded() when loaded != null:
+return loaded(_that);case UsersFailure() when failure != null:
+return failure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( UsersInitial value)  initial,required TResult Function( UsersLoading value)  loading,required TResult Function( UsersLoaded value)  loaded,required TResult Function( UsersFailure value)  failure,}){
+final _that = this;
+switch (_that) {
+case UsersInitial():
+return initial(_that);case UsersLoading():
+return loading(_that);case UsersLoaded():
+return loaded(_that);case UsersFailure():
+return failure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( UsersInitial value)?  initial,TResult? Function( UsersLoading value)?  loading,TResult? Function( UsersLoaded value)?  loaded,TResult? Function( UsersFailure value)?  failure,}){
+final _that = this;
+switch (_that) {
+case UsersInitial() when initial != null:
+return initial(_that);case UsersLoading() when loading != null:
+return loading(_that);case UsersLoaded() when loaded != null:
+return loaded(_that);case UsersFailure() when failure != null:
+return failure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<UserSummary> users)?  loaded,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case UsersInitial() when initial != null:
+return initial();case UsersLoading() when loading != null:
+return loading();case UsersLoaded() when loaded != null:
+return loaded(_that.users);case UsersFailure() when failure != null:
+return failure(_that.message);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<UserSummary> users)  loaded,required TResult Function( String message)  failure,}) {final _that = this;
+switch (_that) {
+case UsersInitial():
+return initial();case UsersLoading():
+return loading();case UsersLoaded():
+return loaded(_that.users);case UsersFailure():
+return failure(_that.message);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<UserSummary> users)?  loaded,TResult? Function( String message)?  failure,}) {final _that = this;
+switch (_that) {
+case UsersInitial() when initial != null:
+return initial();case UsersLoading() when loading != null:
+return loading();case UsersLoaded() when loaded != null:
+return loaded(_that.users);case UsersFailure() when failure != null:
+return failure(_that.message);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$UsersInitialImplCopyWith<$Res> {
-  factory _$$UsersInitialImplCopyWith(
-    _$UsersInitialImpl value,
-    $Res Function(_$UsersInitialImpl) then,
-  ) = __$$UsersInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UsersInitialImplCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$UsersInitialImpl>
-    implements _$$UsersInitialImplCopyWith<$Res> {
-  __$$UsersInitialImplCopyWithImpl(
-    _$UsersInitialImpl _value,
-    $Res Function(_$UsersInitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$UsersInitialImpl implements UsersInitial {
-  const _$UsersInitialImpl();
-
-  @override
-  String toString() {
-    return 'UsersState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UsersInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<UserSummary> users) loaded,
-    required TResult Function(String message) failure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<UserSummary> users)? loaded,
-    TResult? Function(String message)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<UserSummary> users)? loaded,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UsersInitial value) initial,
-    required TResult Function(UsersLoading value) loading,
-    required TResult Function(UsersLoaded value) loaded,
-    required TResult Function(UsersFailure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UsersInitial value)? initial,
-    TResult? Function(UsersLoading value)? loading,
-    TResult? Function(UsersLoaded value)? loaded,
-    TResult? Function(UsersFailure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsersInitial value)? initial,
-    TResult Function(UsersLoading value)? loading,
-    TResult Function(UsersLoaded value)? loaded,
-    TResult Function(UsersFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UsersInitial implements UsersState {
-  const factory UsersInitial() = _$UsersInitialImpl;
-}
-
-/// @nodoc
-abstract class _$$UsersLoadingImplCopyWith<$Res> {
-  factory _$$UsersLoadingImplCopyWith(
-    _$UsersLoadingImpl value,
-    $Res Function(_$UsersLoadingImpl) then,
-  ) = __$$UsersLoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UsersLoadingImplCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$UsersLoadingImpl>
-    implements _$$UsersLoadingImplCopyWith<$Res> {
-  __$$UsersLoadingImplCopyWithImpl(
-    _$UsersLoadingImpl _value,
-    $Res Function(_$UsersLoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$UsersLoadingImpl implements UsersLoading {
-  const _$UsersLoadingImpl();
 
-  @override
-  String toString() {
-    return 'UsersState.loading()';
-  }
+class UsersInitial implements UsersState {
+  const UsersInitial();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UsersLoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<UserSummary> users) loaded,
-    required TResult Function(String message) failure,
-  }) {
-    return loading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<UserSummary> users)? loaded,
-    TResult? Function(String message)? failure,
-  }) {
-    return loading?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<UserSummary> users)? loaded,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UsersInitial value) initial,
-    required TResult Function(UsersLoading value) loading,
-    required TResult Function(UsersLoaded value) loaded,
-    required TResult Function(UsersFailure value) failure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UsersInitial value)? initial,
-    TResult? Function(UsersLoading value)? loading,
-    TResult? Function(UsersLoaded value)? loaded,
-    TResult? Function(UsersFailure value)? failure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsersInitial value)? initial,
-    TResult Function(UsersLoading value)? loading,
-    TResult Function(UsersLoaded value)? loaded,
-    TResult Function(UsersFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsersInitial);
 }
 
-abstract class UsersLoading implements UsersState {
-  const factory UsersLoading() = _$UsersLoadingImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'UsersState.initial()';
 }
 
-/// @nodoc
-abstract class _$$UsersLoadedImplCopyWith<$Res> {
-  factory _$$UsersLoadedImplCopyWith(
-    _$UsersLoadedImpl value,
-    $Res Function(_$UsersLoadedImpl) then,
-  ) = __$$UsersLoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<UserSummary> users});
+
 }
 
-/// @nodoc
-class __$$UsersLoadedImplCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$UsersLoadedImpl>
-    implements _$$UsersLoadedImplCopyWith<$Res> {
-  __$$UsersLoadedImplCopyWithImpl(
-    _$UsersLoadedImpl _value,
-    $Res Function(_$UsersLoadedImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? users = null}) {
-    return _then(
-      _$UsersLoadedImpl(
-        null == users
-            ? _value._users
-            : users // ignore: cast_nullable_to_non_nullable
-                  as List<UserSummary>,
-      ),
-    );
-  }
-}
+
 
 /// @nodoc
 
-class _$UsersLoadedImpl implements UsersLoaded {
-  const _$UsersLoadedImpl(final List<UserSummary> users) : _users = users;
 
-  final List<UserSummary> _users;
-  @override
-  List<UserSummary> get users {
-    if (_users is EqualUnmodifiableListView) return _users;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_users);
-  }
+class UsersLoading implements UsersState {
+  const UsersLoading();
+  
 
-  @override
-  String toString() {
-    return 'UsersState.loaded(users: $users)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UsersLoadedImpl &&
-            const DeepCollectionEquality().equals(other._users, _users));
-  }
 
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_users));
 
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UsersLoadedImplCopyWith<_$UsersLoadedImpl> get copyWith =>
-      __$$UsersLoadedImplCopyWithImpl<_$UsersLoadedImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<UserSummary> users) loaded,
-    required TResult Function(String message) failure,
-  }) {
-    return loaded(users);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<UserSummary> users)? loaded,
-    TResult? Function(String message)? failure,
-  }) {
-    return loaded?.call(users);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<UserSummary> users)? loaded,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(users);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UsersInitial value) initial,
-    required TResult Function(UsersLoading value) loading,
-    required TResult Function(UsersLoaded value) loaded,
-    required TResult Function(UsersFailure value) failure,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UsersInitial value)? initial,
-    TResult? Function(UsersLoading value)? loading,
-    TResult? Function(UsersLoaded value)? loaded,
-    TResult? Function(UsersFailure value)? failure,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsersInitial value)? initial,
-    TResult Function(UsersLoading value)? loading,
-    TResult Function(UsersLoaded value)? loaded,
-    TResult Function(UsersFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsersLoading);
 }
 
-abstract class UsersLoaded implements UsersState {
-  const factory UsersLoaded(final List<UserSummary> users) = _$UsersLoadedImpl;
 
-  List<UserSummary> get users;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UsersLoadedImplCopyWith<_$UsersLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'UsersState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class UsersLoaded implements UsersState {
+  const UsersLoaded(final  List<UserSummary> users): _users = users;
+  
+
+ final  List<UserSummary> _users;
+ List<UserSummary> get users {
+  if (_users is EqualUnmodifiableListView) return _users;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_users);
+}
+
+
+/// Create a copy of UsersState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UsersLoadedCopyWith<UsersLoaded> get copyWith => _$UsersLoadedCopyWithImpl<UsersLoaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsersLoaded&&const DeepCollectionEquality().equals(other._users, _users));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_users));
+
+@override
+String toString() {
+  return 'UsersState.loaded(users: $users)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$UsersFailureImplCopyWith<$Res> {
-  factory _$$UsersFailureImplCopyWith(
-    _$UsersFailureImpl value,
-    $Res Function(_$UsersFailureImpl) then,
-  ) = __$$UsersFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
+abstract mixin class $UsersLoadedCopyWith<$Res> implements $UsersStateCopyWith<$Res> {
+  factory $UsersLoadedCopyWith(UsersLoaded value, $Res Function(UsersLoaded) _then) = _$UsersLoadedCopyWithImpl;
+@useResult
+$Res call({
+ List<UserSummary> users
+});
+
+
+
+
+}
+/// @nodoc
+class _$UsersLoadedCopyWithImpl<$Res>
+    implements $UsersLoadedCopyWith<$Res> {
+  _$UsersLoadedCopyWithImpl(this._self, this._then);
+
+  final UsersLoaded _self;
+  final $Res Function(UsersLoaded) _then;
+
+/// Create a copy of UsersState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? users = null,}) {
+  return _then(UsersLoaded(
+null == users ? _self._users : users // ignore: cast_nullable_to_non_nullable
+as List<UserSummary>,
+  ));
 }
 
-/// @nodoc
-class __$$UsersFailureImplCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$UsersFailureImpl>
-    implements _$$UsersFailureImplCopyWith<$Res> {
-  __$$UsersFailureImplCopyWithImpl(
-    _$UsersFailureImpl _value,
-    $Res Function(_$UsersFailureImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? message = null}) {
-    return _then(
-      _$UsersFailureImpl(
-        null == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$UsersFailureImpl implements UsersFailure {
-  const _$UsersFailureImpl(this.message);
 
-  @override
-  final String message;
+class UsersFailure implements UsersState {
+  const UsersFailure(this.message);
+  
 
-  @override
-  String toString() {
-    return 'UsersState.failure(message: $message)';
-  }
+ final  String message;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UsersFailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
+/// Create a copy of UsersState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UsersFailureCopyWith<UsersFailure> get copyWith => _$UsersFailureCopyWithImpl<UsersFailure>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UsersFailureImplCopyWith<_$UsersFailureImpl> get copyWith =>
-      __$$UsersFailureImplCopyWithImpl<_$UsersFailureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<UserSummary> users) loaded,
-    required TResult Function(String message) failure,
-  }) {
-    return failure(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<UserSummary> users)? loaded,
-    TResult? Function(String message)? failure,
-  }) {
-    return failure?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<UserSummary> users)? loaded,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UsersInitial value) initial,
-    required TResult Function(UsersLoading value) loading,
-    required TResult Function(UsersLoaded value) loaded,
-    required TResult Function(UsersFailure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UsersInitial value)? initial,
-    TResult? Function(UsersLoading value)? loading,
-    TResult? Function(UsersLoaded value)? loaded,
-    TResult? Function(UsersFailure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsersInitial value)? initial,
-    TResult Function(UsersLoading value)? loading,
-    TResult Function(UsersLoaded value)? loaded,
-    TResult Function(UsersFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsersFailure&&(identical(other.message, message) || other.message == message));
 }
 
-abstract class UsersFailure implements UsersState {
-  const factory UsersFailure(final String message) = _$UsersFailureImpl;
 
-  String get message;
+@override
+int get hashCode => Object.hash(runtimeType,message);
 
-  /// Create a copy of UsersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UsersFailureImplCopyWith<_$UsersFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'UsersState.failure(message: $message)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class $UsersFailureCopyWith<$Res> implements $UsersStateCopyWith<$Res> {
+  factory $UsersFailureCopyWith(UsersFailure value, $Res Function(UsersFailure) _then) = _$UsersFailureCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class _$UsersFailureCopyWithImpl<$Res>
+    implements $UsersFailureCopyWith<$Res> {
+  _$UsersFailureCopyWithImpl(this._self, this._then);
+
+  final UsersFailure _self;
+  final $Res Function(UsersFailure) _then;
+
+/// Create a copy of UsersState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(UsersFailure(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

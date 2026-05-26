@@ -8,7 +8,7 @@ part 'user_model.g.dart';
 String _idFromJson(dynamic v) => v.toString();
 
 @freezed
-class UserModel with _$UserModel {
+abstract class UserModel with _$UserModel {
   const UserModel._();
 
   const factory UserModel({
