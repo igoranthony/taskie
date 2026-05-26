@@ -100,10 +100,11 @@ class TaskDetailOverviewBody extends StatelessWidget {
   }
 
   static (String, Color) _priorityInfo(TaskPriority p, ColorScheme cs) {
+    final c = cs.priorityColor(p).color;
     return switch (p) {
-      TaskPriority.alta => ('PRIORIDADE ALTA', cs.error),
-      TaskPriority.media => ('PRIORIDADE MÉDIA', cs.primary),
-      TaskPriority.baixa => ('PRIORIDADE BAIXA', cs.secondary),
+      TaskPriority.alta => ('PRIORIDADE ALTA', c),
+      TaskPriority.media => ('PRIORIDADE MÉDIA', c),
+      TaskPriority.baixa => ('PRIORIDADE BAIXA', c),
     };
   }
 }
@@ -228,8 +229,8 @@ class _MetaGrid extends StatelessWidget {
               child: _MetaCell(
                 label: 'CRIADO EM',
                 value: criadoEm.toDateTimeBR(),
-                valueColor: cs.primary,
-                valueBold: false,
+                valueColor: cs.onSurface,
+                valueBold: true,
               ),
             ),
           ],

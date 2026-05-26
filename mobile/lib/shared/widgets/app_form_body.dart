@@ -25,7 +25,7 @@ class AppFormBody extends StatelessWidget {
       child: ListView.separated(
         padding: padding,
         itemCount: children.length,
-        separatorBuilder: (_, __) => SizedBox(height: spacing),
+        separatorBuilder: (_, _) => SizedBox(height: spacing),
         itemBuilder: (_, i) => children[i],
       ),
     );

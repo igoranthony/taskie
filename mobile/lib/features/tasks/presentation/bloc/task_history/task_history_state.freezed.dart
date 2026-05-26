@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,639 +9,386 @@ part of 'task_history_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$TaskHistoryState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<TaskHistory> history) success,
-    required TResult Function(String message) failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<TaskHistory> history)? success,
-    TResult? Function(String message)? failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<TaskHistory> history)? success,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskHistoryInitial value) initial,
-    required TResult Function(TaskHistoryLoading value) loading,
-    required TResult Function(TaskHistorySuccess value) success,
-    required TResult Function(TaskHistoryFailure value) failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskHistoryInitial value)? initial,
-    TResult? Function(TaskHistoryLoading value)? loading,
-    TResult? Function(TaskHistorySuccess value)? success,
-    TResult? Function(TaskHistoryFailure value)? failure,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskHistoryInitial value)? initial,
-    TResult Function(TaskHistoryLoading value)? loading,
-    TResult Function(TaskHistorySuccess value)? success,
-    TResult Function(TaskHistoryFailure value)? failure,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskHistoryState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'TaskHistoryState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TaskHistoryStateCopyWith<$Res> {
-  factory $TaskHistoryStateCopyWith(
-    TaskHistoryState value,
-    $Res Function(TaskHistoryState) then,
-  ) = _$TaskHistoryStateCopyWithImpl<$Res, TaskHistoryState>;
+class $TaskHistoryStateCopyWith<$Res>  {
+$TaskHistoryStateCopyWith(TaskHistoryState _, $Res Function(TaskHistoryState) __);
 }
 
-/// @nodoc
-class _$TaskHistoryStateCopyWithImpl<$Res, $Val extends TaskHistoryState>
-    implements $TaskHistoryStateCopyWith<$Res> {
-  _$TaskHistoryStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [TaskHistoryState].
+extension TaskHistoryStatePatterns on TaskHistoryState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( TaskHistoryInitial value)?  initial,TResult Function( TaskHistoryLoading value)?  loading,TResult Function( TaskHistorySuccess value)?  success,TResult Function( TaskHistoryFailure value)?  failure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case TaskHistoryInitial() when initial != null:
+return initial(_that);case TaskHistoryLoading() when loading != null:
+return loading(_that);case TaskHistorySuccess() when success != null:
+return success(_that);case TaskHistoryFailure() when failure != null:
+return failure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( TaskHistoryInitial value)  initial,required TResult Function( TaskHistoryLoading value)  loading,required TResult Function( TaskHistorySuccess value)  success,required TResult Function( TaskHistoryFailure value)  failure,}){
+final _that = this;
+switch (_that) {
+case TaskHistoryInitial():
+return initial(_that);case TaskHistoryLoading():
+return loading(_that);case TaskHistorySuccess():
+return success(_that);case TaskHistoryFailure():
+return failure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( TaskHistoryInitial value)?  initial,TResult? Function( TaskHistoryLoading value)?  loading,TResult? Function( TaskHistorySuccess value)?  success,TResult? Function( TaskHistoryFailure value)?  failure,}){
+final _that = this;
+switch (_that) {
+case TaskHistoryInitial() when initial != null:
+return initial(_that);case TaskHistoryLoading() when loading != null:
+return loading(_that);case TaskHistorySuccess() when success != null:
+return success(_that);case TaskHistoryFailure() when failure != null:
+return failure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<TaskHistory> history)?  success,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case TaskHistoryInitial() when initial != null:
+return initial();case TaskHistoryLoading() when loading != null:
+return loading();case TaskHistorySuccess() when success != null:
+return success(_that.history);case TaskHistoryFailure() when failure != null:
+return failure(_that.message);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<TaskHistory> history)  success,required TResult Function( String message)  failure,}) {final _that = this;
+switch (_that) {
+case TaskHistoryInitial():
+return initial();case TaskHistoryLoading():
+return loading();case TaskHistorySuccess():
+return success(_that.history);case TaskHistoryFailure():
+return failure(_that.message);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<TaskHistory> history)?  success,TResult? Function( String message)?  failure,}) {final _that = this;
+switch (_that) {
+case TaskHistoryInitial() when initial != null:
+return initial();case TaskHistoryLoading() when loading != null:
+return loading();case TaskHistorySuccess() when success != null:
+return success(_that.history);case TaskHistoryFailure() when failure != null:
+return failure(_that.message);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$TaskHistoryInitialImplCopyWith<$Res> {
-  factory _$$TaskHistoryInitialImplCopyWith(
-    _$TaskHistoryInitialImpl value,
-    $Res Function(_$TaskHistoryInitialImpl) then,
-  ) = __$$TaskHistoryInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TaskHistoryInitialImplCopyWithImpl<$Res>
-    extends _$TaskHistoryStateCopyWithImpl<$Res, _$TaskHistoryInitialImpl>
-    implements _$$TaskHistoryInitialImplCopyWith<$Res> {
-  __$$TaskHistoryInitialImplCopyWithImpl(
-    _$TaskHistoryInitialImpl _value,
-    $Res Function(_$TaskHistoryInitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$TaskHistoryInitialImpl implements TaskHistoryInitial {
-  const _$TaskHistoryInitialImpl();
-
-  @override
-  String toString() {
-    return 'TaskHistoryState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TaskHistoryInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<TaskHistory> history) success,
-    required TResult Function(String message) failure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<TaskHistory> history)? success,
-    TResult? Function(String message)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<TaskHistory> history)? success,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskHistoryInitial value) initial,
-    required TResult Function(TaskHistoryLoading value) loading,
-    required TResult Function(TaskHistorySuccess value) success,
-    required TResult Function(TaskHistoryFailure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskHistoryInitial value)? initial,
-    TResult? Function(TaskHistoryLoading value)? loading,
-    TResult? Function(TaskHistorySuccess value)? success,
-    TResult? Function(TaskHistoryFailure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskHistoryInitial value)? initial,
-    TResult Function(TaskHistoryLoading value)? loading,
-    TResult Function(TaskHistorySuccess value)? success,
-    TResult Function(TaskHistoryFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TaskHistoryInitial implements TaskHistoryState {
-  const factory TaskHistoryInitial() = _$TaskHistoryInitialImpl;
-}
-
-/// @nodoc
-abstract class _$$TaskHistoryLoadingImplCopyWith<$Res> {
-  factory _$$TaskHistoryLoadingImplCopyWith(
-    _$TaskHistoryLoadingImpl value,
-    $Res Function(_$TaskHistoryLoadingImpl) then,
-  ) = __$$TaskHistoryLoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TaskHistoryLoadingImplCopyWithImpl<$Res>
-    extends _$TaskHistoryStateCopyWithImpl<$Res, _$TaskHistoryLoadingImpl>
-    implements _$$TaskHistoryLoadingImplCopyWith<$Res> {
-  __$$TaskHistoryLoadingImplCopyWithImpl(
-    _$TaskHistoryLoadingImpl _value,
-    $Res Function(_$TaskHistoryLoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$TaskHistoryLoadingImpl implements TaskHistoryLoading {
-  const _$TaskHistoryLoadingImpl();
 
-  @override
-  String toString() {
-    return 'TaskHistoryState.loading()';
-  }
+class TaskHistoryInitial implements TaskHistoryState {
+  const TaskHistoryInitial();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TaskHistoryLoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<TaskHistory> history) success,
-    required TResult Function(String message) failure,
-  }) {
-    return loading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<TaskHistory> history)? success,
-    TResult? Function(String message)? failure,
-  }) {
-    return loading?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<TaskHistory> history)? success,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskHistoryInitial value) initial,
-    required TResult Function(TaskHistoryLoading value) loading,
-    required TResult Function(TaskHistorySuccess value) success,
-    required TResult Function(TaskHistoryFailure value) failure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskHistoryInitial value)? initial,
-    TResult? Function(TaskHistoryLoading value)? loading,
-    TResult? Function(TaskHistorySuccess value)? success,
-    TResult? Function(TaskHistoryFailure value)? failure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskHistoryInitial value)? initial,
-    TResult Function(TaskHistoryLoading value)? loading,
-    TResult Function(TaskHistorySuccess value)? success,
-    TResult Function(TaskHistoryFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskHistoryInitial);
 }
 
-abstract class TaskHistoryLoading implements TaskHistoryState {
-  const factory TaskHistoryLoading() = _$TaskHistoryLoadingImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'TaskHistoryState.initial()';
 }
 
-/// @nodoc
-abstract class _$$TaskHistorySuccessImplCopyWith<$Res> {
-  factory _$$TaskHistorySuccessImplCopyWith(
-    _$TaskHistorySuccessImpl value,
-    $Res Function(_$TaskHistorySuccessImpl) then,
-  ) = __$$TaskHistorySuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<TaskHistory> history});
+
 }
 
-/// @nodoc
-class __$$TaskHistorySuccessImplCopyWithImpl<$Res>
-    extends _$TaskHistoryStateCopyWithImpl<$Res, _$TaskHistorySuccessImpl>
-    implements _$$TaskHistorySuccessImplCopyWith<$Res> {
-  __$$TaskHistorySuccessImplCopyWithImpl(
-    _$TaskHistorySuccessImpl _value,
-    $Res Function(_$TaskHistorySuccessImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? history = null}) {
-    return _then(
-      _$TaskHistorySuccessImpl(
-        null == history
-            ? _value._history
-            : history // ignore: cast_nullable_to_non_nullable
-                  as List<TaskHistory>,
-      ),
-    );
-  }
-}
+
 
 /// @nodoc
 
-class _$TaskHistorySuccessImpl implements TaskHistorySuccess {
-  const _$TaskHistorySuccessImpl(final List<TaskHistory> history)
-    : _history = history;
 
-  final List<TaskHistory> _history;
-  @override
-  List<TaskHistory> get history {
-    if (_history is EqualUnmodifiableListView) return _history;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_history);
-  }
+class TaskHistoryLoading implements TaskHistoryState {
+  const TaskHistoryLoading();
+  
 
-  @override
-  String toString() {
-    return 'TaskHistoryState.success(history: $history)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TaskHistorySuccessImpl &&
-            const DeepCollectionEquality().equals(other._history, _history));
-  }
 
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_history));
 
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TaskHistorySuccessImplCopyWith<_$TaskHistorySuccessImpl> get copyWith =>
-      __$$TaskHistorySuccessImplCopyWithImpl<_$TaskHistorySuccessImpl>(
-        this,
-        _$identity,
-      );
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<TaskHistory> history) success,
-    required TResult Function(String message) failure,
-  }) {
-    return success(history);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<TaskHistory> history)? success,
-    TResult? Function(String message)? failure,
-  }) {
-    return success?.call(history);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<TaskHistory> history)? success,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(history);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskHistoryInitial value) initial,
-    required TResult Function(TaskHistoryLoading value) loading,
-    required TResult Function(TaskHistorySuccess value) success,
-    required TResult Function(TaskHistoryFailure value) failure,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskHistoryInitial value)? initial,
-    TResult? Function(TaskHistoryLoading value)? loading,
-    TResult? Function(TaskHistorySuccess value)? success,
-    TResult? Function(TaskHistoryFailure value)? failure,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskHistoryInitial value)? initial,
-    TResult Function(TaskHistoryLoading value)? loading,
-    TResult Function(TaskHistorySuccess value)? success,
-    TResult Function(TaskHistoryFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskHistoryLoading);
 }
 
-abstract class TaskHistorySuccess implements TaskHistoryState {
-  const factory TaskHistorySuccess(final List<TaskHistory> history) =
-      _$TaskHistorySuccessImpl;
 
-  List<TaskHistory> get history;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TaskHistorySuccessImplCopyWith<_$TaskHistorySuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'TaskHistoryState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class TaskHistorySuccess implements TaskHistoryState {
+  const TaskHistorySuccess(final  List<TaskHistory> history): _history = history;
+  
+
+ final  List<TaskHistory> _history;
+ List<TaskHistory> get history {
+  if (_history is EqualUnmodifiableListView) return _history;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_history);
+}
+
+
+/// Create a copy of TaskHistoryState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TaskHistorySuccessCopyWith<TaskHistorySuccess> get copyWith => _$TaskHistorySuccessCopyWithImpl<TaskHistorySuccess>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskHistorySuccess&&const DeepCollectionEquality().equals(other._history, _history));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_history));
+
+@override
+String toString() {
+  return 'TaskHistoryState.success(history: $history)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$TaskHistoryFailureImplCopyWith<$Res> {
-  factory _$$TaskHistoryFailureImplCopyWith(
-    _$TaskHistoryFailureImpl value,
-    $Res Function(_$TaskHistoryFailureImpl) then,
-  ) = __$$TaskHistoryFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
+abstract mixin class $TaskHistorySuccessCopyWith<$Res> implements $TaskHistoryStateCopyWith<$Res> {
+  factory $TaskHistorySuccessCopyWith(TaskHistorySuccess value, $Res Function(TaskHistorySuccess) _then) = _$TaskHistorySuccessCopyWithImpl;
+@useResult
+$Res call({
+ List<TaskHistory> history
+});
+
+
+
+
+}
+/// @nodoc
+class _$TaskHistorySuccessCopyWithImpl<$Res>
+    implements $TaskHistorySuccessCopyWith<$Res> {
+  _$TaskHistorySuccessCopyWithImpl(this._self, this._then);
+
+  final TaskHistorySuccess _self;
+  final $Res Function(TaskHistorySuccess) _then;
+
+/// Create a copy of TaskHistoryState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? history = null,}) {
+  return _then(TaskHistorySuccess(
+null == history ? _self._history : history // ignore: cast_nullable_to_non_nullable
+as List<TaskHistory>,
+  ));
 }
 
-/// @nodoc
-class __$$TaskHistoryFailureImplCopyWithImpl<$Res>
-    extends _$TaskHistoryStateCopyWithImpl<$Res, _$TaskHistoryFailureImpl>
-    implements _$$TaskHistoryFailureImplCopyWith<$Res> {
-  __$$TaskHistoryFailureImplCopyWithImpl(
-    _$TaskHistoryFailureImpl _value,
-    $Res Function(_$TaskHistoryFailureImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? message = null}) {
-    return _then(
-      _$TaskHistoryFailureImpl(
-        null == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$TaskHistoryFailureImpl implements TaskHistoryFailure {
-  const _$TaskHistoryFailureImpl(this.message);
 
-  @override
-  final String message;
+class TaskHistoryFailure implements TaskHistoryState {
+  const TaskHistoryFailure(this.message);
+  
 
-  @override
-  String toString() {
-    return 'TaskHistoryState.failure(message: $message)';
-  }
+ final  String message;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TaskHistoryFailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
+/// Create a copy of TaskHistoryState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TaskHistoryFailureCopyWith<TaskHistoryFailure> get copyWith => _$TaskHistoryFailureCopyWithImpl<TaskHistoryFailure>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TaskHistoryFailureImplCopyWith<_$TaskHistoryFailureImpl> get copyWith =>
-      __$$TaskHistoryFailureImplCopyWithImpl<_$TaskHistoryFailureImpl>(
-        this,
-        _$identity,
-      );
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<TaskHistory> history) success,
-    required TResult Function(String message) failure,
-  }) {
-    return failure(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<TaskHistory> history)? success,
-    TResult? Function(String message)? failure,
-  }) {
-    return failure?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<TaskHistory> history)? success,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskHistoryInitial value) initial,
-    required TResult Function(TaskHistoryLoading value) loading,
-    required TResult Function(TaskHistorySuccess value) success,
-    required TResult Function(TaskHistoryFailure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskHistoryInitial value)? initial,
-    TResult? Function(TaskHistoryLoading value)? loading,
-    TResult? Function(TaskHistorySuccess value)? success,
-    TResult? Function(TaskHistoryFailure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskHistoryInitial value)? initial,
-    TResult Function(TaskHistoryLoading value)? loading,
-    TResult Function(TaskHistorySuccess value)? success,
-    TResult Function(TaskHistoryFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskHistoryFailure&&(identical(other.message, message) || other.message == message));
 }
 
-abstract class TaskHistoryFailure implements TaskHistoryState {
-  const factory TaskHistoryFailure(final String message) =
-      _$TaskHistoryFailureImpl;
 
-  String get message;
+@override
+int get hashCode => Object.hash(runtimeType,message);
 
-  /// Create a copy of TaskHistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TaskHistoryFailureImplCopyWith<_$TaskHistoryFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'TaskHistoryState.failure(message: $message)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class $TaskHistoryFailureCopyWith<$Res> implements $TaskHistoryStateCopyWith<$Res> {
+  factory $TaskHistoryFailureCopyWith(TaskHistoryFailure value, $Res Function(TaskHistoryFailure) _then) = _$TaskHistoryFailureCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class _$TaskHistoryFailureCopyWithImpl<$Res>
+    implements $TaskHistoryFailureCopyWith<$Res> {
+  _$TaskHistoryFailureCopyWithImpl(this._self, this._then);
+
+  final TaskHistoryFailure _self;
+  final $Res Function(TaskHistoryFailure) _then;
+
+/// Create a copy of TaskHistoryState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(TaskHistoryFailure(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

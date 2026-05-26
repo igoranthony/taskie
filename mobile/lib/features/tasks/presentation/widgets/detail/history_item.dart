@@ -143,7 +143,7 @@ class HistoryItem extends StatelessWidget {
                             Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: cs.surfaceContainerHighest,
+                                color: cs.surfaceContainerHigh,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               padding: const EdgeInsets.all(10),

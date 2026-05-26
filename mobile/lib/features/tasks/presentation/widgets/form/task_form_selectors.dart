@@ -91,15 +91,9 @@ class TaskPrioritySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
 
-    final options = [
-      (TaskPriority.baixa, 'Baixa', Icons.south_rounded, cs.tertiary),
-      (TaskPriority.media, 'Média', Icons.east_rounded, cs.secondary),
-      (TaskPriority.alta, 'Alta', Icons.north_rounded, cs.error),
-    ];
-
     return Row(
-      children: options.map((opt) {
-        final (priority, label, icon, color) = opt;
+      children: TaskPriority.values.map((priority) {
+        final p = cs.priorityColor(priority);
         final isSelected = priority == value;
         final isLast = priority == TaskPriority.alta;
 
@@ -112,10 +106,10 @@ class TaskPrioritySelector extends StatelessWidget {
                 duration: const Duration(milliseconds: 180),
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                  color: isSelected ? color.withAlpha(30) : cs.surfaceContainer,
+                  color: isSelected ? p.color.withAlpha(30) : cs.surfaceContainer,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: isSelected ? color.withAlpha(120) : cs.outlineVariant,
+                    color: isSelected ? p.color.withAlpha(120) : cs.outlineVariant,
                     width: 1,
                   ),
                 ),
@@ -123,18 +117,18 @@ class TaskPrioritySelector extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      icon,
+                      p.icon,
                       size: 16,
-                      color: isSelected ? color : cs.onSurfaceVariant,
+                      color: isSelected ? p.color : cs.onSurfaceVariant,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      label,
+                      p.label,
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight:
                             isSelected ? FontWeight.w700 : FontWeight.w400,
-                        color: isSelected ? color : cs.onSurfaceVariant,
+                        color: isSelected ? p.color : cs.onSurfaceVariant,
                       ),
                     ),
                   ],

@@ -30,8 +30,10 @@ class TaskCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
-        color: cs.surfaceContainer,
+        color: cs.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(16),
+        elevation: 2,
+        shadowColor: cs.shadow.withValues(alpha: 0.08),
         child: InkWell(
           onTap: onTap,
           onLongPress: onStatusChange != null

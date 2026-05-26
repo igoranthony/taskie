@@ -9,7 +9,7 @@ String _idFromJson(dynamic v) => v.toString();
 String? _nullableToString(dynamic v) => v?.toString();
 
 @freezed
-class TaskHistoryModel with _$TaskHistoryModel {
+abstract class TaskHistoryModel with _$TaskHistoryModel {
   const TaskHistoryModel._();
 
   const factory TaskHistoryModel({

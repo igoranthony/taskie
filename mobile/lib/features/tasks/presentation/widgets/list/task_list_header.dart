@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../../../features/authentication/presentation/bloc/auth_bloc.dart';
 import '../../../../../features/authentication/presentation/bloc/auth_event.dart';
+import '../../../../../features/authentication/presentation/bloc/auth_state.dart';
 import '../../bloc/task_list/task_list_bloc.dart';
 import '../../bloc/task_list/task_list_event.dart';
 import '../../bloc/task_list/task_list_state.dart';
@@ -30,12 +31,11 @@ class TaskListHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'TRADEX TASKS',
-                  style: GoogleFonts.spaceGrotesk(
-                    fontSize: tt.headlineMedium?.fontSize,
-                    fontWeight: FontWeight.w800,
+                  'TASKIE',
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 13,
                     color: cs.primary,
-                    letterSpacing: 1.5,
+                    height: 1.6,
                   ),
                 ),
                 const SizedBox(height: 2),

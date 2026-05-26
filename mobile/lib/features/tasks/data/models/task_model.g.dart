@@ -6,45 +6,44 @@ part of 'task_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TaskModelImpl _$$TaskModelImplFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      r'_$TaskModelImpl',
-      json,
-      ($checkedConvert) {
-        final val = _$TaskModelImpl(
-          id: $checkedConvert('id', (v) => v as String),
-          titulo: $checkedConvert('titulo', (v) => v as String),
-          descricao: $checkedConvert('descricao', (v) => v as String?),
-          status: $checkedConvert('status', (v) => v as String),
-          prioridade: $checkedConvert('prioridade', (v) => v as String),
-          criadoPor: $checkedConvert('criado_por_username', (v) => v as String),
-          atribuidoParaId: $checkedConvert(
-            'atribuido_para',
-            (v) => (v as num?)?.toInt(),
-          ),
-          atribuidoPara: $checkedConvert(
-            'atribuido_para_username',
-            (v) => v as String?,
-          ),
-          dataLimite: $checkedConvert('data_limite', (v) => v as String?),
-          criadoEm: $checkedConvert('criado_em', (v) => v as String),
-          atualizadoEm: $checkedConvert('atualizado_em', (v) => v as String),
-          canEdit: $checkedConvert('can_edit', (v) => v as bool? ?? false),
-        );
-        return val;
-      },
-      fieldKeyMap: const {
-        'criadoPor': 'criado_por_username',
-        'atribuidoParaId': 'atribuido_para',
-        'atribuidoPara': 'atribuido_para_username',
-        'dataLimite': 'data_limite',
-        'criadoEm': 'criado_em',
-        'atualizadoEm': 'atualizado_em',
-        'canEdit': 'can_edit',
-      },
+_TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_TaskModel',
+  json,
+  ($checkedConvert) {
+    final val = _TaskModel(
+      id: $checkedConvert('id', (v) => v as String),
+      titulo: $checkedConvert('titulo', (v) => v as String),
+      descricao: $checkedConvert('descricao', (v) => v as String?),
+      status: $checkedConvert('status', (v) => v as String),
+      prioridade: $checkedConvert('prioridade', (v) => v as String),
+      criadoPor: $checkedConvert('criado_por_username', (v) => v as String),
+      atribuidoParaId: $checkedConvert(
+        'atribuido_para',
+        (v) => (v as num?)?.toInt(),
+      ),
+      atribuidoPara: $checkedConvert(
+        'atribuido_para_username',
+        (v) => v as String?,
+      ),
+      dataLimite: $checkedConvert('data_limite', (v) => v as String?),
+      criadoEm: $checkedConvert('criado_em', (v) => v as String),
+      atualizadoEm: $checkedConvert('atualizado_em', (v) => v as String),
+      canEdit: $checkedConvert('can_edit', (v) => v as bool? ?? false),
     );
+    return val;
+  },
+  fieldKeyMap: const {
+    'criadoPor': 'criado_por_username',
+    'atribuidoParaId': 'atribuido_para',
+    'atribuidoPara': 'atribuido_para_username',
+    'dataLimite': 'data_limite',
+    'criadoEm': 'criado_em',
+    'atualizadoEm': 'atualizado_em',
+    'canEdit': 'can_edit',
+  },
+);
 
-Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
+Map<String, dynamic> _$TaskModelToJson(_TaskModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'titulo': instance.titulo,

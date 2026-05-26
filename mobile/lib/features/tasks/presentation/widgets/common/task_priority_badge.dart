@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../domain/entities/task.dart';
+import '../../../../../core/theme/material_theme.dart';
 import '../../../../../shared/widgets/app_chip.dart';
 
 enum TaskPriorityBadgeStyle { chip, icon }
@@ -37,26 +38,8 @@ class TaskPriorityBadge extends StatelessWidget {
   }
 
   static _PriorityConfig _priorityConfig(TaskPriority priority, ColorScheme cs) {
-    switch (priority) {
-      case TaskPriority.baixa:
-        return _PriorityConfig(
-          color: cs.tertiary,
-          icon: Icons.south_rounded,
-          label: 'Baixa',
-        );
-      case TaskPriority.media:
-        return _PriorityConfig(
-          color: cs.secondary,
-          icon: Icons.east_rounded,
-          label: 'Média',
-        );
-      case TaskPriority.alta:
-        return _PriorityConfig(
-          color: cs.error,
-          icon: Icons.north_rounded,
-          label: 'Alta',
-        );
-    }
+    final p = cs.priorityColor(priority);
+    return _PriorityConfig(color: p.color, icon: p.icon, label: p.label);
   }
 }
 
