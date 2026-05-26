@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="docs/logo.png" width="80" alt="TradeX Tasks Logo" />
-  <h1>TradeX Tasks</h1>
+  <img src="docs/logo.png" width="80" alt="Taskie Logo" />
+  <h1>Taskie</h1>
   <p>Sistema fullstack de gestão de tarefas com API REST em Django e aplicativo mobile em Flutter.</p>
 
   ![Django](https://img.shields.io/badge/Django-4.2-092E20?style=flat&logo=django&logoColor=white)
@@ -109,9 +109,9 @@ flutter run
 | `SECRET_KEY` | Chave secreta do Django | — |
 | `DEBUG` | Modo de depuração | `True` |
 | `DJANGO_SETTINGS_MODULE` | Módulo de configurações | `config.settings.development` |
-| `DB_NAME` | Nome do banco | `tradex` |
-| `DB_USER` | Usuário do banco | `tradex` |
-| `DB_PASSWORD` | Senha do banco | `tradex` |
+| `DB_NAME` | Nome do banco | `taskie` |
+| `DB_USER` | Usuário do banco | `taskie` |
+| `DB_PASSWORD` | Senha do banco | `taskie` |
 | `DB_HOST` | Host do banco | `localhost` |
 | `DB_PORT` | Porta do banco | `5432` |
 
