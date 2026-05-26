@@ -1,4 +1,4 @@
-package com.example.gestao_tarefas_tradex
+package com.example.taskie
 
 import io.flutter.embedding.android.FlutterActivity
 
