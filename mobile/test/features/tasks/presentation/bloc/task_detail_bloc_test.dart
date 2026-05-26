@@ -2,11 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/domain/entities/task.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/domain/repositories/task_repository.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/presentation/bloc/task_detail/task_detail_bloc.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/presentation/bloc/task_detail/task_detail_event.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/presentation/bloc/task_detail/task_detail_state.dart';
+import 'package:taskie/features/tasks/domain/entities/task.dart';
+import 'package:taskie/features/tasks/domain/repositories/task_repository.dart';
+import 'package:taskie/features/tasks/presentation/bloc/task_detail/task_detail_bloc.dart';
+import 'package:taskie/features/tasks/presentation/bloc/task_detail/task_detail_event.dart';
+import 'package:taskie/features/tasks/presentation/bloc/task_detail/task_detail_state.dart';
 
 import 'task_detail_bloc_test.mocks.dart';
 

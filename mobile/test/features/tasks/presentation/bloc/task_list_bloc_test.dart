@@ -2,12 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/domain/entities/task.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/domain/usecases/get_tasks.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/domain/usecases/delete_task.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/presentation/bloc/task_list/task_list_bloc.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/presentation/bloc/task_list/task_list_event.dart';
-import 'package:gestao_tarefas_tradex/features/tasks/presentation/bloc/task_list/task_list_state.dart';
+import 'package:taskie/features/tasks/domain/entities/task.dart';
+import 'package:taskie/features/tasks/domain/usecases/get_tasks.dart';
+import 'package:taskie/features/tasks/domain/usecases/delete_task.dart';
+import 'package:taskie/features/tasks/presentation/bloc/task_list/task_list_bloc.dart';
+import 'package:taskie/features/tasks/presentation/bloc/task_list/task_list_event.dart';
+import 'package:taskie/features/tasks/presentation/bloc/task_list/task_list_state.dart';
 
 import 'task_list_bloc_test.mocks.dart';
 
