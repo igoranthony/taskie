@@ -12,8 +12,8 @@ from django.core.management import call_command
 
 
 SAMPLE_USERS = [
-    {'id': 2, 'username': 'joao.silva',   'email': 'joao.silva@tradex.com',   'password': 'tradex123', 'first_name': 'João',  'last_name': 'Silva'},
-    {'id': 3, 'username': 'maria.souza',  'email': 'maria.souza@tradex.com',  'password': 'tradex123', 'first_name': 'Maria', 'last_name': 'Souza'},
+    {'id': 2, 'username': 'joao.silva',   'email': 'joao.silva@taskie.com',   'password': 'taskie123', 'first_name': 'João',  'last_name': 'Silva'},
+    {'id': 3, 'username': 'maria.souza',  'email': 'maria.souza@taskie.com',  'password': 'taskie123', 'first_name': 'Maria', 'last_name': 'Souza'},
 ]
 
 
@@ -21,7 +21,7 @@ def create_superuser():
     if not User.objects.filter(username='admin').exists():
         User.objects.create_superuser(
             username='admin',
-            email='admin@tradex.com',
+            email='admin@taskie.com',
             password='admin123',
         )
         print('✅ Superuser criado: admin / admin123')

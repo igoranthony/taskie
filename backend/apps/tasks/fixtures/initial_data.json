@@ -292,7 +292,7 @@
     "pk": "11111111-1111-1111-1111-111111111119",
     "fields": {
       "titulo": "Criar tela de login",
-      "descricao": "Layout com logo Tradex Tasks, campos de usuário e senha, botão de entrar e feedback de erro. Fonte Space Grotesk para o nome do app.",
+      "descricao": "Layout com logo Taskie, campos de usuário e senha, botão de entrar e feedback de erro. Fonte Space Grotesk para o nome do app.",
       "status": "concluido",
       "prioridade": "alta",
       "criado_por": 2,
@@ -499,7 +499,7 @@
     "model": "tasks.task",
     "pk": "11111111-1111-1111-1111-111111111132",
     "fields": {
-      "titulo": "Adicionar logo e renomear app para Tradex Tasks",
+      "titulo": "Adicionar logo e renomear app para Taskie",
       "descricao": "Inserir logo.png na tela de login, configurar ícone do app para Android e iOS, e atualizar nome do app nos arquivos nativos.",
       "status": "concluido",
       "prioridade": "media",
