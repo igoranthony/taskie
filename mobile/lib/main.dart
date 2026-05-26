@@ -16,19 +16,19 @@ void main() async {
 
   final authBloc = getIt<AuthBloc>()..add(const AuthEvent.checkRequested());
 
-  runApp(GestaoTarefasApp(authBloc: authBloc));
+  runApp(TaskieApp(authBloc: authBloc));
 }
 
-class GestaoTarefasApp extends StatefulWidget {
+class TaskieApp extends StatefulWidget {
   final AuthBloc authBloc;
 
-  const GestaoTarefasApp({super.key, required this.authBloc});
+  const TaskieApp({super.key, required this.authBloc});
 
   @override
-  State<GestaoTarefasApp> createState() => _GestaoTarefasAppState();
+  State<TaskieApp> createState() => _TaskieAppState();
 }
 
-class _GestaoTarefasAppState extends State<GestaoTarefasApp> {
+class _TaskieAppState extends State<TaskieApp> {
   late final GoRouter _router;
 
   @override
@@ -49,7 +49,7 @@ class _GestaoTarefasAppState extends State<GestaoTarefasApp> {
     return BlocProvider.value(
       value: widget.authBloc,
       child: MaterialApp.router(
-        title: 'Gestão de Tarefas',
+        title: 'Taskie',
         debugShowCheckedModeBanner: false,
         theme: theme.light(),
         darkTheme: theme.dark(),

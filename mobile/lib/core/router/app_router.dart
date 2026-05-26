@@ -54,15 +54,15 @@ GoRouter createRouter(AuthBloc authBloc) {
     routes: [
       GoRoute(
         path: AppRoutes.login,
-        builder: (_, __) => const LoginPage(),
+        builder: (_, _) => const LoginPage(),
       ),
       GoRoute(
         path: AppRoutes.tasks,
-        builder: (_, __) => const TaskListPage(),
+        builder: (_, _) => const TaskListPage(),
         routes: [
           GoRoute(
             path: 'create',
-            builder: (_, __) => const TaskFormPage(),
+            builder: (_, _) => const TaskFormPage(),
           ),
           GoRoute(
             path: ':id',
