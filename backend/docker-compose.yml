@@ -1,16 +1,19 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: tradex
-      POSTGRES_USER: tradex
-      POSTGRES_PASSWORD: tradex
+      POSTGRES_DB: taskie
+      POSTGRES_USER: taskie
+      POSTGRES_PASSWORD: taskie
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taskie -d taskie"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   backend:
     build: .
@@ -20,15 +23,16 @@ services:
       - .:/app:Z
     environment:
       - DEBUG=True
-      - SECRET_KEY=tradex-secret-key-dev-only
+      - SECRET_KEY=taskie-secret-key-dev-only
       - DJANGO_SETTINGS_MODULE=config.settings.development
-      - DB_NAME=tradex
-      - DB_USER=tradex
-      - DB_PASSWORD=tradex
+      - DB_NAME=taskie
+      - DB_USER=taskie
+      - DB_PASSWORD=taskie
       - DB_HOST=db
       - DB_PORT=5432
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     command: >
       sh -c "python /app/manage.py migrate &&
              python /app/seed.py &&

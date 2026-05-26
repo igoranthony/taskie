@@ -7,7 +7,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 def api_root(request):
     """Root API endpoint with available endpoints"""
     return JsonResponse({
-        'message': 'Tradex Task Manager API',
+        'message': 'Taskie Task Manager API',
         'version': '1.0',
         'endpoints': {
             'authentication': '/api/auth/',

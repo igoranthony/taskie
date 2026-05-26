@@ -75,9 +75,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='tradex'),
-        'USER': config('DB_USER', default='tradex'),
-        'PASSWORD': config('DB_PASSWORD', default='tradex'),
+        'NAME': config('DB_NAME', default='taskie'),
+        'USER': config('DB_USER', default='taskie'),
+        'PASSWORD': config('DB_PASSWORD', default='taskie'),
         'HOST': config('DB_HOST', default='localhost'),
         'PORT': config('DB_PORT', default='5432'),
     }
@@ -130,7 +130,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Tradex Task Manager API',
+    'TITLE': 'Taskie Manager API',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
