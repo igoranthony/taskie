@@ -10,4 +10,5 @@ urlpatterns = [
     path('me/', views.user_profile, name='user_profile'),
     path('users/', views.users_list, name='users_list'),
     path('logout/', views.logout_view, name='logout'),
+    path('settings/', views.UserSettingsView.as_view(), name='user-settings'),
 ]

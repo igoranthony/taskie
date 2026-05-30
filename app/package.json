@@ -1,0 +1,43 @@
+{
+  "name": "zntt-control",
+  "version": "1.0.0",
+  "productName": "zntt-control",
+  "description": "Personal project management desktop app",
+  "author": "zntt",
+  "private": true,
+  "scripts": {
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "quasar build && tauri build",
+    "gen_installer_win": "tauri build --target x86_64-pc-windows-msvc",
+    "gen_installer_mac": "tauri build --target universal-apple-darwin",
+    "gen_installer_linux": "tauri build --target x86_64-unknown-linux-gnu",
+    "lint": "eslint --ext .js,.vue ./"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.0",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-dialog": "^2",
+    "@tauri-apps/plugin-fs": "^2",
+    "@tauri-apps/plugin-shell": "^2",
+    "@tauri-apps/plugin-sql": "^2",
+    "@vueuse/core": "^10.9.0",
+    "axios": "^1.16.1",
+    "pinia": "^2.1.7",
+    "quasar": "^2.16.0",
+    "sortablejs": "^1.15.7",
+    "vue": "^3.4.21",
+    "vue-draggable-plus": "^0.6.1"
+  },
+  "devDependencies": {
+    "@quasar/app-webpack": "^3.13.0",
+    "@tauri-apps/cli": "^2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "prettier": "^3.2.5",
+    "sass": "^1.71.1",
+    "sass-loader": "^14.2.1"
+  }
+}

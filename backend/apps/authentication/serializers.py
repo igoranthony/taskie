@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
+from .models import UserSettings
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,10 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-        
-        # Add extra user data to the response
         data['user'] = UserSerializer(self.user).data
-        
         return data
 
 
@@ -28,20 +27,15 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, attrs):
         username = attrs.get('username')
         password = attrs.get('password')
-
         if username and password:
             user = authenticate(username=username, password=password)
-            
             if not user:
                 raise serializers.ValidationError('Credenciais inválidas.')
-            
             if not user.is_active:
                 raise serializers.ValidationError('Usuário inativo.')
-            
             attrs['user'] = user
             return attrs
-        else:
-            raise serializers.ValidationError('Username e password são obrigatórios.')
+        raise serializers.ValidationError('Username e password são obrigatórios.')
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -59,5 +53,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data.pop('password_confirm')
-        user = User.objects.create_user(**validated_data)
-        return user
+        return User.objects.create_user(**validated_data)
+
+
+class UserSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserSettings
+        fields = ('tema', 'cor_accent', 'atualizado_em')
+        read_only_fields = ('atualizado_em',)

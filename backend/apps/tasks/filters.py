@@ -1,5 +1,6 @@
 import django_filters
 from django.db.models import Q
+
 from .models import Task
 
 
@@ -22,6 +23,10 @@ class TaskFilter(django_filters.FilterSet):
     descricao = django_filters.CharFilter(lookup_expr='icontains')
     search = django_filters.CharFilter(method='filter_search')
 
+    # Novos filtros para board
+    projeto = django_filters.UUIDFilter(field_name='projeto__id')
+    coluna = django_filters.UUIDFilter(field_name='coluna__id')
+
     def filter_search(self, queryset, name, value):
         """Busca por título OU descrição (case-insensitive)"""
         return queryset.filter(
@@ -35,4 +40,6 @@ class TaskFilter(django_filters.FilterSet):
             'prioridade': ['exact'],
             'criado_por': ['exact'],
             'atribuido_para': ['exact'],
+            'projeto': ['exact'],
+            'coluna': ['exact'],
         }

@@ -14,6 +14,14 @@ from django.core.management import call_command
 SAMPLE_USERS = [
     {'id': 2, 'username': 'joao.silva',   'email': 'joao.silva@taskie.com',   'password': 'taskie123', 'first_name': 'João',  'last_name': 'Silva'},
     {'id': 3, 'username': 'maria.souza',  'email': 'maria.souza@taskie.com',  'password': 'taskie123', 'first_name': 'Maria', 'last_name': 'Souza'},
+    {
+        'username': 'zntt',
+        'email': 'zntt@zntt.com',
+        'password': 'zntt123',
+        'first_name': 'Zanatta',
+        'last_name': '',
+        'is_superuser': False,
+    },
 ]
 
 

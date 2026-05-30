@@ -36,6 +36,7 @@ LOCAL_APPS = [
     'apps.core',
     'apps.authentication',
     'apps.tasks',
+    'apps.projects',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -171,9 +172,17 @@ SIMPLE_JWT = {
 # CORS Configuration
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Flutter web dev
+    "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8080",
+    # zntt-control desktop (Tauri)
+    "http://localhost:1420",
+    "http://127.0.0.1:1420",
+    "tauri://localhost",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=DEBUG, cast=bool)
+
+# Media files (logos, attachments)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
