@@ -14,7 +14,16 @@ import 'filter_bottom_sheet.dart';
 import '../../../../../shared/widgets/confirm_dialog.dart';
 
 class TaskListHeader extends StatelessWidget {
-  const TaskListHeader({super.key});
+  /// Quando definido, troca o título "TASKIE" pelo nome do projeto.
+  final String? projectName;
+  /// Quando true, exibe um botão de voltar à esquerda.
+  final bool showBack;
+
+  const TaskListHeader({
+    super.key,
+    this.projectName,
+    this.showBack = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +35,40 @@ class TaskListHeader extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (showBack) ...[
+            _HeaderAction(
+              icon: Icons.arrow_back,
+              onPressed: () => Navigator.of(context).maybePop(),
+            ),
+            const SizedBox(width: 8),
+          ],
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'TASKIE',
-                  style: GoogleFonts.pressStart2p(
-                    fontSize: 13,
-                    color: cs.primary,
-                    height: 1.6,
-                  ),
-                ),
+                projectName != null
+                    ? Text(
+                        projectName!,
+                        style: tt.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: cs.onSurface,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    : Text(
+                        'TASKIE',
+                        style: GoogleFonts.pressStart2p(
+                          fontSize: 13,
+                          color: cs.primary,
+                          height: 1.6,
+                        ),
+                      ),
                 const SizedBox(height: 2),
                 Text(
-                  'Gerencie suas tarefas de forma simples e eficiente',
+                  projectName != null
+                      ? 'Tarefas deste projeto'
+                      : 'Gerencie suas tarefas de forma simples e eficiente',
                   style: tt.bodySmall?.copyWith(
                     color: cs.onSurfaceVariant,
                     letterSpacing: 0.5,
@@ -53,7 +81,12 @@ class TaskListHeader extends StatelessWidget {
           _HeaderAction(
             icon: Icons.add,
             onPressed: () async {
-              await context.push(AppRoutes.taskCreate);
+              final state = context.read<TaskListBloc>().state;
+              final projetoId = state is TaskListSuccess ? state.projetoId : null;
+              await context.push(
+                AppRoutes.taskCreate,
+                extra: projetoId,
+              );
               if (context.mounted) {
                 context
                     .read<TaskListBloc>()

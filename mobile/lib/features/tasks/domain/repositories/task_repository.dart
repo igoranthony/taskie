@@ -13,6 +13,8 @@ abstract class TaskRepository {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? filterProjeto,
+    bool filterSemProjeto,
   });
   Future<Task> getTaskById(String id);
   Future<Task> createTask(Task task);

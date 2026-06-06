@@ -9,6 +9,8 @@ django.setup()
 
 from django.contrib.auth.models import User
 from django.core.management import call_command
+from django.core.management.color import no_style
+from django.db import connection
 
 
 SAMPLE_USERS = [
@@ -37,17 +39,29 @@ def create_superuser():
         print('ℹ️  Superuser já existe')
 
 
+def reset_user_sequence():
+    sequence_sql = connection.ops.sequence_reset_sql(no_style(), [User])
+    with connection.cursor() as cursor:
+        for sql in sequence_sql:
+            cursor.execute(sql)
+
+
 def create_sample_users():
     for data in SAMPLE_USERS:
         if not User.objects.filter(username=data['username']).exists():
-            user = User.objects.create_user(
-                id=data['id'],
-                username=data['username'],
-                email=data['email'],
-                password=data['password'],
-                first_name=data['first_name'],
-                last_name=data['last_name'],
-            )
+            user_data = {
+                'username': data['username'],
+                'email': data['email'],
+                'password': data['password'],
+                'first_name': data['first_name'],
+                'last_name': data['last_name'],
+            }
+            if data.get('id') is not None:
+                user_data['id'] = data['id']
+            else:
+                reset_user_sequence()
+
+            user = User.objects.create_user(**user_data)
             print(f'✅ Usuário criado: {user.username} / {data["password"]}')
         else:
             print(f'ℹ️  Usuário já existe: {data["username"]}')

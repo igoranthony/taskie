@@ -29,6 +29,7 @@ _TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => $checkedCreate(
       criadoEm: $checkedConvert('criado_em', (v) => v as String),
       atualizadoEm: $checkedConvert('atualizado_em', (v) => v as String),
       canEdit: $checkedConvert('can_edit', (v) => v as bool? ?? false),
+      projetoId: $checkedConvert('projeto', (v) => v as String?),
     );
     return val;
   },
@@ -40,6 +41,7 @@ _TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => $checkedCreate(
     'criadoEm': 'criado_em',
     'atualizadoEm': 'atualizado_em',
     'canEdit': 'can_edit',
+    'projetoId': 'projeto',
   },
 );
 
@@ -57,4 +59,5 @@ Map<String, dynamic> _$TaskModelToJson(_TaskModel instance) =>
       'criado_em': instance.criadoEm,
       'atualizado_em': instance.atualizadoEm,
       'can_edit': instance.canEdit,
+      'projeto': instance.projetoId,
     };

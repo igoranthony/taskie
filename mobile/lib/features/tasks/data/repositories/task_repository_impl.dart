@@ -21,6 +21,8 @@ class TaskRepositoryImpl implements TaskRepository {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? filterProjeto,
+    bool filterSemProjeto = false,
   }) async {
     final result = await remoteDataSource.getTasks(
       page: page,
@@ -33,6 +35,8 @@ class TaskRepositoryImpl implements TaskRepository {
       filterCriadoEmFim: filterCriadoEmFim,
       filterDataLimiteInicio: filterDataLimiteInicio,
       filterDataLimiteFim: filterDataLimiteFim,
+      filterProjeto: filterProjeto,
+      filterSemProjeto: filterSemProjeto,
     );
     return (
       tasks: result.tasks.map((m) => m.toEntity()).toList(),
@@ -78,6 +82,7 @@ class TaskRepositoryImpl implements TaskRepository {
       if (task.atribuidoParaId != null) 'atribuido_para': task.atribuidoParaId,
       if (task.dataLimite != null)
         'data_limite': task.dataLimite!.toIso8601String(),
+      if (task.projetoId != null) 'projeto': task.projetoId,
     };
   }
 }

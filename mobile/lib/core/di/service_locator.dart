@@ -19,6 +19,15 @@ import '../../features/tasks/domain/usecases/create_task.dart';
 import '../../features/tasks/domain/usecases/update_task.dart';
 import '../../features/tasks/domain/usecases/delete_task.dart';
 import '../../features/tasks/domain/usecases/get_task_history.dart';
+import '../../features/projects/data/datasources/project_remote_datasource.dart';
+import '../../features/projects/data/repositories/project_repository_impl.dart';
+import '../../features/projects/domain/repositories/project_repository.dart';
+import '../../features/projects/domain/usecases/get_projects.dart';
+import '../../features/projects/domain/usecases/get_project.dart';
+import '../../features/projects/domain/usecases/create_project.dart';
+import '../../features/projects/domain/usecases/update_project.dart';
+import '../../features/projects/domain/usecases/update_project_status.dart';
+import '../../features/projects/domain/usecases/delete_project.dart';
 
 final getIt = GetIt.instance;
 
@@ -79,4 +88,20 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton(() => UpdateTask(getIt<TaskRepository>()));
   getIt.registerLazySingleton(() => DeleteTask(getIt<TaskRepository>()));
   getIt.registerLazySingleton(() => GetTaskHistory(getIt<TaskRepository>()));
+
+  // Projects - Data
+  getIt.registerLazySingleton<ProjectRemoteDataSource>(
+    () => ProjectRemoteDataSourceImpl(dio: getIt<Dio>()),
+  );
+  getIt.registerLazySingleton<ProjectRepository>(
+    () => ProjectRepositoryImpl(remoteDataSource: getIt<ProjectRemoteDataSource>()),
+  );
+
+  // Projects - Use Cases
+  getIt.registerLazySingleton(() => GetProjects(getIt<ProjectRepository>()));
+  getIt.registerLazySingleton(() => GetProject(getIt<ProjectRepository>()));
+  getIt.registerLazySingleton(() => CreateProject(getIt<ProjectRepository>()));
+  getIt.registerLazySingleton(() => UpdateProject(getIt<ProjectRepository>()));
+  getIt.registerLazySingleton(() => UpdateProjectStatus(getIt<ProjectRepository>()));
+  getIt.registerLazySingleton(() => DeleteProject(getIt<ProjectRepository>()));
 }

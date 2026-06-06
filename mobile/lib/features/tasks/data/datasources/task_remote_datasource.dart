@@ -16,6 +16,8 @@ abstract class TaskRemoteDataSource {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? filterProjeto,
+    bool filterSemProjeto = false,
   });
   Future<TaskModel> getTaskById(String id);
   Future<void> createTask(Map<String, dynamic> data);
@@ -41,6 +43,8 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? filterProjeto,
+    bool filterSemProjeto = false,
   }) async {
     final queryParams = <String, dynamic>{'page': page};
     if (filterStatus != null) queryParams['status'] = _statusToString(filterStatus);
@@ -52,6 +56,8 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     if (filterCriadoEmFim != null) queryParams['criado_em_fim'] = filterCriadoEmFim.toIso8601String();
     if (filterDataLimiteInicio != null) queryParams['data_limite_inicio'] = filterDataLimiteInicio.toIso8601String();
     if (filterDataLimiteFim != null) queryParams['data_limite_fim'] = filterDataLimiteFim.toIso8601String();
+    if (filterProjeto != null) queryParams['projeto'] = filterProjeto;
+    if (filterSemProjeto) queryParams['projeto__isnull'] = 'true';
 
     final response = await dio.get(ApiEndpoints.tasks, queryParameters: queryParams);
 

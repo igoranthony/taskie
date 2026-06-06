@@ -14,4 +14,9 @@ class ApiEndpoints {
   static const String tasks = '/tasks/';
   static String taskDetail(String id) => '/tasks/$id/';
   static String taskHistory(String id) => '/tasks/$id/history/';
+
+  // Projects endpoints
+  static const String projects = '/projects/';
+  static String projectDetail(String id) => '/projects/$id/';
+  static String projectStatus(String id) => '/projects/$id/status/';
 }

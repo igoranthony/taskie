@@ -25,6 +25,7 @@ abstract class TaskModel with _$TaskModel {
     @JsonKey(name: 'criado_em') required String criadoEm,
     @JsonKey(name: 'atualizado_em') required String atualizadoEm,
     @JsonKey(name: 'can_edit') @Default(false) bool canEdit,
+    @JsonKey(name: 'projeto') String? projetoId,
   }) = _TaskModel;
 
   factory TaskModel.fromJson(Map<String, dynamic> json) =>
@@ -43,6 +44,7 @@ abstract class TaskModel with _$TaskModel {
         criadoEm: DateTime.parse(criadoEm).toLocal(),
         atualizadoEm: DateTime.parse(atualizadoEm).toLocal(),
         canEdit: canEdit,
+        projetoId: projetoId,
       );
 
   factory TaskModel.fromEntity(Task task) => TaskModel(
@@ -56,6 +58,7 @@ abstract class TaskModel with _$TaskModel {
         dataLimite: task.dataLimite?.toIso8601String(),
         criadoEm: task.criadoEm.toIso8601String(),
         atualizadoEm: task.atualizadoEm.toIso8601String(),
+        projetoId: task.projetoId,
       );
 
   static TaskStatus _statusFromString(String s) => switch (s) {

@@ -12,29 +12,71 @@ import '../../domain/usecases/delete_task.dart';
 import '../../domain/usecases/get_tasks.dart';
 
 class TaskListPage extends StatelessWidget {
-  const TaskListPage({super.key});
+  /// Quando definido, a página é aberta no contexto de um projeto e
+  /// só lista tasks daquele projeto.
+  final String? projetoId;
+
+  /// Quando true, lista somente tasks sem projeto.
+  final bool semProjeto;
+
+  /// Nome amigável para o header (projeto selecionado ou "Sem projeto").
+  final String? projetoNome;
+
+  const TaskListPage({
+    super.key,
+    this.projetoId,
+    this.semProjeto = false,
+    this.projetoNome,
+  });
+
+  bool get _inProjectContext => projetoId != null || semProjeto;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => TaskListBloc(
-            getTasks: getIt<GetTasks>(),
-            deleteTask: getIt<DeleteTask>(),
-          )..add(const TaskListEvent.loaded()),
+          create: (_) {
+            final bloc = TaskListBloc(
+              getTasks: getIt<GetTasks>(),
+              deleteTask: getIt<DeleteTask>(),
+            );
+            if (_inProjectContext) {
+              bloc.add(TaskListEvent.filtered(
+                projetoId: projetoId,
+                semProjeto: semProjeto,
+              ));
+            } else {
+              bloc.add(const TaskListEvent.loaded());
+            }
+            return bloc;
+          },
         ),
         BlocProvider(
           create: (_) => getIt<UsersCubit>()..loadUsers(),
         ),
       ],
-      child: const _TaskListView(),
+      child: _TaskListView(
+        projetoId: projetoId,
+        semProjeto: semProjeto,
+        projetoNome: projetoNome,
+      ),
     );
   }
 }
 
 class _TaskListView extends StatelessWidget {
-  const _TaskListView();
+  final String? projetoId;
+  final bool semProjeto;
+  final String? projetoNome;
+
+  const _TaskListView({
+    required this.projetoId,
+    required this.semProjeto,
+    required this.projetoNome,
+  });
+
+  bool get _inProjectContext => projetoId != null || semProjeto;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +88,10 @@ class _TaskListView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TaskListHeader(),
+            TaskListHeader(
+              projectName: _inProjectContext ? projetoNome : null,
+              showBack: _inProjectContext,
+            ),
             const SizedBox(height: 16),
             BlocBuilder<TaskListBloc, TaskListState>(
               buildWhen: (_, curr) => curr is TaskListSuccess,
@@ -55,7 +100,11 @@ class _TaskListView extends StatelessWidget {
                     state is TaskListSuccess ? state.filterStatus : null,
                 onFilterChanged: (status) => context
                     .read<TaskListBloc>()
-                    .add(TaskListEvent.filtered(status: status)),
+                    .add(TaskListEvent.filtered(
+                      status: status,
+                      projetoId: projetoId,
+                      semProjeto: semProjeto,
+                    )),
               ),
             ),
             const SizedBox(height: 8),

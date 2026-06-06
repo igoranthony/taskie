@@ -18,6 +18,8 @@ class Task extends Equatable {
   final DateTime criadoEm;
   final DateTime atualizadoEm;
   final bool canEdit;
+  /// FK do projeto (null = task "solta", sem projeto)
+  final String? projetoId;
 
   const Task({
     required this.id,
@@ -32,6 +34,7 @@ class Task extends Equatable {
     required this.criadoEm,
     required this.atualizadoEm,
     this.canEdit = false,
+    this.projetoId,
   });
 
   @override
@@ -48,6 +51,7 @@ class Task extends Equatable {
         criadoEm,
         atualizadoEm,
         canEdit,
+        projetoId,
       ];
 
   Task copyWith({
@@ -63,6 +67,7 @@ class Task extends Equatable {
     DateTime? criadoEm,
     DateTime? atualizadoEm,
     bool? canEdit,
+    String? projetoId,
   }) {
     return Task(
       id: id ?? this.id,
@@ -77,6 +82,7 @@ class Task extends Equatable {
       criadoEm: criadoEm ?? this.criadoEm,
       atualizadoEm: atualizadoEm ?? this.atualizadoEm,
       canEdit: canEdit ?? this.canEdit,
+      projetoId: projetoId ?? this.projetoId,
     );
   }
 }

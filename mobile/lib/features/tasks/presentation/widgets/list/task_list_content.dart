@@ -53,7 +53,7 @@ class _TaskListContentState extends State<TaskListContent> {
         loading: () => const TaskListSkeleton(),
         success: (tasks, status, prioridade, search, criadoPor, atribuidoPara,
                 criadoEmInicio, criadoEmFim, dataLimiteInicio, dataLimiteFim,
-                page, hasReachedMax, isLoadingMore) =>
+                projetoId, semProjeto, page, hasReachedMax, isLoadingMore) =>
             RefreshIndicator(
           onRefresh: () async =>
               context.read<TaskListBloc>().add(const TaskListEvent.refreshed()),

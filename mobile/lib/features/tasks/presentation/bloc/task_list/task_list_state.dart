@@ -18,6 +18,8 @@ class TaskListState with _$TaskListState {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? projetoId,
+    @Default(false) bool semProjeto,
     @Default(1) int page,
     @Default(false) bool hasReachedMax,
     @Default(false) bool isLoadingMore,

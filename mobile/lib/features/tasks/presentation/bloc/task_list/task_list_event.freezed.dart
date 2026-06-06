@@ -134,12 +134,12 @@ return taskUpdated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loaded,TResult Function()?  refreshed,TResult Function( TaskStatus? status,  TaskPriority? prioridade,  String? search,  int? criadoPor,  int? atribuidoPara,  DateTime? criadoEmInicio,  DateTime? criadoEmFim,  DateTime? dataLimiteInicio,  DateTime? dataLimiteFim)?  filtered,TResult Function()?  loadedMore,TResult Function( String id)?  taskDeleted,TResult Function( Task task)?  taskUpdated,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loaded,TResult Function()?  refreshed,TResult Function( TaskStatus? status,  TaskPriority? prioridade,  String? search,  int? criadoPor,  int? atribuidoPara,  DateTime? criadoEmInicio,  DateTime? criadoEmFim,  DateTime? dataLimiteInicio,  DateTime? dataLimiteFim,  String? projetoId,  bool semProjeto)?  filtered,TResult Function()?  loadedMore,TResult Function( String id)?  taskDeleted,TResult Function( Task task)?  taskUpdated,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case TaskListLoaded() when loaded != null:
 return loaded();case TaskListRefreshed() when refreshed != null:
 return refreshed();case TaskListFiltered() when filtered != null:
-return filtered(_that.status,_that.prioridade,_that.search,_that.criadoPor,_that.atribuidoPara,_that.criadoEmInicio,_that.criadoEmFim,_that.dataLimiteInicio,_that.dataLimiteFim);case TaskListLoadedMore() when loadedMore != null:
+return filtered(_that.status,_that.prioridade,_that.search,_that.criadoPor,_that.atribuidoPara,_that.criadoEmInicio,_that.criadoEmFim,_that.dataLimiteInicio,_that.dataLimiteFim,_that.projetoId,_that.semProjeto);case TaskListLoadedMore() when loadedMore != null:
 return loadedMore();case TaskListTaskDeleted() when taskDeleted != null:
 return taskDeleted(_that.id);case TaskListTaskUpdated() when taskUpdated != null:
 return taskUpdated(_that.task);case _:
@@ -160,12 +160,12 @@ return taskUpdated(_that.task);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loaded,required TResult Function()  refreshed,required TResult Function( TaskStatus? status,  TaskPriority? prioridade,  String? search,  int? criadoPor,  int? atribuidoPara,  DateTime? criadoEmInicio,  DateTime? criadoEmFim,  DateTime? dataLimiteInicio,  DateTime? dataLimiteFim)  filtered,required TResult Function()  loadedMore,required TResult Function( String id)  taskDeleted,required TResult Function( Task task)  taskUpdated,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loaded,required TResult Function()  refreshed,required TResult Function( TaskStatus? status,  TaskPriority? prioridade,  String? search,  int? criadoPor,  int? atribuidoPara,  DateTime? criadoEmInicio,  DateTime? criadoEmFim,  DateTime? dataLimiteInicio,  DateTime? dataLimiteFim,  String? projetoId,  bool semProjeto)  filtered,required TResult Function()  loadedMore,required TResult Function( String id)  taskDeleted,required TResult Function( Task task)  taskUpdated,}) {final _that = this;
 switch (_that) {
 case TaskListLoaded():
 return loaded();case TaskListRefreshed():
 return refreshed();case TaskListFiltered():
-return filtered(_that.status,_that.prioridade,_that.search,_that.criadoPor,_that.atribuidoPara,_that.criadoEmInicio,_that.criadoEmFim,_that.dataLimiteInicio,_that.dataLimiteFim);case TaskListLoadedMore():
+return filtered(_that.status,_that.prioridade,_that.search,_that.criadoPor,_that.atribuidoPara,_that.criadoEmInicio,_that.criadoEmFim,_that.dataLimiteInicio,_that.dataLimiteFim,_that.projetoId,_that.semProjeto);case TaskListLoadedMore():
 return loadedMore();case TaskListTaskDeleted():
 return taskDeleted(_that.id);case TaskListTaskUpdated():
 return taskUpdated(_that.task);case _:
@@ -185,12 +185,12 @@ return taskUpdated(_that.task);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loaded,TResult? Function()?  refreshed,TResult? Function( TaskStatus? status,  TaskPriority? prioridade,  String? search,  int? criadoPor,  int? atribuidoPara,  DateTime? criadoEmInicio,  DateTime? criadoEmFim,  DateTime? dataLimiteInicio,  DateTime? dataLimiteFim)?  filtered,TResult? Function()?  loadedMore,TResult? Function( String id)?  taskDeleted,TResult? Function( Task task)?  taskUpdated,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loaded,TResult? Function()?  refreshed,TResult? Function( TaskStatus? status,  TaskPriority? prioridade,  String? search,  int? criadoPor,  int? atribuidoPara,  DateTime? criadoEmInicio,  DateTime? criadoEmFim,  DateTime? dataLimiteInicio,  DateTime? dataLimiteFim,  String? projetoId,  bool semProjeto)?  filtered,TResult? Function()?  loadedMore,TResult? Function( String id)?  taskDeleted,TResult? Function( Task task)?  taskUpdated,}) {final _that = this;
 switch (_that) {
 case TaskListLoaded() when loaded != null:
 return loaded();case TaskListRefreshed() when refreshed != null:
 return refreshed();case TaskListFiltered() when filtered != null:
-return filtered(_that.status,_that.prioridade,_that.search,_that.criadoPor,_that.atribuidoPara,_that.criadoEmInicio,_that.criadoEmFim,_that.dataLimiteInicio,_that.dataLimiteFim);case TaskListLoadedMore() when loadedMore != null:
+return filtered(_that.status,_that.prioridade,_that.search,_that.criadoPor,_that.atribuidoPara,_that.criadoEmInicio,_that.criadoEmFim,_that.dataLimiteInicio,_that.dataLimiteFim,_that.projetoId,_that.semProjeto);case TaskListLoadedMore() when loadedMore != null:
 return loadedMore();case TaskListTaskDeleted() when taskDeleted != null:
 return taskDeleted(_that.id);case TaskListTaskUpdated() when taskUpdated != null:
 return taskUpdated(_that.task);case _:
@@ -269,7 +269,7 @@ String toString() {
 
 
 class TaskListFiltered implements TaskListEvent {
-  const TaskListFiltered({this.status, this.prioridade, this.search, this.criadoPor, this.atribuidoPara, this.criadoEmInicio, this.criadoEmFim, this.dataLimiteInicio, this.dataLimiteFim});
+  const TaskListFiltered({this.status, this.prioridade, this.search, this.criadoPor, this.atribuidoPara, this.criadoEmInicio, this.criadoEmFim, this.dataLimiteInicio, this.dataLimiteFim, this.projetoId, this.semProjeto = false});
   
 
  final  TaskStatus? status;
@@ -281,6 +281,8 @@ class TaskListFiltered implements TaskListEvent {
  final  DateTime? criadoEmFim;
  final  DateTime? dataLimiteInicio;
  final  DateTime? dataLimiteFim;
+ final  String? projetoId;
+@JsonKey() final  bool semProjeto;
 
 /// Create a copy of TaskListEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -292,16 +294,16 @@ $TaskListFilteredCopyWith<TaskListFiltered> get copyWith => _$TaskListFilteredCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskListFiltered&&(identical(other.status, status) || other.status == status)&&(identical(other.prioridade, prioridade) || other.prioridade == prioridade)&&(identical(other.search, search) || other.search == search)&&(identical(other.criadoPor, criadoPor) || other.criadoPor == criadoPor)&&(identical(other.atribuidoPara, atribuidoPara) || other.atribuidoPara == atribuidoPara)&&(identical(other.criadoEmInicio, criadoEmInicio) || other.criadoEmInicio == criadoEmInicio)&&(identical(other.criadoEmFim, criadoEmFim) || other.criadoEmFim == criadoEmFim)&&(identical(other.dataLimiteInicio, dataLimiteInicio) || other.dataLimiteInicio == dataLimiteInicio)&&(identical(other.dataLimiteFim, dataLimiteFim) || other.dataLimiteFim == dataLimiteFim));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskListFiltered&&(identical(other.status, status) || other.status == status)&&(identical(other.prioridade, prioridade) || other.prioridade == prioridade)&&(identical(other.search, search) || other.search == search)&&(identical(other.criadoPor, criadoPor) || other.criadoPor == criadoPor)&&(identical(other.atribuidoPara, atribuidoPara) || other.atribuidoPara == atribuidoPara)&&(identical(other.criadoEmInicio, criadoEmInicio) || other.criadoEmInicio == criadoEmInicio)&&(identical(other.criadoEmFim, criadoEmFim) || other.criadoEmFim == criadoEmFim)&&(identical(other.dataLimiteInicio, dataLimiteInicio) || other.dataLimiteInicio == dataLimiteInicio)&&(identical(other.dataLimiteFim, dataLimiteFim) || other.dataLimiteFim == dataLimiteFim)&&(identical(other.projetoId, projetoId) || other.projetoId == projetoId)&&(identical(other.semProjeto, semProjeto) || other.semProjeto == semProjeto));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,prioridade,search,criadoPor,atribuidoPara,criadoEmInicio,criadoEmFim,dataLimiteInicio,dataLimiteFim);
+int get hashCode => Object.hash(runtimeType,status,prioridade,search,criadoPor,atribuidoPara,criadoEmInicio,criadoEmFim,dataLimiteInicio,dataLimiteFim,projetoId,semProjeto);
 
 @override
 String toString() {
-  return 'TaskListEvent.filtered(status: $status, prioridade: $prioridade, search: $search, criadoPor: $criadoPor, atribuidoPara: $atribuidoPara, criadoEmInicio: $criadoEmInicio, criadoEmFim: $criadoEmFim, dataLimiteInicio: $dataLimiteInicio, dataLimiteFim: $dataLimiteFim)';
+  return 'TaskListEvent.filtered(status: $status, prioridade: $prioridade, search: $search, criadoPor: $criadoPor, atribuidoPara: $atribuidoPara, criadoEmInicio: $criadoEmInicio, criadoEmFim: $criadoEmFim, dataLimiteInicio: $dataLimiteInicio, dataLimiteFim: $dataLimiteFim, projetoId: $projetoId, semProjeto: $semProjeto)';
 }
 
 
@@ -312,7 +314,7 @@ abstract mixin class $TaskListFilteredCopyWith<$Res> implements $TaskListEventCo
   factory $TaskListFilteredCopyWith(TaskListFiltered value, $Res Function(TaskListFiltered) _then) = _$TaskListFilteredCopyWithImpl;
 @useResult
 $Res call({
- TaskStatus? status, TaskPriority? prioridade, String? search, int? criadoPor, int? atribuidoPara, DateTime? criadoEmInicio, DateTime? criadoEmFim, DateTime? dataLimiteInicio, DateTime? dataLimiteFim
+ TaskStatus? status, TaskPriority? prioridade, String? search, int? criadoPor, int? atribuidoPara, DateTime? criadoEmInicio, DateTime? criadoEmFim, DateTime? dataLimiteInicio, DateTime? dataLimiteFim, String? projetoId, bool semProjeto
 });
 
 
@@ -329,7 +331,7 @@ class _$TaskListFilteredCopyWithImpl<$Res>
 
 /// Create a copy of TaskListEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? status = freezed,Object? prioridade = freezed,Object? search = freezed,Object? criadoPor = freezed,Object? atribuidoPara = freezed,Object? criadoEmInicio = freezed,Object? criadoEmFim = freezed,Object? dataLimiteInicio = freezed,Object? dataLimiteFim = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? status = freezed,Object? prioridade = freezed,Object? search = freezed,Object? criadoPor = freezed,Object? atribuidoPara = freezed,Object? criadoEmInicio = freezed,Object? criadoEmFim = freezed,Object? dataLimiteInicio = freezed,Object? dataLimiteFim = freezed,Object? projetoId = freezed,Object? semProjeto = null,}) {
   return _then(TaskListFiltered(
 status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as TaskStatus?,prioridade: freezed == prioridade ? _self.prioridade : prioridade // ignore: cast_nullable_to_non_nullable
@@ -340,7 +342,9 @@ as int?,criadoEmInicio: freezed == criadoEmInicio ? _self.criadoEmInicio : criad
 as DateTime?,criadoEmFim: freezed == criadoEmFim ? _self.criadoEmFim : criadoEmFim // ignore: cast_nullable_to_non_nullable
 as DateTime?,dataLimiteInicio: freezed == dataLimiteInicio ? _self.dataLimiteInicio : dataLimiteInicio // ignore: cast_nullable_to_non_nullable
 as DateTime?,dataLimiteFim: freezed == dataLimiteFim ? _self.dataLimiteFim : dataLimiteFim // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,projetoId: freezed == projetoId ? _self.projetoId : projetoId // ignore: cast_nullable_to_non_nullable
+as String?,semProjeto: null == semProjeto ? _self.semProjeto : semProjeto // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

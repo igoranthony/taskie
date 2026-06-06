@@ -128,12 +128,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<Task> tasks,  TaskStatus? filterStatus,  TaskPriority? filterPrioridade,  String? filterSearch,  int? filterCriadoPor,  int? filterAtribuidoPara,  DateTime? filterCriadoEmInicio,  DateTime? filterCriadoEmFim,  DateTime? filterDataLimiteInicio,  DateTime? filterDataLimiteFim,  int page,  bool hasReachedMax,  bool isLoadingMore)?  success,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<Task> tasks,  TaskStatus? filterStatus,  TaskPriority? filterPrioridade,  String? filterSearch,  int? filterCriadoPor,  int? filterAtribuidoPara,  DateTime? filterCriadoEmInicio,  DateTime? filterCriadoEmFim,  DateTime? filterDataLimiteInicio,  DateTime? filterDataLimiteFim,  String? projetoId,  bool semProjeto,  int page,  bool hasReachedMax,  bool isLoadingMore)?  success,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case TaskListInitial() when initial != null:
 return initial();case TaskListLoading() when loading != null:
 return loading();case TaskListSuccess() when success != null:
-return success(_that.tasks,_that.filterStatus,_that.filterPrioridade,_that.filterSearch,_that.filterCriadoPor,_that.filterAtribuidoPara,_that.filterCriadoEmInicio,_that.filterCriadoEmFim,_that.filterDataLimiteInicio,_that.filterDataLimiteFim,_that.page,_that.hasReachedMax,_that.isLoadingMore);case TaskListFailure() when failure != null:
+return success(_that.tasks,_that.filterStatus,_that.filterPrioridade,_that.filterSearch,_that.filterCriadoPor,_that.filterAtribuidoPara,_that.filterCriadoEmInicio,_that.filterCriadoEmFim,_that.filterDataLimiteInicio,_that.filterDataLimiteFim,_that.projetoId,_that.semProjeto,_that.page,_that.hasReachedMax,_that.isLoadingMore);case TaskListFailure() when failure != null:
 return failure(_that.message);case _:
   return orElse();
 
@@ -152,12 +152,12 @@ return failure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<Task> tasks,  TaskStatus? filterStatus,  TaskPriority? filterPrioridade,  String? filterSearch,  int? filterCriadoPor,  int? filterAtribuidoPara,  DateTime? filterCriadoEmInicio,  DateTime? filterCriadoEmFim,  DateTime? filterDataLimiteInicio,  DateTime? filterDataLimiteFim,  int page,  bool hasReachedMax,  bool isLoadingMore)  success,required TResult Function( String message)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<Task> tasks,  TaskStatus? filterStatus,  TaskPriority? filterPrioridade,  String? filterSearch,  int? filterCriadoPor,  int? filterAtribuidoPara,  DateTime? filterCriadoEmInicio,  DateTime? filterCriadoEmFim,  DateTime? filterDataLimiteInicio,  DateTime? filterDataLimiteFim,  String? projetoId,  bool semProjeto,  int page,  bool hasReachedMax,  bool isLoadingMore)  success,required TResult Function( String message)  failure,}) {final _that = this;
 switch (_that) {
 case TaskListInitial():
 return initial();case TaskListLoading():
 return loading();case TaskListSuccess():
-return success(_that.tasks,_that.filterStatus,_that.filterPrioridade,_that.filterSearch,_that.filterCriadoPor,_that.filterAtribuidoPara,_that.filterCriadoEmInicio,_that.filterCriadoEmFim,_that.filterDataLimiteInicio,_that.filterDataLimiteFim,_that.page,_that.hasReachedMax,_that.isLoadingMore);case TaskListFailure():
+return success(_that.tasks,_that.filterStatus,_that.filterPrioridade,_that.filterSearch,_that.filterCriadoPor,_that.filterAtribuidoPara,_that.filterCriadoEmInicio,_that.filterCriadoEmFim,_that.filterDataLimiteInicio,_that.filterDataLimiteFim,_that.projetoId,_that.semProjeto,_that.page,_that.hasReachedMax,_that.isLoadingMore);case TaskListFailure():
 return failure(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -175,12 +175,12 @@ return failure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<Task> tasks,  TaskStatus? filterStatus,  TaskPriority? filterPrioridade,  String? filterSearch,  int? filterCriadoPor,  int? filterAtribuidoPara,  DateTime? filterCriadoEmInicio,  DateTime? filterCriadoEmFim,  DateTime? filterDataLimiteInicio,  DateTime? filterDataLimiteFim,  int page,  bool hasReachedMax,  bool isLoadingMore)?  success,TResult? Function( String message)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<Task> tasks,  TaskStatus? filterStatus,  TaskPriority? filterPrioridade,  String? filterSearch,  int? filterCriadoPor,  int? filterAtribuidoPara,  DateTime? filterCriadoEmInicio,  DateTime? filterCriadoEmFim,  DateTime? filterDataLimiteInicio,  DateTime? filterDataLimiteFim,  String? projetoId,  bool semProjeto,  int page,  bool hasReachedMax,  bool isLoadingMore)?  success,TResult? Function( String message)?  failure,}) {final _that = this;
 switch (_that) {
 case TaskListInitial() when initial != null:
 return initial();case TaskListLoading() when loading != null:
 return loading();case TaskListSuccess() when success != null:
-return success(_that.tasks,_that.filterStatus,_that.filterPrioridade,_that.filterSearch,_that.filterCriadoPor,_that.filterAtribuidoPara,_that.filterCriadoEmInicio,_that.filterCriadoEmFim,_that.filterDataLimiteInicio,_that.filterDataLimiteFim,_that.page,_that.hasReachedMax,_that.isLoadingMore);case TaskListFailure() when failure != null:
+return success(_that.tasks,_that.filterStatus,_that.filterPrioridade,_that.filterSearch,_that.filterCriadoPor,_that.filterAtribuidoPara,_that.filterCriadoEmInicio,_that.filterCriadoEmFim,_that.filterDataLimiteInicio,_that.filterDataLimiteFim,_that.projetoId,_that.semProjeto,_that.page,_that.hasReachedMax,_that.isLoadingMore);case TaskListFailure() when failure != null:
 return failure(_that.message);case _:
   return null;
 
@@ -257,7 +257,7 @@ String toString() {
 
 
 class TaskListSuccess implements TaskListState {
-  const TaskListSuccess({required final  List<Task> tasks, this.filterStatus, this.filterPrioridade, this.filterSearch, this.filterCriadoPor, this.filterAtribuidoPara, this.filterCriadoEmInicio, this.filterCriadoEmFim, this.filterDataLimiteInicio, this.filterDataLimiteFim, this.page = 1, this.hasReachedMax = false, this.isLoadingMore = false}): _tasks = tasks;
+  const TaskListSuccess({required final  List<Task> tasks, this.filterStatus, this.filterPrioridade, this.filterSearch, this.filterCriadoPor, this.filterAtribuidoPara, this.filterCriadoEmInicio, this.filterCriadoEmFim, this.filterDataLimiteInicio, this.filterDataLimiteFim, this.projetoId, this.semProjeto = false, this.page = 1, this.hasReachedMax = false, this.isLoadingMore = false}): _tasks = tasks;
   
 
  final  List<Task> _tasks;
@@ -276,6 +276,8 @@ class TaskListSuccess implements TaskListState {
  final  DateTime? filterCriadoEmFim;
  final  DateTime? filterDataLimiteInicio;
  final  DateTime? filterDataLimiteFim;
+ final  String? projetoId;
+@JsonKey() final  bool semProjeto;
 @JsonKey() final  int page;
 @JsonKey() final  bool hasReachedMax;
 @JsonKey() final  bool isLoadingMore;
@@ -290,16 +292,16 @@ $TaskListSuccessCopyWith<TaskListSuccess> get copyWith => _$TaskListSuccessCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskListSuccess&&const DeepCollectionEquality().equals(other._tasks, _tasks)&&(identical(other.filterStatus, filterStatus) || other.filterStatus == filterStatus)&&(identical(other.filterPrioridade, filterPrioridade) || other.filterPrioridade == filterPrioridade)&&(identical(other.filterSearch, filterSearch) || other.filterSearch == filterSearch)&&(identical(other.filterCriadoPor, filterCriadoPor) || other.filterCriadoPor == filterCriadoPor)&&(identical(other.filterAtribuidoPara, filterAtribuidoPara) || other.filterAtribuidoPara == filterAtribuidoPara)&&(identical(other.filterCriadoEmInicio, filterCriadoEmInicio) || other.filterCriadoEmInicio == filterCriadoEmInicio)&&(identical(other.filterCriadoEmFim, filterCriadoEmFim) || other.filterCriadoEmFim == filterCriadoEmFim)&&(identical(other.filterDataLimiteInicio, filterDataLimiteInicio) || other.filterDataLimiteInicio == filterDataLimiteInicio)&&(identical(other.filterDataLimiteFim, filterDataLimiteFim) || other.filterDataLimiteFim == filterDataLimiteFim)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasReachedMax, hasReachedMax) || other.hasReachedMax == hasReachedMax)&&(identical(other.isLoadingMore, isLoadingMore) || other.isLoadingMore == isLoadingMore));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskListSuccess&&const DeepCollectionEquality().equals(other._tasks, _tasks)&&(identical(other.filterStatus, filterStatus) || other.filterStatus == filterStatus)&&(identical(other.filterPrioridade, filterPrioridade) || other.filterPrioridade == filterPrioridade)&&(identical(other.filterSearch, filterSearch) || other.filterSearch == filterSearch)&&(identical(other.filterCriadoPor, filterCriadoPor) || other.filterCriadoPor == filterCriadoPor)&&(identical(other.filterAtribuidoPara, filterAtribuidoPara) || other.filterAtribuidoPara == filterAtribuidoPara)&&(identical(other.filterCriadoEmInicio, filterCriadoEmInicio) || other.filterCriadoEmInicio == filterCriadoEmInicio)&&(identical(other.filterCriadoEmFim, filterCriadoEmFim) || other.filterCriadoEmFim == filterCriadoEmFim)&&(identical(other.filterDataLimiteInicio, filterDataLimiteInicio) || other.filterDataLimiteInicio == filterDataLimiteInicio)&&(identical(other.filterDataLimiteFim, filterDataLimiteFim) || other.filterDataLimiteFim == filterDataLimiteFim)&&(identical(other.projetoId, projetoId) || other.projetoId == projetoId)&&(identical(other.semProjeto, semProjeto) || other.semProjeto == semProjeto)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasReachedMax, hasReachedMax) || other.hasReachedMax == hasReachedMax)&&(identical(other.isLoadingMore, isLoadingMore) || other.isLoadingMore == isLoadingMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_tasks),filterStatus,filterPrioridade,filterSearch,filterCriadoPor,filterAtribuidoPara,filterCriadoEmInicio,filterCriadoEmFim,filterDataLimiteInicio,filterDataLimiteFim,page,hasReachedMax,isLoadingMore);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_tasks),filterStatus,filterPrioridade,filterSearch,filterCriadoPor,filterAtribuidoPara,filterCriadoEmInicio,filterCriadoEmFim,filterDataLimiteInicio,filterDataLimiteFim,projetoId,semProjeto,page,hasReachedMax,isLoadingMore);
 
 @override
 String toString() {
-  return 'TaskListState.success(tasks: $tasks, filterStatus: $filterStatus, filterPrioridade: $filterPrioridade, filterSearch: $filterSearch, filterCriadoPor: $filterCriadoPor, filterAtribuidoPara: $filterAtribuidoPara, filterCriadoEmInicio: $filterCriadoEmInicio, filterCriadoEmFim: $filterCriadoEmFim, filterDataLimiteInicio: $filterDataLimiteInicio, filterDataLimiteFim: $filterDataLimiteFim, page: $page, hasReachedMax: $hasReachedMax, isLoadingMore: $isLoadingMore)';
+  return 'TaskListState.success(tasks: $tasks, filterStatus: $filterStatus, filterPrioridade: $filterPrioridade, filterSearch: $filterSearch, filterCriadoPor: $filterCriadoPor, filterAtribuidoPara: $filterAtribuidoPara, filterCriadoEmInicio: $filterCriadoEmInicio, filterCriadoEmFim: $filterCriadoEmFim, filterDataLimiteInicio: $filterDataLimiteInicio, filterDataLimiteFim: $filterDataLimiteFim, projetoId: $projetoId, semProjeto: $semProjeto, page: $page, hasReachedMax: $hasReachedMax, isLoadingMore: $isLoadingMore)';
 }
 
 
@@ -310,7 +312,7 @@ abstract mixin class $TaskListSuccessCopyWith<$Res> implements $TaskListStateCop
   factory $TaskListSuccessCopyWith(TaskListSuccess value, $Res Function(TaskListSuccess) _then) = _$TaskListSuccessCopyWithImpl;
 @useResult
 $Res call({
- List<Task> tasks, TaskStatus? filterStatus, TaskPriority? filterPrioridade, String? filterSearch, int? filterCriadoPor, int? filterAtribuidoPara, DateTime? filterCriadoEmInicio, DateTime? filterCriadoEmFim, DateTime? filterDataLimiteInicio, DateTime? filterDataLimiteFim, int page, bool hasReachedMax, bool isLoadingMore
+ List<Task> tasks, TaskStatus? filterStatus, TaskPriority? filterPrioridade, String? filterSearch, int? filterCriadoPor, int? filterAtribuidoPara, DateTime? filterCriadoEmInicio, DateTime? filterCriadoEmFim, DateTime? filterDataLimiteInicio, DateTime? filterDataLimiteFim, String? projetoId, bool semProjeto, int page, bool hasReachedMax, bool isLoadingMore
 });
 
 
@@ -327,7 +329,7 @@ class _$TaskListSuccessCopyWithImpl<$Res>
 
 /// Create a copy of TaskListState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? tasks = null,Object? filterStatus = freezed,Object? filterPrioridade = freezed,Object? filterSearch = freezed,Object? filterCriadoPor = freezed,Object? filterAtribuidoPara = freezed,Object? filterCriadoEmInicio = freezed,Object? filterCriadoEmFim = freezed,Object? filterDataLimiteInicio = freezed,Object? filterDataLimiteFim = freezed,Object? page = null,Object? hasReachedMax = null,Object? isLoadingMore = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? tasks = null,Object? filterStatus = freezed,Object? filterPrioridade = freezed,Object? filterSearch = freezed,Object? filterCriadoPor = freezed,Object? filterAtribuidoPara = freezed,Object? filterCriadoEmInicio = freezed,Object? filterCriadoEmFim = freezed,Object? filterDataLimiteInicio = freezed,Object? filterDataLimiteFim = freezed,Object? projetoId = freezed,Object? semProjeto = null,Object? page = null,Object? hasReachedMax = null,Object? isLoadingMore = null,}) {
   return _then(TaskListSuccess(
 tasks: null == tasks ? _self._tasks : tasks // ignore: cast_nullable_to_non_nullable
 as List<Task>,filterStatus: freezed == filterStatus ? _self.filterStatus : filterStatus // ignore: cast_nullable_to_non_nullable
@@ -339,7 +341,9 @@ as int?,filterCriadoEmInicio: freezed == filterCriadoEmInicio ? _self.filterCria
 as DateTime?,filterCriadoEmFim: freezed == filterCriadoEmFim ? _self.filterCriadoEmFim : filterCriadoEmFim // ignore: cast_nullable_to_non_nullable
 as DateTime?,filterDataLimiteInicio: freezed == filterDataLimiteInicio ? _self.filterDataLimiteInicio : filterDataLimiteInicio // ignore: cast_nullable_to_non_nullable
 as DateTime?,filterDataLimiteFim: freezed == filterDataLimiteFim ? _self.filterDataLimiteFim : filterDataLimiteFim // ignore: cast_nullable_to_non_nullable
-as DateTime?,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as DateTime?,projetoId: freezed == projetoId ? _self.projetoId : projetoId // ignore: cast_nullable_to_non_nullable
+as String?,semProjeto: null == semProjeto ? _self.semProjeto : semProjeto // ignore: cast_nullable_to_non_nullable
+as bool,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
 as int,hasReachedMax: null == hasReachedMax ? _self.hasReachedMax : hasReachedMax // ignore: cast_nullable_to_non_nullable
 as bool,isLoadingMore: null == isLoadingMore ? _self.isLoadingMore : isLoadingMore // ignore: cast_nullable_to_non_nullable
 as bool,
