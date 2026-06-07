@@ -140,6 +140,12 @@ class SubtaskViewSet(ActionSerializerMixin, viewsets.ModelViewSet):
     def get_queryset(self):
         return Subtask.objects.select_related('task')
 
+    def create(self, request, *args, **kwargs):
+        serializer = SubtaskCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        subtask = serializer.save()
+        return Response(SubtaskSerializer(subtask).data, status=status.HTTP_201_CREATED)
+
     @action(detail=True, methods=['post'], url_path='toggle')
     def toggle(self, request, pk=None):
         subtask = self.get_object()

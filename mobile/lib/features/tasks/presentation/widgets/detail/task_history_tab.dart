@@ -21,7 +21,7 @@ class TaskHistoryTab extends StatelessWidget {
         loading: () => const AppLoading(),
         success: (history) => history.isEmpty
             ? const AppEmptyState(
-                icon: Icons.history,
+                imageAsset: 'assets/images/empty_history.png',
                 title: 'Nenhuma alteração registrada',
               )
             : ListView.builder(

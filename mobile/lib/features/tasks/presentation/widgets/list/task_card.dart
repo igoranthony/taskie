@@ -9,6 +9,8 @@ import '../common/task_status_picker.dart';
 class TaskCard extends StatelessWidget {
   final Task task;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
+  final VoidCallback? onLongPressDenied;
   final VoidCallback? onDelete;
   final ValueChanged<TaskStatus>? onStatusChange;
   final VoidCallback? onStatusChangeDenied;
@@ -22,6 +24,8 @@ class TaskCard extends StatelessWidget {
     super.key,
     required this.task,
     this.onTap,
+    this.onLongPress,
+    this.onLongPressDenied,
     this.onDelete,
     this.onStatusChange,
     this.onStatusChangeDenied,
@@ -43,15 +47,15 @@ class TaskCard extends StatelessWidget {
         shadowColor: cs.shadow.withValues(alpha: 0.08),
         child: InkWell(
           onTap: onTap,
-          onLongPress: onStatusChange != null
+          onLongPress: onLongPress != null
               ? () {
                   HapticFeedback.mediumImpact();
-                  _showStatusPicker(context);
+                  onLongPress!();
                 }
-              : onStatusChangeDenied != null
+              : onLongPressDenied != null
                   ? () {
                       HapticFeedback.lightImpact();
-                      onStatusChangeDenied!();
+                      onLongPressDenied!();
                     }
                   : null,
           borderRadius: BorderRadius.circular(16),
@@ -89,12 +93,19 @@ class TaskCard extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    columnLabel != null
-                        ? _ColumnBadge(
-                            label: columnLabel!,
-                            isDone: columnIsDone ?? false,
-                          )
-                        : _StatusBadge(status: task.status),
+                    _StatusBadge(
+                      status: task.status,
+                      onTap: onStatusChange != null
+                          ? () => _showStatusPicker(context)
+                          : onStatusChangeDenied,
+                    ),
+                    if (columnLabel != null) ...[
+                      const SizedBox(width: 6),
+                      _ColumnBadge(
+                        label: columnLabel!,
+                        isDone: columnIsDone ?? false,
+                      ),
+                    ],
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -158,27 +169,32 @@ class TaskCard extends StatelessWidget {
 
 class _StatusBadge extends StatelessWidget {
   final TaskStatus status;
+  final VoidCallback? onTap;
 
-  const _StatusBadge({required this.status});
+  const _StatusBadge({required this.status, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final s = cs.statusColor(status);
     final (label, bg, fg) = (s.label.toUpperCase(), s.bg, s.fg);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: bg,
+    return Material(
+      color: bg,
+      borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.w700,
-          color: fg,
-          letterSpacing: 0.5,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+              color: fg,
+              letterSpacing: 0.5,
+            ),
+          ),
         ),
       ),
     );

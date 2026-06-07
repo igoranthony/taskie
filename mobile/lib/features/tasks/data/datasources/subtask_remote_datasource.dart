@@ -23,11 +23,12 @@ class SubtaskRemoteDataSourceImpl implements SubtaskRemoteDataSource {
     required String titulo,
     int? posicao,
   }) async {
-    final body = {
+    final body = <String, dynamic>{
       'task': taskId,
       'titulo': titulo,
-      'posicao': ?posicao,
     };
+    if (posicao != null) body['posicao'] = posicao;
+
     final response = await dio.post(ApiEndpoints.subtasks, data: body);
     return SubtaskModel.fromJson(response.data);
   }

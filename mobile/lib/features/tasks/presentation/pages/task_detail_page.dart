@@ -62,11 +62,21 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
             )..add(TaskHistoryEvent.loaded(widget.taskId)),
           ),
         ],
-        child: _TaskDetailView(
-          taskId: widget.taskId,
-          activeTab: _activeTab,
-          onTabChanged: (i) => setState(() => _activeTab = i),
-          onModified: () => _modified = true,
+        child: BlocListener<TaskDetailBloc, TaskDetailState>(
+          listenWhen: (previous, current) {
+            if (previous is! TaskDetailSuccess ||
+                current is! TaskDetailSuccess) {
+              return false;
+            }
+            return previous.task != current.task;
+          },
+          listener: (_, _) => _modified = true,
+          child: _TaskDetailView(
+            taskId: widget.taskId,
+            activeTab: _activeTab,
+            onTabChanged: (i) => setState(() => _activeTab = i),
+            onModified: () => _modified = true,
+          ),
         ),
       ),
     );
@@ -170,7 +180,7 @@ class _TaskDetailView extends StatelessWidget {
       if (context.mounted) {
         AppSnackbar.success(context, 'Tarefa excluída com sucesso.');
         onModified();
-        context.pop();
+        context.pop(true);
       }
     } catch (_) {
       if (context.mounted) {

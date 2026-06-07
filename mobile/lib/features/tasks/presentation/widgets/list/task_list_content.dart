@@ -207,46 +207,54 @@ class _TaskCardConnector extends StatelessWidget {
         }
       },
       onDelete: task.canEdit ? onDelete : null,
+      onLongPress: _buildColumnMoveHandler(context),
+      onLongPressDenied: _buildColumnMoveDenied(context),
       onStatusChange: _buildStatusChangeHandler(context),
-      onStatusChangeDenied: _buildStatusChangeDenied(context, column),
+      onStatusChangeDenied: _buildStatusChangeDenied(context),
     );
   }
 
-  /// Handler do long-press. Quando a task está num projeto, abre o picker de
-  /// coluna. Caso contrário, mantém o comportamento original de status.
-  ValueChanged<TaskStatus>? _buildStatusChangeHandler(BuildContext context) {
+  VoidCallback? _buildColumnMoveHandler(BuildContext context) {
     if (!task.canEdit) return null;
+    if (!_inProject) return null;
 
-    if (_inProject) {
-      final state = columnsCubit!.state;
-      if (state is! ProjectColumnsLoaded) return null;
-      // Reaproveita o callback do long-press do TaskCard pra abrir o picker
-      // de coluna. O parâmetro newStatus é ignorado.
-      return (_) => TaskColumnPicker.show(
+    final state = columnsCubit!.state;
+    if (state is! ProjectColumnsLoaded || state.columns.isEmpty) return null;
+
+    return () => TaskColumnPicker.show(
+          context,
+          task: task,
+          columns: state.columns,
+          onColumnChange: onChangeColumn,
+        );
+  }
+
+  VoidCallback? _buildColumnMoveDenied(BuildContext context) {
+    if (!task.canEdit) {
+      return () => AppSnackbar.info(
             context,
-            task: task,
-            columns: state.columns,
-            onColumnChange: onChangeColumn,
+            'Somente o criador pode mover esta tarefa.',
           );
     }
+    if (_inProject) {
+      return () => AppSnackbar.info(
+            context,
+            'As colunas ainda estao carregando.',
+          );
+    }
+    return null;
+  }
 
-    // Sem projeto: mantém a regra de "concluído irreversível"
-    if (task.status == TaskStatus.concluido) return null;
+  ValueChanged<TaskStatus>? _buildStatusChangeHandler(BuildContext context) {
+    if (!task.canEdit) return null;
     return onChangeStatus;
   }
 
-  VoidCallback? _buildStatusChangeDenied(
-      BuildContext context, ProjectColumn? column) {
+  VoidCallback? _buildStatusChangeDenied(BuildContext context) {
     if (!task.canEdit) {
       return () => AppSnackbar.info(
             context,
             'Somente o criador pode alterar o status desta tarefa.',
-          );
-    }
-    if (!_inProject && task.status == TaskStatus.concluido) {
-      return () => AppSnackbar.info(
-            context,
-            'Não é possível alterar o status de uma tarefa concluída.',
           );
     }
     return null;
