@@ -4,9 +4,13 @@ import 'package:go_router/go_router.dart';
 import '../../features/authentication/presentation/bloc/auth_bloc.dart';
 import '../../features/authentication/presentation/bloc/auth_state.dart';
 import '../../features/authentication/presentation/pages/login_page.dart';
+import '../../features/authentication/presentation/pages/settings_page.dart';
 import '../../features/projects/domain/entities/project.dart';
+import '../../features/projects/presentation/pages/category_manage_page.dart';
+import '../../features/projects/presentation/pages/column_manage_page.dart';
 import '../../features/projects/presentation/pages/project_form_page.dart';
 import '../../features/projects/presentation/pages/project_list_page.dart';
+import '../../features/projects/presentation/pages/project_share_page.dart';
 import '../../features/tasks/domain/entities/task.dart';
 import '../../features/tasks/presentation/pages/task_list_page.dart';
 import '../../features/tasks/presentation/pages/task_detail_page.dart';
@@ -18,8 +22,12 @@ abstract class AppRoutes {
   static const projects = '/projects';
   static const projectCreate = '/projects/create';
   static const projectsUnassignedTasks = '/projects/none/tasks';
+  static const categories = '/categories';
+  static const settings = '/settings';
   static String projectEdit(String id) => '/projects/$id/edit';
   static String projectTasks(String id) => '/projects/$id/tasks';
+  static String projectShare(String id) => '/projects/$id/share';
+  static String projectColumns(String id) => '/projects/$id/columns';
 
   static const tasks = '/tasks';
   static const taskCreate = '/tasks/create';
@@ -66,6 +74,14 @@ GoRouter createRouter(AuthBloc authBloc) {
         builder: (_, _) => const LoginPage(),
       ),
       GoRoute(
+        path: AppRoutes.categories,
+        builder: (_, _) => const CategoryManagePage(),
+      ),
+      GoRoute(
+        path: AppRoutes.settings,
+        builder: (_, _) => const SettingsPage(),
+      ),
+      GoRoute(
         path: AppRoutes.projects,
         builder: (_, _) => const ProjectListPage(),
         routes: [
@@ -84,6 +100,22 @@ GoRouter createRouter(AuthBloc authBloc) {
             path: ':id/edit',
             builder: (_, state) =>
                 ProjectFormPage(initialProject: state.extra as Project?),
+          ),
+          GoRoute(
+            path: ':id/share',
+            builder: (_, state) {
+              final project = state.extra as Project?;
+              return ProjectSharePage(
+                projectId: state.pathParameters['id']!,
+                projectName: project?.nome ?? 'Projeto',
+              );
+            },
+          ),
+          GoRoute(
+            path: ':id/columns',
+            builder: (_, state) => ColumnManagePage(
+              projectId: state.pathParameters['id']!,
+            ),
           ),
           GoRoute(
             path: ':id/tasks',

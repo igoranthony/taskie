@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/project.dart';
+import 'project_actions_sheet.dart';
 
-enum ProjectAction { edit, ativar, pausar, concluir, delete }
+enum ProjectAction { edit, share, manageColumns, ativar, pausar, concluir, delete }
 
 class ProjectCard extends StatelessWidget {
   final Project project;
@@ -59,12 +60,20 @@ class ProjectCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: accent.withValues(alpha: 0.18),
                             borderRadius: BorderRadius.circular(6),
+                            image: project.logoUrl != null
+                                ? DecorationImage(
+                                    image: NetworkImage(project.logoUrl!),
+                                    fit: BoxFit.cover,
+                                  )
+                                : null,
                           ),
-                          child: Icon(
-                            Icons.folder_outlined,
-                            size: 14,
-                            color: accent,
-                          ),
+                          child: project.logoUrl == null
+                              ? Icon(
+                                  Icons.folder_outlined,
+                                  size: 14,
+                                  color: accent,
+                                )
+                              : null,
                         ),
                         const SizedBox(width: 6),
                         Text(
@@ -76,6 +85,10 @@ class ProjectCard extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
+                        if (project.isOwner && project.pendingMembersCount > 0) ...[
+                          _PendingBadge(count: project.pendingMembersCount),
+                          const SizedBox(width: 6),
+                        ],
                         _StatusBadge(status: project.status),
                         if (project.isOwner && onAction != null)
                           _CardMenu(project: project, onAction: onAction!),
@@ -172,6 +185,43 @@ class _StatusBadge extends StatelessWidget {
   }
 }
 
+class _PendingBadge extends StatelessWidget {
+  final int count;
+
+  const _PendingBadge({required this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+      decoration: BoxDecoration(
+        color: cs.errorContainer,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.person_add_alt_1_rounded,
+            size: 11,
+            color: cs.onErrorContainer,
+          ),
+          const SizedBox(width: 3),
+          Text(
+            '$count',
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w800,
+              color: cs.onErrorContainer,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _CardMenu extends StatelessWidget {
   final Project project;
   final ValueChanged<ProjectAction> onAction;
@@ -180,65 +230,24 @@ class _CardMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 28,
-      height: 28,
-      child: PopupMenuButton<ProjectAction>(
-        padding: EdgeInsets.zero,
-        icon: const Icon(Icons.more_vert, size: 18),
-        onSelected: onAction,
-        itemBuilder: (_) {
-          final items = <PopupMenuEntry<ProjectAction>>[
-            const PopupMenuItem(
-              value: ProjectAction.edit,
-              child: Row(children: [
-                Icon(Icons.edit_outlined, size: 18),
-                SizedBox(width: 12),
-                Text('Editar'),
-              ]),
-            ),
-          ];
-          if (project.status != ProjectStatus.ativo) {
-            items.add(const PopupMenuItem(
-              value: ProjectAction.ativar,
-              child: Row(children: [
-                Icon(Icons.play_arrow_outlined, size: 18),
-                SizedBox(width: 12),
-                Text('Marcar como ativo'),
-              ]),
-            ));
-          }
-          if (project.status != ProjectStatus.pausado) {
-            items.add(const PopupMenuItem(
-              value: ProjectAction.pausar,
-              child: Row(children: [
-                Icon(Icons.pause_outlined, size: 18),
-                SizedBox(width: 12),
-                Text('Pausar'),
-              ]),
-            ));
-          }
-          if (project.status != ProjectStatus.concluido) {
-            items.add(const PopupMenuItem(
-              value: ProjectAction.concluir,
-              child: Row(children: [
-                Icon(Icons.check_circle_outline, size: 18),
-                SizedBox(width: 12),
-                Text('Concluir'),
-              ]),
-            ));
-          }
-          items.add(const PopupMenuDivider());
-          items.add(const PopupMenuItem(
-            value: ProjectAction.delete,
-            child: Row(children: [
-              Icon(Icons.delete_outline, size: 18, color: Colors.red),
-              SizedBox(width: 12),
-              Text('Excluir', style: TextStyle(color: Colors.red)),
-            ]),
-          ));
-          return items;
+    final cs = Theme.of(context).colorScheme;
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        onTap: () async {
+          final action = await ProjectActionsSheet.show(
+            context,
+            project: project,
+          );
+          if (action != null) onAction(action);
         },
+        borderRadius: BorderRadius.circular(8),
+        child: SizedBox(
+          width: 28,
+          height: 28,
+          child: Icon(Icons.more_vert, size: 18, color: cs.onSurfaceVariant),
+        ),
       ),
     );
   }

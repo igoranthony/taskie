@@ -22,6 +22,7 @@ class TaskRepositoryImpl implements TaskRepository {
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
     String? filterProjeto,
+    String? filterColuna,
     bool filterSemProjeto = false,
   }) async {
     final result = await remoteDataSource.getTasks(
@@ -36,6 +37,7 @@ class TaskRepositoryImpl implements TaskRepository {
       filterDataLimiteInicio: filterDataLimiteInicio,
       filterDataLimiteFim: filterDataLimiteFim,
       filterProjeto: filterProjeto,
+      filterColuna: filterColuna,
       filterSemProjeto: filterSemProjeto,
     );
     return (
@@ -71,6 +73,16 @@ class TaskRepositoryImpl implements TaskRepository {
   Future<List<TaskHistory>> getTaskHistory(String taskId) async {
     final models = await remoteDataSource.getTaskHistory(taskId);
     return models.map((m) => m.toEntity()).toList();
+  }
+
+  @override
+  Future<Task> moveTask({
+    required String taskId,
+    required String columnId,
+    required int posicao,
+  }) async {
+    final model = await remoteDataSource.moveTask(taskId, columnId, posicao);
+    return model.toEntity();
   }
 
   Map<String, dynamic> _taskToMap(Task task) {

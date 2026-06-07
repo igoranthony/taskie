@@ -1,4 +1,6 @@
+import 'dart:io';
 import '../../domain/entities/project.dart';
+import '../../domain/entities/project_column.dart';
 import '../../domain/repositories/project_repository.dart';
 import '../datasources/project_remote_datasource.dart';
 import '../models/project_model.dart';
@@ -73,5 +75,19 @@ class ProjectRepositoryImpl implements ProjectRepository {
   @override
   Future<void> deleteProject(String id) async {
     await remoteDataSource.deleteProject(id);
+  }
+
+  @override
+  Future<List<ProjectColumn>> getColumns(String projectId) async {
+    final models = await remoteDataSource.getColumns(projectId);
+    final entities = models.map((m) => m.toEntity()).toList();
+    entities.sort((a, b) => a.posicao.compareTo(b.posicao));
+    return entities;
+  }
+
+  @override
+  Future<Project> uploadLogo(String projectId, File logo) async {
+    final model = await remoteDataSource.uploadLogo(projectId, logo);
+    return model.toEntity();
   }
 }

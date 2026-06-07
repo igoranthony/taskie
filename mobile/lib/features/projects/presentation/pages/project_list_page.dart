@@ -20,6 +20,7 @@ import '../../domain/usecases/update_project_status.dart';
 import '../bloc/project_list/project_list_bloc.dart';
 import '../bloc/project_list/project_list_event.dart';
 import '../bloc/project_list/project_list_state.dart';
+import '../widgets/join_project_sheet.dart';
 import '../widgets/project_card.dart';
 
 class ProjectListPage extends StatelessWidget {
@@ -97,6 +98,18 @@ class _Header extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           _IconAction(
+            icon: Icons.qr_code_2_rounded,
+            onPressed: () async {
+              await JoinProjectSheet.show(context);
+              if (context.mounted) {
+                context
+                    .read<ProjectListBloc>()
+                    .add(const ProjectListEvent.refreshed());
+              }
+            },
+          ),
+          const SizedBox(width: 8),
+          _IconAction(
             icon: Icons.add,
             onPressed: () async {
               final created = await context.push<Project>(AppRoutes.projectCreate);
@@ -106,6 +119,11 @@ class _Header extends StatelessWidget {
                     .add(ProjectListEvent.projectUpserted(created));
               }
             },
+          ),
+          const SizedBox(width: 8),
+          _IconAction(
+            icon: Icons.settings_outlined,
+            onPressed: () => context.push(AppRoutes.settings),
           ),
           const SizedBox(width: 8),
           _IconAction(
@@ -235,6 +253,19 @@ class _Content extends StatelessWidget {
         );
         if (updated != null) {
           bloc.add(ProjectListEvent.projectUpserted(updated));
+        }
+      case ProjectAction.share:
+        await context.push(
+          AppRoutes.projectShare(project.id),
+          extra: project,
+        );
+        if (context.mounted) {
+          bloc.add(const ProjectListEvent.refreshed());
+        }
+      case ProjectAction.manageColumns:
+        await context.push(AppRoutes.projectColumns(project.id));
+        if (context.mounted) {
+          bloc.add(const ProjectListEvent.refreshed());
         }
       case ProjectAction.ativar:
         bloc.add(ProjectListEvent.statusChanged(project.id, ProjectStatus.ativo));

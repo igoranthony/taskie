@@ -57,6 +57,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         dataLimiteInicio: current?.filterDataLimiteInicio,
         dataLimiteFim: current?.filterDataLimiteFim,
         projetoId: current?.projetoId,
+        colunaId: current?.colunaId,
         semProjeto: current?.semProjeto ?? false,
       );
       emit(TaskListState.success(
@@ -72,6 +73,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         filterDataLimiteInicio: current?.filterDataLimiteInicio,
         filterDataLimiteFim: current?.filterDataLimiteFim,
         projetoId: current?.projetoId,
+        colunaId: current?.colunaId,
         semProjeto: current?.semProjeto ?? false,
       ));
     } catch (e) {
@@ -100,6 +102,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         dataLimiteInicio: event.dataLimiteInicio,
         dataLimiteFim: event.dataLimiteFim,
         projetoId: projetoId,
+        colunaId: event.colunaId,
         semProjeto: semProjeto,
       );
       emit(TaskListState.success(
@@ -115,6 +118,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         filterDataLimiteInicio: event.dataLimiteInicio,
         filterDataLimiteFim: event.dataLimiteFim,
         projetoId: projetoId,
+        colunaId: event.colunaId,
         semProjeto: semProjeto,
       ));
     } catch (e) {
@@ -144,6 +148,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         dataLimiteInicio: current.filterDataLimiteInicio,
         dataLimiteFim: current.filterDataLimiteFim,
         projetoId: current.projetoId,
+        colunaId: current.colunaId,
         semProjeto: current.semProjeto,
       );
       emit(current.copyWith(

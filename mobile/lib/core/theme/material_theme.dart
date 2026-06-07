@@ -107,7 +107,8 @@ class MaterialTheme {
     );
   }
 
-  ThemeData light() => theme(lightScheme());
+  ThemeData light({Color? accent}) =>
+      theme(_applyAccent(lightScheme(), accent));
 
   static ColorScheme darkScheme() {
     return const ColorScheme(
@@ -160,7 +161,31 @@ class MaterialTheme {
     );
   }
 
-  ThemeData dark() => theme(darkScheme());
+  ThemeData dark({Color? accent}) =>
+      theme(_applyAccent(darkScheme(), accent));
+
+  /// Substitui `primary`/`primaryContainer`/`secondary` derivando da cor
+  /// accent via `ColorScheme.fromSeed` (Material 3). Preserva surfaces e
+  /// errors do schema base pra não quebrar layout/contrastes.
+  static ColorScheme _applyAccent(ColorScheme base, Color? accent) {
+    if (accent == null) return base;
+    final seeded = ColorScheme.fromSeed(
+      seedColor: accent,
+      brightness: base.brightness,
+    );
+    return base.copyWith(
+      primary: seeded.primary,
+      onPrimary: seeded.onPrimary,
+      primaryContainer: seeded.primaryContainer,
+      onPrimaryContainer: seeded.onPrimaryContainer,
+      secondary: seeded.secondary,
+      onSecondary: seeded.onSecondary,
+      secondaryContainer: seeded.secondaryContainer,
+      onSecondaryContainer: seeded.onSecondaryContainer,
+      surfaceTint: seeded.primary,
+      inversePrimary: seeded.inversePrimary,
+    );
+  }
 
   ThemeData theme(ColorScheme colorScheme) => ThemeData(
         useMaterial3: true,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../domain/entities/task.dart';
 import '../../../../../core/theme/material_theme.dart';
 import '../../../../../shared/extensions/datetime_extensions.dart';
+import 'task_subtasks_section.dart';
+import 'task_attachments_section.dart';
 
 class TaskDetailOverviewBody extends StatelessWidget {
   final Task task;
@@ -70,6 +72,22 @@ class TaskDetailOverviewBody extends StatelessWidget {
                 color: cs.onSurfaceVariant,
                 height: 1.65,
               ),
+            ),
+          ],
+          // ── Subtarefas ──────────────────────────────────────────
+          if (task.subtarefas.isNotEmpty || task.canEdit) ...[
+            const SizedBox(height: 28),
+            TaskSubtasksSection(
+              subtarefas: task.subtarefas,
+              canEdit: task.canEdit,
+            ),
+          ],
+          // ── Anexos ──────────────────────────────────────────────
+          if (task.anexos.isNotEmpty || task.canEdit) ...[
+            const SizedBox(height: 28),
+            TaskAttachmentsSection(
+              anexos: task.anexos,
+              canEdit: task.canEdit,
             ),
           ],
           // ── Updated footer ──────────────────────────────────────

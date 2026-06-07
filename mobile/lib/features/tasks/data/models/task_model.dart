@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../domain/entities/task.dart';
+import 'subtask_model.dart';
+import 'attachment_model.dart';
 
 part 'task_model.freezed.dart';
 part 'task_model.g.dart';
@@ -26,6 +28,9 @@ abstract class TaskModel with _$TaskModel {
     @JsonKey(name: 'atualizado_em') required String atualizadoEm,
     @JsonKey(name: 'can_edit') @Default(false) bool canEdit,
     @JsonKey(name: 'projeto') String? projetoId,
+    @JsonKey(name: 'coluna') String? colunaId,
+    @Default([]) List<SubtaskModel> subtarefas,
+    @Default([]) List<AttachmentModel> anexos,
   }) = _TaskModel;
 
   factory TaskModel.fromJson(Map<String, dynamic> json) =>
@@ -45,6 +50,9 @@ abstract class TaskModel with _$TaskModel {
         atualizadoEm: DateTime.parse(atualizadoEm).toLocal(),
         canEdit: canEdit,
         projetoId: projetoId,
+        colunaId: colunaId,
+        subtarefas: subtarefas.map((s) => s.toEntity()).toList(),
+        anexos: anexos.map((a) => a.toEntity()).toList(),
       );
 
   factory TaskModel.fromEntity(Task task) => TaskModel(

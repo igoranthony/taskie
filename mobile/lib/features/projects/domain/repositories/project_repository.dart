@@ -1,4 +1,6 @@
+import 'dart:io';
 import '../entities/project.dart';
+import '../entities/project_column.dart';
 
 abstract class ProjectRepository {
   Future<List<Project>> getProjects();
@@ -16,4 +18,6 @@ abstract class ProjectRepository {
   });
   Future<Project> updateStatus(String id, ProjectStatus status);
   Future<void> deleteProject(String id);
+  Future<List<ProjectColumn>> getColumns(String projectId);
+  Future<Project> uploadLogo(String projectId, File logo);
 }

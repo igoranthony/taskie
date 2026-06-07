@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 import '../../../../core/network/api_endpoints.dart';
+import '../models/project_column_model.dart';
 import '../models/project_model.dart';
 
 abstract class ProjectRemoteDataSource {
@@ -9,6 +11,8 @@ abstract class ProjectRemoteDataSource {
   Future<ProjectModel> updateProject(String id, Map<String, dynamic> body);
   Future<ProjectModel> updateStatus(String id, String status);
   Future<void> deleteProject(String id);
+  Future<List<ProjectColumnModel>> getColumns(String projectId);
+  Future<ProjectModel> uploadLogo(String projectId, File logo);
 }
 
 class ProjectRemoteDataSourceImpl implements ProjectRemoteDataSource {
@@ -55,5 +59,30 @@ class ProjectRemoteDataSourceImpl implements ProjectRemoteDataSource {
   @override
   Future<void> deleteProject(String id) async {
     await dio.delete(ApiEndpoints.projectDetail(id));
+  }
+
+  @override
+  Future<List<ProjectColumnModel>> getColumns(String projectId) async {
+    final response = await dio.get(ApiEndpoints.projectBoard(projectId));
+    final List<dynamic> data = response.data is List
+        ? response.data
+        : response.data['results'] ?? response.data;
+    return data.map((json) => ProjectColumnModel.fromJson(json)).toList();
+  }
+
+  @override
+  Future<ProjectModel> uploadLogo(String projectId, File logo) async {
+    final formData = FormData.fromMap({
+      'logo': await MultipartFile.fromFile(
+        logo.path,
+        filename: logo.uri.pathSegments.last,
+      ),
+    });
+    final response = await dio.post(
+      ApiEndpoints.projectLogo(projectId),
+      data: formData,
+      options: Options(contentType: 'multipart/form-data'),
+    );
+    return ProjectModel.fromJson(response.data);
   }
 }

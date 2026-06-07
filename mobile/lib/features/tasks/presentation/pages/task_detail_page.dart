@@ -6,6 +6,11 @@ import '../../../../core/router/app_router.dart';
 import '../../domain/repositories/task_repository.dart';
 import '../../domain/usecases/delete_task.dart';
 import '../../domain/usecases/get_task_history.dart';
+import '../../domain/usecases/create_subtask.dart';
+import '../../domain/usecases/toggle_subtask.dart';
+import '../../domain/usecases/delete_subtask.dart';
+import '../../domain/usecases/upload_attachment.dart';
+import '../../domain/usecases/delete_attachment.dart';
 import '../bloc/task_detail/task_detail_bloc.dart';
 import '../bloc/task_detail/task_detail_event.dart';
 import '../bloc/task_detail/task_detail_state.dart';
@@ -44,6 +49,11 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
           BlocProvider(
             create: (_) => TaskDetailBloc(
               taskRepository: getIt<TaskRepository>(),
+              createSubtask: getIt<CreateSubtask>(),
+              toggleSubtask: getIt<ToggleSubtask>(),
+              deleteSubtask: getIt<DeleteSubtask>(),
+              uploadAttachment: getIt<UploadAttachment>(),
+              deleteAttachment: getIt<DeleteAttachment>(),
             )..add(TaskDetailEvent.loaded(widget.taskId)),
           ),
           BlocProvider(

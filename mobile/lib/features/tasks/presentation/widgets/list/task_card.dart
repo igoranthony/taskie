@@ -12,6 +12,11 @@ class TaskCard extends StatelessWidget {
   final VoidCallback? onDelete;
   final ValueChanged<TaskStatus>? onStatusChange;
   final VoidCallback? onStatusChangeDenied;
+  /// Nome da coluna (quando a task pertence a um projeto). Quando informado,
+  /// o badge passa a mostrar este label em vez do status fixo.
+  final String? columnLabel;
+  /// Indica se a coluna da task é a "concluído" — afeta a cor do badge.
+  final bool? columnIsDone;
 
   const TaskCard({
     super.key,
@@ -20,6 +25,8 @@ class TaskCard extends StatelessWidget {
     this.onDelete,
     this.onStatusChange,
     this.onStatusChangeDenied,
+    this.columnLabel,
+    this.columnIsDone,
   });
 
   @override
@@ -82,7 +89,12 @@ class TaskCard extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    _StatusBadge(status: task.status),
+                    columnLabel != null
+                        ? _ColumnBadge(
+                            label: columnLabel!,
+                            isDone: columnIsDone ?? false,
+                          )
+                        : _StatusBadge(status: task.status),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -167,6 +179,41 @@ class _StatusBadge extends StatelessWidget {
           fontWeight: FontWeight.w700,
           color: fg,
           letterSpacing: 0.5,
+        ),
+      ),
+    );
+  }
+}
+
+class _ColumnBadge extends StatelessWidget {
+  final String label;
+  final bool isDone;
+
+  const _ColumnBadge({required this.label, required this.isDone});
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final bg = isDone ? cs.primaryContainer : cs.secondaryContainer;
+    final fg = isDone ? cs.onPrimaryContainer : cs.onSecondaryContainer;
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 140),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          label.toUpperCase(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.w700,
+            color: fg,
+            letterSpacing: 0.5,
+          ),
         ),
       ),
     );

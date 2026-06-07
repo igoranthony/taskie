@@ -14,6 +14,7 @@ abstract class TaskRepository {
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
     String? filterProjeto,
+    String? filterColuna,
     bool filterSemProjeto,
   });
   Future<Task> getTaskById(String id);
@@ -21,4 +22,9 @@ abstract class TaskRepository {
   Future<Task> updateTask(Task task);
   Future<void> deleteTask(String id);
   Future<List<TaskHistory>> getTaskHistory(String taskId);
+  Future<Task> moveTask({
+    required String taskId,
+    required String columnId,
+    required int posicao,
+  });
 }

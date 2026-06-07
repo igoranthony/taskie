@@ -105,7 +105,8 @@ class TaskListHeader extends StatelessWidget {
                     prev.filterCriadoEmInicio != curr.filterCriadoEmInicio ||
                     prev.filterCriadoEmFim != curr.filterCriadoEmFim ||
                     prev.filterDataLimiteInicio != curr.filterDataLimiteInicio ||
-                    prev.filterDataLimiteFim != curr.filterDataLimiteFim;
+                    prev.filterDataLimiteFim != curr.filterDataLimiteFim ||
+                    prev.colunaId != curr.colunaId;
               }
               return prev.runtimeType != curr.runtimeType;
             },
@@ -139,6 +140,7 @@ class TaskListHeader extends StatelessWidget {
                           criadoEmFim: result.criadoEmFim,
                           dataLimiteInicio: result.dataLimiteInicio,
                           dataLimiteFim: result.dataLimiteFim,
+                          colunaId: success?.colunaId,
                         ));
                   }
                 },
