@@ -13,5 +13,6 @@ abstract class TaskFormEvent with _$TaskFormEvent {
     required TaskPriority prioridade,
     int? atribuidoPara,
     DateTime? dataLimite,
+    String? projetoId,
   }) = TaskFormSubmitted;
 }

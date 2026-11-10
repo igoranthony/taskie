@@ -48,6 +48,7 @@ class TaskFormBloc extends Bloc<TaskFormEvent, TaskFormState> {
           dataLimite: event.dataLimite,
           criadoEm: DateTime.now(),
           atualizadoEm: DateTime.now(),
+          projetoId: event.projetoId,
         );
         result = await _createTask(newTask);
       }

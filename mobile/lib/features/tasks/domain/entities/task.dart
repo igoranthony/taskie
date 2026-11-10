@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'subtask.dart';
+import 'attachment.dart';
 
 enum TaskStatus { backlog, emAndamento, concluido }
 enum TaskPriority { baixa, media, alta }
@@ -18,6 +20,13 @@ class Task extends Equatable {
   final DateTime criadoEm;
   final DateTime atualizadoEm;
   final bool canEdit;
+  /// FK do projeto (null = task "solta", sem projeto)
+  final String? projetoId;
+  /// FK da coluna (null = task sem projeto). Pra task com projeto, define
+  /// a posição visual no board e — com `is_done_column` — o status derivado.
+  final String? colunaId;
+  final List<Subtask> subtarefas;
+  final List<Attachment> anexos;
 
   const Task({
     required this.id,
@@ -32,7 +41,15 @@ class Task extends Equatable {
     required this.criadoEm,
     required this.atualizadoEm,
     this.canEdit = false,
+    this.projetoId,
+    this.colunaId,
+    this.subtarefas = const [],
+    this.anexos = const [],
   });
+
+  int get subtarefasTotal => subtarefas.length;
+  int get subtarefasConcluidas =>
+      subtarefas.where((s) => s.concluida).length;
 
   @override
   List<Object?> get props => [
@@ -48,6 +65,10 @@ class Task extends Equatable {
         criadoEm,
         atualizadoEm,
         canEdit,
+        projetoId,
+        colunaId,
+        subtarefas,
+        anexos,
       ];
 
   Task copyWith({
@@ -63,6 +84,10 @@ class Task extends Equatable {
     DateTime? criadoEm,
     DateTime? atualizadoEm,
     bool? canEdit,
+    String? projetoId,
+    String? colunaId,
+    List<Subtask>? subtarefas,
+    List<Attachment>? anexos,
   }) {
     return Task(
       id: id ?? this.id,
@@ -77,6 +102,10 @@ class Task extends Equatable {
       criadoEm: criadoEm ?? this.criadoEm,
       atualizadoEm: atualizadoEm ?? this.atualizadoEm,
       canEdit: canEdit ?? this.canEdit,
+      projetoId: projetoId ?? this.projetoId,
+      colunaId: colunaId ?? this.colunaId,
+      subtarefas: subtarefas ?? this.subtarefas,
+      anexos: anexos ?? this.anexos,
     );
   }
 }

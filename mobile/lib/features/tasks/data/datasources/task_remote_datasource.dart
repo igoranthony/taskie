@@ -16,12 +16,16 @@ abstract class TaskRemoteDataSource {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? filterProjeto,
+    String? filterColuna,
+    bool filterSemProjeto = false,
   });
   Future<TaskModel> getTaskById(String id);
   Future<void> createTask(Map<String, dynamic> data);
   Future<void> updateTask(String id, Map<String, dynamic> data);
   Future<void> deleteTask(String id);
   Future<List<TaskHistoryModel>> getTaskHistory(String taskId);
+  Future<TaskModel> moveTask(String taskId, String columnId, int posicao);
 }
 
 class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
@@ -41,6 +45,9 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? filterProjeto,
+    String? filterColuna,
+    bool filterSemProjeto = false,
   }) async {
     final queryParams = <String, dynamic>{'page': page};
     if (filterStatus != null) queryParams['status'] = _statusToString(filterStatus);
@@ -52,6 +59,9 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     if (filterCriadoEmFim != null) queryParams['criado_em_fim'] = filterCriadoEmFim.toIso8601String();
     if (filterDataLimiteInicio != null) queryParams['data_limite_inicio'] = filterDataLimiteInicio.toIso8601String();
     if (filterDataLimiteFim != null) queryParams['data_limite_fim'] = filterDataLimiteFim.toIso8601String();
+    if (filterProjeto != null) queryParams['projeto'] = filterProjeto;
+    if (filterColuna != null) queryParams['coluna'] = filterColuna;
+    if (filterSemProjeto) queryParams['projeto__isnull'] = 'true';
 
     final response = await dio.get(ApiEndpoints.tasks, queryParameters: queryParams);
 
@@ -97,6 +107,15 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
         : response.data['results'] ?? response.data;
 
     return data.map((json) => TaskHistoryModel.fromJson(json)).toList();
+  }
+
+  @override
+  Future<TaskModel> moveTask(String taskId, String columnId, int posicao) async {
+    final response = await dio.post(
+      ApiEndpoints.taskMove(taskId),
+      data: {'coluna_id': columnId, 'posicao': posicao},
+    );
+    return TaskModel.fromJson(response.data);
   }
 
   String _statusToString(TaskStatus status) {

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppEmptyState extends StatelessWidget {
   final IconData? icon;
   final String? svgAsset;
+  final String? imageAsset;
   final String title;
   final String? subtitle;
 
@@ -12,9 +13,13 @@ class AppEmptyState extends StatelessWidget {
     super.key,
     this.icon,
     this.svgAsset,
+    this.imageAsset,
     required this.title,
     this.subtitle,
-  }) : assert(icon != null || svgAsset != null, 'Forneça icon ou svgAsset');
+  }) : assert(
+          icon != null || svgAsset != null || imageAsset != null,
+          'Forneca icon, svgAsset ou imageAsset',
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,14 @@ class AppEmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (svgAsset != null)
+            if (imageAsset != null)
+              Image.asset(
+                imageAsset!,
+                width: 180,
+                height: 180,
+                fit: BoxFit.contain,
+              )
+            else if (svgAsset != null)
               SvgPicture.asset(svgAsset!, width: 180, height: 180)
             else
               Container(

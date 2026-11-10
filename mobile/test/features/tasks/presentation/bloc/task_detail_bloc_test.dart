@@ -4,15 +4,32 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:taskie/features/tasks/domain/entities/task.dart';
 import 'package:taskie/features/tasks/domain/repositories/task_repository.dart';
+import 'package:taskie/features/tasks/domain/usecases/create_subtask.dart';
+import 'package:taskie/features/tasks/domain/usecases/toggle_subtask.dart';
+import 'package:taskie/features/tasks/domain/usecases/delete_subtask.dart';
+import 'package:taskie/features/tasks/domain/usecases/upload_attachment.dart';
+import 'package:taskie/features/tasks/domain/usecases/delete_attachment.dart';
 import 'package:taskie/features/tasks/presentation/bloc/task_detail/task_detail_bloc.dart';
 import 'package:taskie/features/tasks/presentation/bloc/task_detail/task_detail_event.dart';
 import 'package:taskie/features/tasks/presentation/bloc/task_detail/task_detail_state.dart';
 
 import 'task_detail_bloc_test.mocks.dart';
 
-@GenerateMocks([TaskRepository])
+@GenerateMocks([
+  TaskRepository,
+  CreateSubtask,
+  ToggleSubtask,
+  DeleteSubtask,
+  UploadAttachment,
+  DeleteAttachment,
+])
 void main() {
   late MockTaskRepository mockRepository;
+  late MockCreateSubtask mockCreateSubtask;
+  late MockToggleSubtask mockToggleSubtask;
+  late MockDeleteSubtask mockDeleteSubtask;
+  late MockUploadAttachment mockUploadAttachment;
+  late MockDeleteAttachment mockDeleteAttachment;
 
   final tTask = Task(
     id: '42',
@@ -26,10 +43,21 @@ void main() {
 
   setUp(() {
     mockRepository = MockTaskRepository();
+    mockCreateSubtask = MockCreateSubtask();
+    mockToggleSubtask = MockToggleSubtask();
+    mockDeleteSubtask = MockDeleteSubtask();
+    mockUploadAttachment = MockUploadAttachment();
+    mockDeleteAttachment = MockDeleteAttachment();
   });
 
-  TaskDetailBloc buildBloc() =>
-      TaskDetailBloc(taskRepository: mockRepository);
+  TaskDetailBloc buildBloc() => TaskDetailBloc(
+        taskRepository: mockRepository,
+        createSubtask: mockCreateSubtask,
+        toggleSubtask: mockToggleSubtask,
+        deleteSubtask: mockDeleteSubtask,
+        uploadAttachment: mockUploadAttachment,
+        deleteAttachment: mockDeleteAttachment,
+      );
 
   group('TaskDetailBloc', () {
     test('estado inicial é TaskDetailInitial', () {

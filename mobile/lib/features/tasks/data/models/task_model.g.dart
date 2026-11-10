@@ -29,6 +29,26 @@ _TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => $checkedCreate(
       criadoEm: $checkedConvert('criado_em', (v) => v as String),
       atualizadoEm: $checkedConvert('atualizado_em', (v) => v as String),
       canEdit: $checkedConvert('can_edit', (v) => v as bool? ?? false),
+      projetoId: $checkedConvert('projeto', (v) => v as String?),
+      colunaId: $checkedConvert('coluna', (v) => v as String?),
+      subtarefas: $checkedConvert(
+        'subtarefas',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => SubtaskModel.fromJson(e as Map<String, dynamic>))
+                .toList() ??
+            const [],
+      ),
+      anexos: $checkedConvert(
+        'anexos',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map(
+                  (e) => AttachmentModel.fromJson(e as Map<String, dynamic>),
+                )
+                .toList() ??
+            const [],
+      ),
     );
     return val;
   },
@@ -40,6 +60,8 @@ _TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => $checkedCreate(
     'criadoEm': 'criado_em',
     'atualizadoEm': 'atualizado_em',
     'canEdit': 'can_edit',
+    'projetoId': 'projeto',
+    'colunaId': 'coluna',
   },
 );
 
@@ -57,4 +79,8 @@ Map<String, dynamic> _$TaskModelToJson(_TaskModel instance) =>
       'criado_em': instance.criadoEm,
       'atualizado_em': instance.atualizadoEm,
       'can_edit': instance.canEdit,
+      'projeto': instance.projetoId,
+      'coluna': instance.colunaId,
+      'subtarefas': instance.subtarefas,
+      'anexos': instance.anexos,
     };

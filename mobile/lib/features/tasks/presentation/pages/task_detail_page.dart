@@ -6,6 +6,11 @@ import '../../../../core/router/app_router.dart';
 import '../../domain/repositories/task_repository.dart';
 import '../../domain/usecases/delete_task.dart';
 import '../../domain/usecases/get_task_history.dart';
+import '../../domain/usecases/create_subtask.dart';
+import '../../domain/usecases/toggle_subtask.dart';
+import '../../domain/usecases/delete_subtask.dart';
+import '../../domain/usecases/upload_attachment.dart';
+import '../../domain/usecases/delete_attachment.dart';
 import '../bloc/task_detail/task_detail_bloc.dart';
 import '../bloc/task_detail/task_detail_event.dart';
 import '../bloc/task_detail/task_detail_state.dart';
@@ -44,6 +49,11 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
           BlocProvider(
             create: (_) => TaskDetailBloc(
               taskRepository: getIt<TaskRepository>(),
+              createSubtask: getIt<CreateSubtask>(),
+              toggleSubtask: getIt<ToggleSubtask>(),
+              deleteSubtask: getIt<DeleteSubtask>(),
+              uploadAttachment: getIt<UploadAttachment>(),
+              deleteAttachment: getIt<DeleteAttachment>(),
             )..add(TaskDetailEvent.loaded(widget.taskId)),
           ),
           BlocProvider(
@@ -52,11 +62,21 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
             )..add(TaskHistoryEvent.loaded(widget.taskId)),
           ),
         ],
-        child: _TaskDetailView(
-          taskId: widget.taskId,
-          activeTab: _activeTab,
-          onTabChanged: (i) => setState(() => _activeTab = i),
-          onModified: () => _modified = true,
+        child: BlocListener<TaskDetailBloc, TaskDetailState>(
+          listenWhen: (previous, current) {
+            if (previous is! TaskDetailSuccess ||
+                current is! TaskDetailSuccess) {
+              return false;
+            }
+            return previous.task != current.task;
+          },
+          listener: (_, _) => _modified = true,
+          child: _TaskDetailView(
+            taskId: widget.taskId,
+            activeTab: _activeTab,
+            onTabChanged: (i) => setState(() => _activeTab = i),
+            onModified: () => _modified = true,
+          ),
         ),
       ),
     );
@@ -160,7 +180,7 @@ class _TaskDetailView extends StatelessWidget {
       if (context.mounted) {
         AppSnackbar.success(context, 'Tarefa excluída com sucesso.');
         onModified();
-        context.pop();
+        context.pop(true);
       }
     } catch (_) {
       if (context.mounted) {

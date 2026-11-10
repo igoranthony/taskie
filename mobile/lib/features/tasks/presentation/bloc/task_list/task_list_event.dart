@@ -17,6 +17,9 @@ class TaskListEvent with _$TaskListEvent {
     DateTime? criadoEmFim,
     DateTime? dataLimiteInicio,
     DateTime? dataLimiteFim,
+    String? projetoId,
+    String? colunaId,
+    @Default(false) bool semProjeto,
   }) = TaskListFiltered;
   const factory TaskListEvent.loadedMore() = TaskListLoadedMore;
   const factory TaskListEvent.taskDeleted(String id) = TaskListTaskDeleted;

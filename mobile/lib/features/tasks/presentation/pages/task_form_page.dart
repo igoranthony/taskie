@@ -14,8 +14,10 @@ import '../../../../shared/widgets/app_snackbar.dart';
 
 class TaskFormPage extends StatelessWidget {
   final Task? initialTask;
+  /// Quando definido, a task é criada já vinculada a este projeto.
+  final String? projetoId;
 
-  const TaskFormPage({super.key, this.initialTask});
+  const TaskFormPage({super.key, this.initialTask, this.projetoId});
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +26,16 @@ class TaskFormPage extends StatelessWidget {
         createTask: getIt<CreateTask>(),
         updateTask: getIt<UpdateTask>(),
       ),
-      child: _TaskFormView(initialTask: initialTask),
+      child: _TaskFormView(initialTask: initialTask, projetoId: projetoId),
     );
   }
 }
 
 class _TaskFormView extends StatelessWidget {
   final Task? initialTask;
+  final String? projetoId;
 
-  const _TaskFormView({this.initialTask});
+  const _TaskFormView({this.initialTask, this.projetoId});
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +85,7 @@ class _TaskFormView extends StatelessWidget {
                               prioridade: prioridade,
                               atribuidoPara: atribuidoPara,
                               dataLimite: dataLimite,
+                              projetoId: projetoId,
                             ),
                           );
                     },

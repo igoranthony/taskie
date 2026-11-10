@@ -17,6 +17,9 @@ class GetTasks {
     DateTime? criadoEmFim,
     DateTime? dataLimiteInicio,
     DateTime? dataLimiteFim,
+    String? projetoId,
+    String? colunaId,
+    bool semProjeto = false,
   }) {
     return repository.getTasks(
       page: page,
@@ -29,6 +32,9 @@ class GetTasks {
       filterCriadoEmFim: criadoEmFim,
       filterDataLimiteInicio: dataLimiteInicio,
       filterDataLimiteFim: dataLimiteFim,
+      filterProjeto: projetoId,
+      filterColuna: colunaId,
+      filterSemProjeto: semProjeto,
     );
   }
 }

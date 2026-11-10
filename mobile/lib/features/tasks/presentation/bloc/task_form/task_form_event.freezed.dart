@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TaskFormEvent {
 
- Task? get initialTask; String get titulo; String? get descricao; TaskStatus get status; TaskPriority get prioridade; int? get atribuidoPara; DateTime? get dataLimite;
+ Task? get initialTask; String get titulo; String? get descricao; TaskStatus get status; TaskPriority get prioridade; int? get atribuidoPara; DateTime? get dataLimite; String? get projetoId;
 /// Create a copy of TaskFormEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $TaskFormEventCopyWith<TaskFormEvent> get copyWith => _$TaskFormEventCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskFormEvent&&(identical(other.initialTask, initialTask) || other.initialTask == initialTask)&&(identical(other.titulo, titulo) || other.titulo == titulo)&&(identical(other.descricao, descricao) || other.descricao == descricao)&&(identical(other.status, status) || other.status == status)&&(identical(other.prioridade, prioridade) || other.prioridade == prioridade)&&(identical(other.atribuidoPara, atribuidoPara) || other.atribuidoPara == atribuidoPara)&&(identical(other.dataLimite, dataLimite) || other.dataLimite == dataLimite));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskFormEvent&&(identical(other.initialTask, initialTask) || other.initialTask == initialTask)&&(identical(other.titulo, titulo) || other.titulo == titulo)&&(identical(other.descricao, descricao) || other.descricao == descricao)&&(identical(other.status, status) || other.status == status)&&(identical(other.prioridade, prioridade) || other.prioridade == prioridade)&&(identical(other.atribuidoPara, atribuidoPara) || other.atribuidoPara == atribuidoPara)&&(identical(other.dataLimite, dataLimite) || other.dataLimite == dataLimite)&&(identical(other.projetoId, projetoId) || other.projetoId == projetoId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,initialTask,titulo,descricao,status,prioridade,atribuidoPara,dataLimite);
+int get hashCode => Object.hash(runtimeType,initialTask,titulo,descricao,status,prioridade,atribuidoPara,dataLimite,projetoId);
 
 @override
 String toString() {
-  return 'TaskFormEvent(initialTask: $initialTask, titulo: $titulo, descricao: $descricao, status: $status, prioridade: $prioridade, atribuidoPara: $atribuidoPara, dataLimite: $dataLimite)';
+  return 'TaskFormEvent(initialTask: $initialTask, titulo: $titulo, descricao: $descricao, status: $status, prioridade: $prioridade, atribuidoPara: $atribuidoPara, dataLimite: $dataLimite, projetoId: $projetoId)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $TaskFormEventCopyWith<$Res>  {
   factory $TaskFormEventCopyWith(TaskFormEvent value, $Res Function(TaskFormEvent) _then) = _$TaskFormEventCopyWithImpl;
 @useResult
 $Res call({
- Task? initialTask, String titulo, String? descricao, TaskStatus status, TaskPriority prioridade, int? atribuidoPara, DateTime? dataLimite
+ Task? initialTask, String titulo, String? descricao, TaskStatus status, TaskPriority prioridade, int? atribuidoPara, DateTime? dataLimite, String? projetoId
 });
 
 
@@ -62,7 +62,7 @@ class _$TaskFormEventCopyWithImpl<$Res>
 
 /// Create a copy of TaskFormEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? initialTask = freezed,Object? titulo = null,Object? descricao = freezed,Object? status = null,Object? prioridade = null,Object? atribuidoPara = freezed,Object? dataLimite = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? initialTask = freezed,Object? titulo = null,Object? descricao = freezed,Object? status = null,Object? prioridade = null,Object? atribuidoPara = freezed,Object? dataLimite = freezed,Object? projetoId = freezed,}) {
   return _then(_self.copyWith(
 initialTask: freezed == initialTask ? _self.initialTask : initialTask // ignore: cast_nullable_to_non_nullable
 as Task?,titulo: null == titulo ? _self.titulo : titulo // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,8 @@ as String?,status: null == status ? _self.status : status // ignore: cast_nullab
 as TaskStatus,prioridade: null == prioridade ? _self.prioridade : prioridade // ignore: cast_nullable_to_non_nullable
 as TaskPriority,atribuidoPara: freezed == atribuidoPara ? _self.atribuidoPara : atribuidoPara // ignore: cast_nullable_to_non_nullable
 as int?,dataLimite: freezed == dataLimite ? _self.dataLimite : dataLimite // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,projetoId: freezed == projetoId ? _self.projetoId : projetoId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -156,10 +157,10 @@ return submitted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( Task? initialTask,  String titulo,  String? descricao,  TaskStatus status,  TaskPriority prioridade,  int? atribuidoPara,  DateTime? dataLimite)?  submitted,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( Task? initialTask,  String titulo,  String? descricao,  TaskStatus status,  TaskPriority prioridade,  int? atribuidoPara,  DateTime? dataLimite,  String? projetoId)?  submitted,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case TaskFormSubmitted() when submitted != null:
-return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_that.prioridade,_that.atribuidoPara,_that.dataLimite);case _:
+return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_that.prioridade,_that.atribuidoPara,_that.dataLimite,_that.projetoId);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( Task? initialTask,  String titulo,  String? descricao,  TaskStatus status,  TaskPriority prioridade,  int? atribuidoPara,  DateTime? dataLimite)  submitted,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( Task? initialTask,  String titulo,  String? descricao,  TaskStatus status,  TaskPriority prioridade,  int? atribuidoPara,  DateTime? dataLimite,  String? projetoId)  submitted,}) {final _that = this;
 switch (_that) {
 case TaskFormSubmitted():
-return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_that.prioridade,_that.atribuidoPara,_that.dataLimite);case _:
+return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_that.prioridade,_that.atribuidoPara,_that.dataLimite,_that.projetoId);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +198,10 @@ return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( Task? initialTask,  String titulo,  String? descricao,  TaskStatus status,  TaskPriority prioridade,  int? atribuidoPara,  DateTime? dataLimite)?  submitted,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( Task? initialTask,  String titulo,  String? descricao,  TaskStatus status,  TaskPriority prioridade,  int? atribuidoPara,  DateTime? dataLimite,  String? projetoId)?  submitted,}) {final _that = this;
 switch (_that) {
 case TaskFormSubmitted() when submitted != null:
-return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_that.prioridade,_that.atribuidoPara,_that.dataLimite);case _:
+return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_that.prioridade,_that.atribuidoPara,_that.dataLimite,_that.projetoId);case _:
   return null;
 
 }
@@ -212,7 +213,7 @@ return submitted(_that.initialTask,_that.titulo,_that.descricao,_that.status,_th
 
 
 class TaskFormSubmitted implements TaskFormEvent {
-  const TaskFormSubmitted({this.initialTask, required this.titulo, this.descricao, required this.status, required this.prioridade, this.atribuidoPara, this.dataLimite});
+  const TaskFormSubmitted({this.initialTask, required this.titulo, this.descricao, required this.status, required this.prioridade, this.atribuidoPara, this.dataLimite, this.projetoId});
   
 
 @override final  Task? initialTask;
@@ -222,6 +223,7 @@ class TaskFormSubmitted implements TaskFormEvent {
 @override final  TaskPriority prioridade;
 @override final  int? atribuidoPara;
 @override final  DateTime? dataLimite;
+@override final  String? projetoId;
 
 /// Create a copy of TaskFormEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +235,16 @@ $TaskFormSubmittedCopyWith<TaskFormSubmitted> get copyWith => _$TaskFormSubmitte
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskFormSubmitted&&(identical(other.initialTask, initialTask) || other.initialTask == initialTask)&&(identical(other.titulo, titulo) || other.titulo == titulo)&&(identical(other.descricao, descricao) || other.descricao == descricao)&&(identical(other.status, status) || other.status == status)&&(identical(other.prioridade, prioridade) || other.prioridade == prioridade)&&(identical(other.atribuidoPara, atribuidoPara) || other.atribuidoPara == atribuidoPara)&&(identical(other.dataLimite, dataLimite) || other.dataLimite == dataLimite));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TaskFormSubmitted&&(identical(other.initialTask, initialTask) || other.initialTask == initialTask)&&(identical(other.titulo, titulo) || other.titulo == titulo)&&(identical(other.descricao, descricao) || other.descricao == descricao)&&(identical(other.status, status) || other.status == status)&&(identical(other.prioridade, prioridade) || other.prioridade == prioridade)&&(identical(other.atribuidoPara, atribuidoPara) || other.atribuidoPara == atribuidoPara)&&(identical(other.dataLimite, dataLimite) || other.dataLimite == dataLimite)&&(identical(other.projetoId, projetoId) || other.projetoId == projetoId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,initialTask,titulo,descricao,status,prioridade,atribuidoPara,dataLimite);
+int get hashCode => Object.hash(runtimeType,initialTask,titulo,descricao,status,prioridade,atribuidoPara,dataLimite,projetoId);
 
 @override
 String toString() {
-  return 'TaskFormEvent.submitted(initialTask: $initialTask, titulo: $titulo, descricao: $descricao, status: $status, prioridade: $prioridade, atribuidoPara: $atribuidoPara, dataLimite: $dataLimite)';
+  return 'TaskFormEvent.submitted(initialTask: $initialTask, titulo: $titulo, descricao: $descricao, status: $status, prioridade: $prioridade, atribuidoPara: $atribuidoPara, dataLimite: $dataLimite, projetoId: $projetoId)';
 }
 
 
@@ -253,7 +255,7 @@ abstract mixin class $TaskFormSubmittedCopyWith<$Res> implements $TaskFormEventC
   factory $TaskFormSubmittedCopyWith(TaskFormSubmitted value, $Res Function(TaskFormSubmitted) _then) = _$TaskFormSubmittedCopyWithImpl;
 @override @useResult
 $Res call({
- Task? initialTask, String titulo, String? descricao, TaskStatus status, TaskPriority prioridade, int? atribuidoPara, DateTime? dataLimite
+ Task? initialTask, String titulo, String? descricao, TaskStatus status, TaskPriority prioridade, int? atribuidoPara, DateTime? dataLimite, String? projetoId
 });
 
 
@@ -270,7 +272,7 @@ class _$TaskFormSubmittedCopyWithImpl<$Res>
 
 /// Create a copy of TaskFormEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? initialTask = freezed,Object? titulo = null,Object? descricao = freezed,Object? status = null,Object? prioridade = null,Object? atribuidoPara = freezed,Object? dataLimite = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? initialTask = freezed,Object? titulo = null,Object? descricao = freezed,Object? status = null,Object? prioridade = null,Object? atribuidoPara = freezed,Object? dataLimite = freezed,Object? projetoId = freezed,}) {
   return _then(TaskFormSubmitted(
 initialTask: freezed == initialTask ? _self.initialTask : initialTask // ignore: cast_nullable_to_non_nullable
 as Task?,titulo: null == titulo ? _self.titulo : titulo // ignore: cast_nullable_to_non_nullable
@@ -279,7 +281,8 @@ as String?,status: null == status ? _self.status : status // ignore: cast_nullab
 as TaskStatus,prioridade: null == prioridade ? _self.prioridade : prioridade // ignore: cast_nullable_to_non_nullable
 as TaskPriority,atribuidoPara: freezed == atribuidoPara ? _self.atribuidoPara : atribuidoPara // ignore: cast_nullable_to_non_nullable
 as int?,dataLimite: freezed == dataLimite ? _self.dataLimite : dataLimite // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,projetoId: freezed == projetoId ? _self.projetoId : projetoId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

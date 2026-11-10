@@ -56,6 +56,9 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         criadoEmFim: current?.filterCriadoEmFim,
         dataLimiteInicio: current?.filterDataLimiteInicio,
         dataLimiteFim: current?.filterDataLimiteFim,
+        projetoId: current?.projetoId,
+        colunaId: current?.colunaId,
+        semProjeto: current?.semProjeto ?? false,
       );
       emit(TaskListState.success(
         tasks: result.tasks,
@@ -69,6 +72,9 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         filterCriadoEmFim: current?.filterCriadoEmFim,
         filterDataLimiteInicio: current?.filterDataLimiteInicio,
         filterDataLimiteFim: current?.filterDataLimiteFim,
+        projetoId: current?.projetoId,
+        colunaId: current?.colunaId,
+        semProjeto: current?.semProjeto ?? false,
       ));
     } catch (e) {
       emit(TaskListState.failure(AppErrorParser.parse(e)));
@@ -79,6 +85,10 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     TaskListFiltered event,
     Emitter<TaskListState> emit,
   ) async {
+    final current = state is TaskListSuccess ? state as TaskListSuccess : null;
+    // Preserva contexto de projeto quando o filtered vem do TabBar (sem projetoId/semProjeto explícitos)
+    final projetoId = event.projetoId ?? current?.projetoId;
+    final semProjeto = event.semProjeto || (current?.semProjeto ?? false) && event.projetoId == null;
     emit(const TaskListState.loading());
     try {
       final result = await _getTasks(
@@ -91,6 +101,9 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         criadoEmFim: event.criadoEmFim,
         dataLimiteInicio: event.dataLimiteInicio,
         dataLimiteFim: event.dataLimiteFim,
+        projetoId: projetoId,
+        colunaId: event.colunaId,
+        semProjeto: semProjeto,
       );
       emit(TaskListState.success(
         tasks: result.tasks,
@@ -104,6 +117,9 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         filterCriadoEmFim: event.criadoEmFim,
         filterDataLimiteInicio: event.dataLimiteInicio,
         filterDataLimiteFim: event.dataLimiteFim,
+        projetoId: projetoId,
+        colunaId: event.colunaId,
+        semProjeto: semProjeto,
       ));
     } catch (e) {
       emit(TaskListState.failure(AppErrorParser.parse(e)));
@@ -131,6 +147,9 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
         criadoEmFim: current.filterCriadoEmFim,
         dataLimiteInicio: current.filterDataLimiteInicio,
         dataLimiteFim: current.filterDataLimiteFim,
+        projetoId: current.projetoId,
+        colunaId: current.colunaId,
+        semProjeto: current.semProjeto,
       );
       emit(current.copyWith(
         tasks: [...current.tasks, ...result.tasks],

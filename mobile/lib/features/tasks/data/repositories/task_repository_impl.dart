@@ -21,6 +21,9 @@ class TaskRepositoryImpl implements TaskRepository {
     DateTime? filterCriadoEmFim,
     DateTime? filterDataLimiteInicio,
     DateTime? filterDataLimiteFim,
+    String? filterProjeto,
+    String? filterColuna,
+    bool filterSemProjeto = false,
   }) async {
     final result = await remoteDataSource.getTasks(
       page: page,
@@ -33,6 +36,9 @@ class TaskRepositoryImpl implements TaskRepository {
       filterCriadoEmFim: filterCriadoEmFim,
       filterDataLimiteInicio: filterDataLimiteInicio,
       filterDataLimiteFim: filterDataLimiteFim,
+      filterProjeto: filterProjeto,
+      filterColuna: filterColuna,
+      filterSemProjeto: filterSemProjeto,
     );
     return (
       tasks: result.tasks.map((m) => m.toEntity()).toList(),
@@ -69,6 +75,16 @@ class TaskRepositoryImpl implements TaskRepository {
     return models.map((m) => m.toEntity()).toList();
   }
 
+  @override
+  Future<Task> moveTask({
+    required String taskId,
+    required String columnId,
+    required int posicao,
+  }) async {
+    final model = await remoteDataSource.moveTask(taskId, columnId, posicao);
+    return model.toEntity();
+  }
+
   Map<String, dynamic> _taskToMap(Task task) {
     return {
       'titulo': task.titulo,
@@ -78,6 +94,7 @@ class TaskRepositoryImpl implements TaskRepository {
       if (task.atribuidoParaId != null) 'atribuido_para': task.atribuidoParaId,
       if (task.dataLimite != null)
         'data_limite': task.dataLimite!.toIso8601String(),
+      if (task.projetoId != null) 'projeto': task.projetoId,
     };
   }
 }
