@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from rest_framework import exceptions
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import UserSettings
+from .status import AccountNotApproved, get_user_status, is_user_approved
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -15,7 +17,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        data = super().validate(attrs)
+        try:
+            data = super().validate(attrs)
+        except exceptions.AuthenticationFailed:
+            # Senha certa mas cadastro não aprovado: devolve o motivo em vez do
+            # genérico "nenhuma conta ativa". Senha errada continua genérico.
+            user = getattr(self, 'user', None)
+            if user is not None and user.is_active and not is_user_approved(user):
+                raise AccountNotApproved(get_user_status(user))
+            raise
         data['user'] = UserSerializer(self.user).data
         return data
 

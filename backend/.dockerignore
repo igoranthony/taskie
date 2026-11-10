@@ -1,0 +1,15 @@
+# Nada disso deve entrar na imagem (o Dockerfile faz COPY . .)
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+media/
+staticfiles/
+backups/
+.git
+.gitignore
+docker-compose*.yml

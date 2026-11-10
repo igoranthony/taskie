@@ -3,11 +3,14 @@ from rest_framework import generics, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from .models import UserSettings
+from .enums import UserStatus
+from .status import get_user_status
 from .serializers import (
     CustomTokenObtainPairSerializer,
     RegisterSerializer,
@@ -18,6 +21,8 @@ from .serializers import (
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'auth'
 
 
 class CustomTokenRefreshView(TokenRefreshView):
@@ -28,19 +33,18 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'auth'
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        refresh = RefreshToken.for_user(user)
+        # Sem tokens: o cadastro nasce pendente e só loga depois de aprovado.
         return Response({
-            'message': 'Usuário criado com sucesso',
+            'message': 'Cadastro recebido. Aguarde a aprovação para entrar.',
             'user': UserSerializer(user).data,
-            'tokens': {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-            },
+            'status': get_user_status(user),
         }, status=status.HTTP_201_CREATED)
 
 
@@ -55,7 +59,7 @@ def user_profile(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def users_list(request):
-    users = User.objects.filter(is_active=True).order_by('username')
+    users = User.objects.filter(is_active=True, profile__status=UserStatus.APROVADO).order_by('username')
     return Response(UserSerializer(users, many=True).data)
 
 

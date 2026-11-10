@@ -49,6 +49,9 @@ def create_sample_users():
                 last_name=data['last_name'],
             )
             print(f'✅ Usuário criado: {user.username} / {data["password"]}')
+            # Usuários de seed já nascem liberados (cadastro novo nasce pendente)
+            user.profile.status = 'aprovado'
+            user.profile.save(update_fields=['status'])
         else:
             print(f'ℹ️  Usuário já existe: {data["username"]}')
 

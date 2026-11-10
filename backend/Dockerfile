@@ -27,5 +27,6 @@ RUN chmod +x manage.py seed.py
 # Expose port
 EXPOSE 8000
 
-# Run the application
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# Run the application (produção: gunicorn; o docker-compose.yml de dev
+# sobrescreve com runserver)
+CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-3} --timeout 60 --access-logfile -"]

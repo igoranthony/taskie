@@ -116,7 +116,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # REST Framework Configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'apps.authentication.authentication.ApprovedJWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -128,6 +128,10 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # Login e cadastro (ScopedRateThrottle nas views de auth): freia força bruta.
+    'DEFAULT_THROTTLE_RATES': {
+        'auth': config('THROTTLE_AUTH_RATE', default='10/min'),
+    },
 }
 
 SPECTACULAR_SETTINGS = {
@@ -156,7 +160,8 @@ SIMPLE_JWT = {
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
-    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+    # Login e refresh só para usuário ativo E aprovado (UserProfile.status).
+    'USER_AUTHENTICATION_RULE': 'apps.authentication.status.user_authentication_rule',
 
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
@@ -178,7 +183,9 @@ CORS_ALLOWED_ORIGINS = [
     # zntt-control desktop (Tauri)
     "http://localhost:1420",
     "http://127.0.0.1:1420",
-    "tauri://localhost",
+    "tauri://localhost",          # macOS / Linux
+    "http://tauri.localhost",     # Windows
+    "https://tauri.localhost",    # Windows (useHttpsScheme)
 ]
 
 CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=DEBUG, cast=bool)
