@@ -34,9 +34,18 @@ class TaskAPITest(TestCase):
         response = self.client.patch(f'/api/tasks/{self.task.pk}/', {'titulo': 'Atualizado'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_atualizar_task_alheia_retorna_403(self):
-        """Não-owner não pode atualizar task alheia."""
+    def test_atualizar_task_alheia_retorna_404(self):
+        """Task de outro usuário (sem projeto em comum) nem aparece para ele."""
         self.client.force_authenticate(user=self.other)
+        response = self.client.patch(f'/api/tasks/{self.task.pk}/', {'titulo': 'Hack'})
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_task_atribuida_e_visivel_mas_nao_editavel(self):
+        """Quem recebeu a task enxerga, mas só o criador edita."""
+        self.task.atribuido_para = self.other
+        self.task.save()
+        self.client.force_authenticate(user=self.other)
+        self.assertEqual(self.client.get(f'/api/tasks/{self.task.pk}/').status_code, status.HTTP_200_OK)
         response = self.client.patch(f'/api/tasks/{self.task.pk}/', {'titulo': 'Hack'})
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 

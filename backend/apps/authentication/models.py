@@ -8,6 +8,8 @@ class UserSettings(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='settings')
     tema = models.CharField(max_length=20, default='dark')
     cor_accent = models.CharField(max_length=7, default='#6366f1')
+    # Preferências de UI que sincronizam entre máquinas (fonte, idioma…).
+    preferencias = models.JSONField(default=dict, blank=True)
     atualizado_em = models.DateTimeField(auto_now=True)
 
     class Meta:

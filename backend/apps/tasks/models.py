@@ -24,6 +24,7 @@ class Task(SoftDeleteModel):
     ]
 
     PRIORITY_CHOICES = [
+        ('', 'Sem prioridade'),
         ('baixa', 'Baixa'),
         ('media', 'Média'),
         ('alta', 'Alta'),
@@ -32,7 +33,8 @@ class Task(SoftDeleteModel):
     titulo = models.CharField(max_length=255)
     descricao = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='backlog')
-    prioridade = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='media')
+    # Vazio = sem prioridade (o desktop permite; o mobile lê vazio como 'media').
+    prioridade = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='media', blank=True)
     criado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks_created')
     atribuido_para = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks_assigned'
@@ -55,6 +57,7 @@ class Task(SoftDeleteModel):
         related_name='tasks',
     )
     posicao = models.IntegerField(default=0)
+    tags = models.ManyToManyField('projects.Tag', blank=True, related_name='tasks')
 
     class Meta:
         verbose_name = 'Task'
@@ -160,11 +163,67 @@ class Attachment(BaseModel):
     nome_original = models.CharField(max_length=255)
     mime_type = models.CharField(max_length=100, null=True, blank=True)
     tamanho_bytes = models.BigIntegerField(null=True, blank=True)
+    posicao = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Anexo'
         verbose_name_plural = 'Anexos'
-        ordering = ['criado_em']
+        ordering = ['posicao', 'criado_em']
 
     def __str__(self):
         return f"{self.task.titulo} › {self.nome_original}"
+
+
+class TaskActivity(BaseModel):
+    """Histórico detalhado da task usado pelo desktop (criação, movimentação,
+    campos, subtarefas, anexos, tags, tempo). O TaskHistory acima continua
+    sendo o do app mobile.
+
+    `tipo` é string livre no banco; os valores válidos estão em
+    apps.tasks.enums.ActivityType. `campo` usa os nomes da API
+    (titulo, descricao, prioridade, data_limite, coluna).
+    """
+
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='atividades')
+    tipo = models.CharField(max_length=30)
+    campo = models.CharField(max_length=30, null=True, blank=True)
+    valor_antigo = models.TextField(null=True, blank=True)
+    valor_novo = models.TextField(null=True, blank=True)
+    usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    # Sem auto_now_add: a importação do desktop preserva a data original.
+    ocorrido_em = models.DateTimeField(default=timezone.now, db_index=True)
+
+    class Meta:
+        verbose_name = 'Atividade da Task'
+        verbose_name_plural = 'Atividades das Tasks'
+        ordering = ['-ocorrido_em']
+        indexes = [models.Index(fields=['task', '-ocorrido_em'])]
+
+    def __str__(self):
+        return f"{self.task_id} {self.tipo}"
+
+
+class TimeEntry(BaseModel):
+    """Lançamento de tempo. `fim` nulo = timer rodando (um por usuário)."""
+
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='tempos')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tempos')
+    inicio = models.DateTimeField()
+    fim = models.DateTimeField(null=True, blank=True)
+    nota = models.TextField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Lançamento de Tempo'
+        verbose_name_plural = 'Lançamentos de Tempo'
+        ordering = ['-inicio']
+        indexes = [
+            models.Index(fields=['task', '-inicio']),
+            models.Index(fields=['usuario', 'fim']),
+        ]
+
+    def __str__(self):
+        return f"{self.task_id} {self.inicio} → {self.fim}"
+
+    def segundos(self, agora=None):
+        fim = self.fim or agora or timezone.now()
+        return max(0, int((fim - self.inicio).total_seconds()))

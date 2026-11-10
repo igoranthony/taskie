@@ -32,6 +32,24 @@ class Category(BaseModel):
         return self.projects.filter(deletado_em__isnull=True).count()
 
 
+class Tag(BaseModel):
+    """Etiqueta do usuário. Cada projeto escolhe quais usa (Project.tags) e as
+    tasks só recebem tags do próprio projeto."""
+
+    nome = models.CharField(max_length=60)
+    cor = models.CharField(max_length=7, default='#7c6af7')
+    criado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tags')
+
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
+        ordering = ['nome']
+        unique_together = [['nome', 'criado_por']]
+
+    def __str__(self):
+        return self.nome
+
+
 class Project(SoftDeleteModel):
     """Projetos do zntt-control"""
 
@@ -52,6 +70,7 @@ class Project(SoftDeleteModel):
     invite_code = models.CharField(
         max_length=8, unique=True, default=_generate_invite_code, db_index=True
     )
+    tags = models.ManyToManyField(Tag, blank=True, related_name='projects')
 
     class Meta:
         verbose_name = 'Projeto'
@@ -127,3 +146,22 @@ class ProjectMember(BaseModel):
 
     def __str__(self):
         return f"{self.usuario.username} → {self.projeto.nome} ({self.status})"
+
+
+class ProjectTemplate(BaseModel):
+    """Modelo de projeto: colunas e tags copiadas de um projeto existente."""
+
+    nome = models.CharField(max_length=120)
+    criado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='project_templates')
+    # [{"nome": str, "posicao": int, "is_done_column": bool}, ...]
+    colunas = models.JSONField(default=list, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True, related_name='templates')
+
+    class Meta:
+        verbose_name = 'Modelo de Projeto'
+        verbose_name_plural = 'Modelos de Projeto'
+        ordering = ['nome']
+        unique_together = [['nome', 'criado_por']]
+
+    def __str__(self):
+        return self.nome

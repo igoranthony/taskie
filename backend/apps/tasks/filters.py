@@ -40,6 +40,6 @@ class TaskFilter(django_filters.FilterSet):
             'prioridade': ['exact'],
             'criado_por': ['exact'],
             'atribuido_para': ['exact'],
-            'projeto': ['exact'],
+            'projeto': ['exact', 'isnull'],  # mobile: projeto__isnull=true = sem projeto
             'coluna': ['exact'],
         }

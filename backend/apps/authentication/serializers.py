@@ -69,5 +69,5 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserSettings
-        fields = ('tema', 'cor_accent', 'atualizado_em')
+        fields = ('tema', 'cor_accent', 'preferencias', 'atualizado_em')
         read_only_fields = ('atualizado_em',)

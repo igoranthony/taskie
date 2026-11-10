@@ -1,7 +1,13 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Attachment, Subtask, Task, TaskHistory
+from .models import Attachment, Subtask, Task, TaskActivity, TaskHistory, TimeEntry
+
+
+class TagMiniSerializer(serializers.Serializer):
+    id = serializers.UUIDField()
+    nome = serializers.CharField()
+    cor = serializers.CharField()
 
 
 class SubtaskSerializer(serializers.ModelSerializer):
@@ -29,9 +35,11 @@ class AttachmentSerializer(serializers.ModelSerializer):
         model = Attachment
         fields = (
             'id', 'task', 'arquivo', 'arquivo_url',
-            'nome_original', 'mime_type', 'tamanho_bytes', 'criado_em',
+            'nome_original', 'mime_type', 'tamanho_bytes', 'posicao', 'criado_em',
         )
-        read_only_fields = ('id', 'criado_em', 'arquivo_url', 'nome_original', 'mime_type', 'tamanho_bytes')
+        read_only_fields = (
+            'id', 'criado_em', 'arquivo_url', 'nome_original', 'mime_type', 'tamanho_bytes', 'posicao',
+        )
 
     def get_arquivo_url(self, obj):
         request = self.context.get('request')
@@ -52,6 +60,7 @@ class TaskSerializer(serializers.ModelSerializer):
     anexos = AttachmentSerializer(many=True, read_only=True)
     subtarefas_total = serializers.SerializerMethodField()
     subtarefas_concluidas = serializers.SerializerMethodField()
+    tags = TagMiniSerializer(many=True, read_only=True)
 
     class Meta:
         model = Task
@@ -62,7 +71,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'can_edit',
             'projeto', 'coluna', 'posicao',
             'subtarefas', 'anexos',
-            'subtarefas_total', 'subtarefas_concluidas',
+            'subtarefas_total', 'subtarefas_concluidas', 'tags',
         )
         read_only_fields = ('criado_por', 'criado_em', 'atualizado_em')
 
@@ -164,3 +173,36 @@ class TaskUpdateSerializer(serializers.ModelSerializer):
                     "Não é possível alterar status de tarefa concluída"
                 )
         return value
+
+
+class TaskActivitySerializer(serializers.ModelSerializer):
+    usuario_username = serializers.CharField(source='usuario.username', read_only=True, allow_null=True)
+
+    class Meta:
+        model = TaskActivity
+        fields = ('id', 'task', 'tipo', 'campo', 'valor_antigo', 'valor_novo',
+                  'usuario', 'usuario_username', 'ocorrido_em')
+        read_only_fields = fields
+
+
+class TimeEntrySerializer(serializers.ModelSerializer):
+    segundos = serializers.SerializerMethodField()
+
+    class Meta:
+        model = TimeEntry
+        fields = ('id', 'task', 'usuario', 'inicio', 'fim', 'nota', 'segundos', 'criado_em')
+        read_only_fields = ('id', 'usuario', 'segundos', 'criado_em')
+
+    def get_segundos(self, obj):
+        return obj.segundos()
+
+    def validate(self, attrs):
+        from django.utils import timezone
+
+        inicio = attrs.get('inicio', getattr(self.instance, 'inicio', None))
+        fim = attrs.get('fim', getattr(self.instance, 'fim', None))
+        if inicio and inicio > timezone.now():
+            raise serializers.ValidationError({'inicio': 'O início não pode ser no futuro.'})
+        if inicio and fim and fim <= inicio:
+            raise serializers.ValidationError({'fim': 'O fim tem que ser depois do início.'})
+        return attrs

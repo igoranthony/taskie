@@ -33,14 +33,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Category.objects.filter(criado_por=self.request.user)
 
-    def destroy(self, request, *args, **kwargs):
-        category = self.get_object()
-        if category.total_projetos > 0:
-            return Response(
-                {'detail': f'Não é possível excluir: {category.total_projetos} projeto(s) usa(m) esta categoria.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-        return super().destroy(request, *args, **kwargs)
 
 
 class ProjectViewSet(ActionSerializerMixin, viewsets.ModelViewSet):
@@ -55,6 +47,8 @@ class ProjectViewSet(ActionSerializerMixin, viewsets.ModelViewSet):
         # These actions are accessible to both owners and accepted members.
         # The queryset already enforces visibility — only owned/member projects are returned.
         member_ok = {'list', 'retrieve', 'board', 'join'}
+        if self.action == 'tags' and self.request.method == 'GET':
+            return [IsAuthenticated()]
         if self.action in member_ok:
             return [IsAuthenticated()]
         return [IsAuthenticated(), IsProjectOwner()]
@@ -85,9 +79,15 @@ class ProjectViewSet(ActionSerializerMixin, viewsets.ModelViewSet):
         serializer.save()
         return Response(ProjectSerializer(project, context={'request': request}).data)
 
-    @action(detail=True, methods=['post'], url_path='logo', parser_classes=[MultiPartParser, FormParser])
+    @action(detail=True, methods=['post', 'delete'], url_path='logo', parser_classes=[MultiPartParser, FormParser])
     def upload_logo(self, request, pk=None):
         project = self.get_object()
+        if request.method == 'DELETE':
+            if project.logo:
+                project.logo.delete(save=False)
+            project.logo = None
+            project.save(update_fields=['logo'])
+            return Response(ProjectSerializer(project, context={'request': request}).data)
         if 'logo' not in request.FILES:
             return Response({'detail': 'Nenhum arquivo enviado.'}, status=status.HTTP_400_BAD_REQUEST)
         project.logo = request.FILES['logo']
@@ -102,6 +102,25 @@ class ProjectViewSet(ActionSerializerMixin, viewsets.ModelViewSet):
             'tasks__subtarefas', 'tasks__anexos', 'tasks__atribuido_para'
         ).order_by('posicao')
         return Response(ColumnBoardSerializer(columns, many=True).data)
+
+    @action(detail=True, methods=['get', 'put'], url_path='tags')
+    def tags(self, request, pk=None):
+        """GET/PUT /projects/{id}/tags/ — PUT { "ids": [...] }. Tags que saem do
+        projeto também saem das tasks dele."""
+        project = self.get_object()
+        if request.method == 'PUT':
+            from .models import Tag
+            novas = Tag.objects.filter(criado_por=request.user, pk__in=request.data.get('ids', []))
+            with transaction.atomic():
+                project.tags.set(novas)
+                from apps.tasks.models import Task
+                for task in Task.all_objects.filter(projeto=project).prefetch_related('tags'):
+                    fora = [t for t in task.tags.all() if t not in novas]
+                    if fora:
+                        task.tags.remove(*fora)
+        return Response([
+            {'id': str(t.id), 'nome': t.nome, 'cor': t.cor} for t in project.tags.order_by('nome')
+        ])
 
     @action(detail=True, methods=['put'], url_path='columns/reorder')
     def reorder_columns(self, request, pk=None):
@@ -303,12 +322,39 @@ class ColumnViewSet(ActionSerializerMixin, viewsets.ModelViewSet):
         new_status = 'concluido' if column.is_done_column else 'em_andamento'
         Task.objects.filter(coluna=column).update(status=new_status)
 
-    def destroy(self, request, *args, **kwargs):
+    @action(detail=True, methods=['get'])
+    def contagem(self, request, pk=None):
+        """GET /columns/{id}/contagem/ — inclui tasks arquivadas (que também mudam de coluna)."""
+        from apps.tasks.models import Task
         column = self.get_object()
-        task_count = column.tasks.filter(deletado_em__isnull=True).count()
-        if task_count > 0:
-            return Response(
-                {'detail': f'Não é possível excluir: a coluna tem {task_count} tarefa(s).'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        total = Task.all_objects.filter(coluna=column).count()
+        ativas = Task.objects.filter(coluna=column).count()
+        return Response({'total': total, 'ativas': ativas, 'arquivadas': total - ativas})
+
+    def destroy(self, request, *args, **kwargs):
+        """DELETE /columns/{id}/?mover_para=<coluna> — com tasks, exige o destino
+        (mesmo projeto); elas vão para o fim dele, na ordem em que estavam."""
+        from django.db.models import Max
+        from apps.tasks.models import Task
+
+        column = self.get_object()
+        tasks = Task.all_objects.filter(coluna=column).order_by('posicao')
+        if tasks.exists():
+            destino_id = request.query_params.get('mover_para')
+            if not destino_id:
+                return Response(
+                    {'detail': f'A coluna tem {tasks.count()} tarefa(s). Informe mover_para.'},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            destino = Column.objects.filter(pk=destino_id, projeto=column.projeto).exclude(pk=column.pk).first()
+            if not destino:
+                return Response({'detail': 'Coluna de destino inválida.'}, status=status.HTTP_400_BAD_REQUEST)
+            novo_status = 'concluido' if destino.is_done_column else 'em_andamento'
+            with transaction.atomic():
+                base = Task.all_objects.filter(coluna=destino).aggregate(m=Max('posicao'))['m']
+                base = (base if base is not None else -1) + 1
+                for i, task in enumerate(tasks):
+                    Task.all_objects.filter(pk=task.pk).update(coluna=destino, posicao=base + i, status=novo_status)
+                column.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
         return super().destroy(request, *args, **kwargs)

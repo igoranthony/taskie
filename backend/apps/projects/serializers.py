@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, Column, Project, ProjectMember
+from .models import Category, Column, Project, ProjectMember, ProjectTemplate, Tag
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -71,16 +71,27 @@ class TaskCardSerializer(serializers.Serializer):
     subtarefas_total = serializers.SerializerMethodField()
     subtarefas_concluidas = serializers.SerializerMethodField()
     anexos_total = serializers.SerializerMethodField()
+    tags = serializers.SerializerMethodField()
+    tempo_segundos = serializers.SerializerMethodField()
     criado_em = serializers.DateTimeField()
+    atualizado_em = serializers.DateTimeField()
 
+    # Contagens em Python sobre o prefetch do board (uma query por relação,
+    # não uma por card).
     def get_subtarefas_total(self, obj):
-        return obj.subtarefas.count()
+        return len(obj.subtarefas.all())
 
     def get_subtarefas_concluidas(self, obj):
-        return obj.subtarefas.filter(concluida=True).count()
+        return sum(1 for s in obj.subtarefas.all() if s.concluida)
 
     def get_anexos_total(self, obj):
-        return obj.anexos.count()
+        return len(obj.anexos.all())
+
+    def get_tags(self, obj):
+        return [{'id': str(t.id), 'nome': t.nome, 'cor': t.cor} for t in obj.tags.all()]
+
+    def get_tempo_segundos(self, obj):
+        return sum(e.segundos() for e in obj.tempos.all())
 
 
 class ColumnBoardSerializer(serializers.ModelSerializer):
@@ -96,7 +107,7 @@ class ColumnBoardSerializer(serializers.ModelSerializer):
         tasks = obj.tasks.filter(
             deletado_em__isnull=True
         ).select_related('atribuido_para').prefetch_related(
-            'subtarefas', 'anexos'
+            'subtarefas', 'anexos', 'tags', 'tempos'
         ).order_by('posicao')
         return TaskCardSerializer(tasks, many=True).data
 
@@ -218,3 +229,53 @@ class ProjectJoinSerializer(serializers.Serializer):
 
     def validate_code(self, value):
         return value.strip().upper()
+
+
+class TagSerializer(serializers.ModelSerializer):
+    task_count = serializers.IntegerField(read_only=True, default=0)
+    project_count = serializers.IntegerField(read_only=True, default=0)
+
+    class Meta:
+        model = Tag
+        fields = ('id', 'nome', 'cor', 'task_count', 'project_count', 'criado_em')
+        read_only_fields = ('id', 'task_count', 'project_count', 'criado_em')
+
+    def validate_nome(self, value):
+        value = value.strip()
+        if not value:
+            raise serializers.ValidationError('Nome da tag não pode estar vazio.')
+        request = self.context['request']
+        qs = Tag.objects.filter(criado_por=request.user, nome__iexact=value)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError('Já existe uma tag com esse nome.')
+        return value
+
+
+class ProjectTemplateSerializer(serializers.ModelSerializer):
+    column_count = serializers.SerializerMethodField()
+    tag_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ProjectTemplate
+        fields = ('id', 'nome', 'column_count', 'tag_count', 'criado_em')
+        read_only_fields = ('id', 'column_count', 'tag_count', 'criado_em')
+
+    def get_column_count(self, obj):
+        return len(obj.colunas or [])
+
+    def get_tag_count(self, obj):
+        return obj.tags.count()
+
+    def validate_nome(self, value):
+        value = value.strip()
+        if not value:
+            raise serializers.ValidationError('Dê um nome ao modelo.')
+        request = self.context['request']
+        qs = ProjectTemplate.objects.filter(criado_por=request.user, nome__iexact=value)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError('Já existe um modelo com esse nome.')
+        return value
